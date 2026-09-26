@@ -41,6 +41,7 @@ Material One
 ├── Shape Framework
 ├── Layout Engine
 ├── Component System
+├── Application Shell
 ├── Iconography System
 ├── Motion Framework
 ├── Accessibility Layer
@@ -48,21 +49,41 @@ Material One
 └── Device Adaptation System
 ```
 
-## Repository Structure
+## Implementation Packages
 
 ```
-material-one/
-├── README.md
-├── docs/
-├── tokens/
-├── components/
-├── foundations/
-└── specifications/
+packages/
+├── core/        Adaptive context and preference engine
+├── components/  Component recipes and CSS primitives
+├── shell/       Navigation, workspace shell, commands, and overlays
+├── themes/      Semantic theme contracts and CSS-variable generation
+└── icons/       Icon geometry and state contracts
+
+tokens/
+├── material-one.tokens.json
+└── css/
+    └── material-one.css
 ```
+
+## Product Scope
+
+Material One is intended to provide the shared interface foundation for GoreeWorks:
+
+- websites
+- applications
+- dashboards
+- ecommerce experiences
+- services
+- themes
+- icon systems
+- professional tools
+- future device experiences
+
+Products may have their own identity while extending the same Material One behavioral and semantic foundation.
 
 ## Status
 
-Foundational specification and system architecture development.
+Active foundational implementation. Core adaptation, semantic tokens, components, themes, icon contracts, and the adaptive application shell are under development.
 
 ## License
 

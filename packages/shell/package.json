@@ -1,0 +1,22 @@
+{
+  "name": "@material-one/shell",
+  "version": "0.1.0",
+  "description": "Adaptive application shell, navigation, command surfaces, and overlays for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-shell.css"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0",
+    "@material-one/components": "^0.1.0"
+  },
+  "keywords": [
+    "design-system",
+    "application-shell",
+    "navigation",
+    "adaptive-ui",
+    "material-one"
+  ],
+  "license": "MIT"
+}
