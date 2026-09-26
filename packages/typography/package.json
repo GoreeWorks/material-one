@@ -1,0 +1,18 @@
+{
+  "name": "@material-one/typography",
+  "version": "0.1.0",
+  "description": "Adaptive semantic typography roles and readable type scaling for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-typography.css"
+  },
+  "keywords": [
+    "design-system",
+    "typography",
+    "responsive-type",
+    "accessibility",
+    "material-one"
+  ],
+  "license": "MIT"
+}
