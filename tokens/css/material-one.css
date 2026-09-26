@@ -117,14 +117,35 @@
   --mo-skeleton-minimum-visible: 300ms;
 
   /* Typography */
+  --mo-font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mo-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --mo-type-display: 3.5rem;
   --mo-type-large-title: 2.5rem;
   --mo-type-title: 2rem;
   --mo-type-heading: 1.5rem;
+  --mo-type-section-heading: var(--mo-type-heading);
   --mo-type-body: 1rem;
   --mo-type-label: 0.875rem;
   --mo-type-supporting: 0.75rem;
+  --mo-type-weight-regular: 420;
+  --mo-type-weight-medium: 560;
+  --mo-type-weight-semibold: 640;
+  --mo-type-weight-bold: 720;
+  --mo-line-display: 1.02;
+  --mo-line-large-title: 1.08;
+  --mo-line-title: 1.12;
+  --mo-line-heading: 1.2;
   --mo-line-body: 1.5;
+  --mo-line-label: 1.3;
+  --mo-line-supporting: 1.4;
+  --mo-tracking-display: -0.035em;
+  --mo-tracking-large-title: -0.028em;
+  --mo-tracking-title: -0.022em;
+  --mo-tracking-heading: -0.015em;
+  --mo-tracking-body: 0;
+  --mo-tracking-label: 0.01em;
+  --mo-tracking-supporting: 0.012em;
+  --mo-type-scale: 1;
 
   /* Spacing */
   --mo-space-xs: 0.25rem;
@@ -153,8 +174,19 @@
   --mo-motion-small: 160ms;
   --mo-motion-standard: 280ms;
   --mo-motion-large: 460ms;
+  --mo-motion-feedback: 160ms;
+  --mo-motion-enter: 220ms;
+  --mo-motion-exit: 160ms;
+  --mo-motion-navigation: 280ms;
+  --mo-motion-transform: 460ms;
+  --mo-motion-emphasis: 360ms;
+  --mo-motion-loading: 1400ms;
+  --mo-motion-distance-small: 4px;
+  --mo-motion-distance-medium: 8px;
+  --mo-motion-distance-large: 16px;
   --mo-ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --mo-ease-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+  --mo-ease-exit: cubic-bezier(0.4, 0, 1, 1);
 
   /* Interaction */
   --mo-target-compact: 36px;
@@ -251,6 +283,15 @@
     --mo-motion-small: 0ms;
     --mo-motion-standard: 0ms;
     --mo-motion-large: 0ms;
+    --mo-motion-enter: 0ms;
+    --mo-motion-exit: 0ms;
+    --mo-motion-navigation: 0ms;
+    --mo-motion-transform: 0ms;
+    --mo-motion-emphasis: 0ms;
+    --mo-motion-loading: 0ms;
+    --mo-motion-distance-small: 0px;
+    --mo-motion-distance-medium: 0px;
+    --mo-motion-distance-large: 0px;
     --mo-skeleton-duration: 0ms;
   }
 }
