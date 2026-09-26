@@ -1,0 +1,21 @@
+{
+  "name": "@material-one/theme-intelligence",
+  "version": "0.1.0",
+  "description": "Adaptive semantic theme generation, contrast validation, and personalization intelligence for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@material-one/semantic-colors": "^0.1.0"
+  },
+  "keywords": [
+    "design-system",
+    "theme",
+    "semantic-color",
+    "personalization",
+    "accessibility",
+    "material-one"
+  ],
+  "license": "MIT"
+}
