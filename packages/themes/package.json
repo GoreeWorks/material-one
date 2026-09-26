@@ -1,7 +1,7 @@
 {
   "name": "@material-one/themes",
-  "version": "0.1.0",
-  "description": "Theme contracts and CSS variable generation for Material One.",
+  "version": "0.2.0",
+  "description": "Theme contracts, semantic color overrides, and CSS variable generation for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
@@ -12,5 +12,8 @@
     "personalization",
     "material-one"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@material-one/semantic-colors": "^0.1.0"
+  }
 }
