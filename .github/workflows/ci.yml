@@ -29,6 +29,8 @@ jobs:
         run: npm run validate:color-loading
       - name: Validate semantic colors
         run: npm run validate:semantic-colors
+      - name: Validate theme intelligence and visualization
+        run: npm run validate:theme-visualization
 
   cross-platform:
     name: ${{ matrix.os }} / Node ${{ matrix.node }}

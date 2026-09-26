@@ -1,0 +1,23 @@
+{
+  "name": "@material-one/data-visualization",
+  "version": "0.1.0",
+  "description": "Accessible data visualization encodings, legends, patterns, and semantic chart behavior for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-data-visualization.css"
+  },
+  "dependencies": {
+    "@material-one/color-coding": "^0.2.0",
+    "@material-one/semantic-colors": "^0.1.0"
+  },
+  "keywords": [
+    "design-system",
+    "data-visualization",
+    "charts",
+    "accessibility",
+    "semantic-color",
+    "material-one"
+  ],
+  "license": "MIT"
+}

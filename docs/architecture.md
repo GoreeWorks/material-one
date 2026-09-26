@@ -10,19 +10,21 @@ Material One is built as a layered adaptive interface system.
 2. Color Intelligence System
 3. Semantic Color System
 4. Color Coding System
-5. Typography Framework
-6. Shape Framework
-7. Layout Engine
-8. Component System
-9. Controls and Interactions
-10. Product Patterns
-11. Application Shell
-12. Iconography System
-13. Motion Framework
-14. Skeleton Loading Framework
-15. Accessibility Layer
-16. Personalization Engine
-17. Device Adaptation System
+5. Theme Intelligence System
+6. Data Visualization System
+7. Typography Framework
+8. Shape Framework
+9. Layout Engine
+10. Component System
+11. Controls and Interactions
+12. Product Patterns
+13. Application Shell
+14. Iconography System
+15. Motion Framework
+16. Skeleton Loading Framework
+17. Accessibility Layer
+18. Personalization Engine
+19. Device Adaptation System
 
 ## Semantic Colors
 
@@ -35,6 +37,34 @@ Light and dark schemes map the same semantic roles to different visual values. P
 Material One separates brand/theme color, semantic status, and categorical color coding.
 
 Status colors are reserved for success, warning, error, and information. Categorical colors use a stable eight-code palette for identity, grouping, charts, filters, tags, and related information. Color coding must never be the only cue for meaning.
+
+## Theme Intelligence
+
+Theme Intelligence converts product identity and user accent inputs into adaptive semantic schemes.
+
+Primary, secondary, and tertiary families may adapt to personalization. Success, warning, error, information, disabled, and other system-meaning roles keep their semantics.
+
+Generated schemes are contrast-validated. High-contrast contexts may strengthen content contrast, outlines, and interaction overlays while preserving the same semantic role model.
+
+## Data Visualization
+
+Material One data visualization shares the same color architecture as the rest of the interface.
+
+Peer data series use categorical color coding. Meaningful system states use semantic colors. A chart must not use a categorical palette to communicate error, warning, success, or information.
+
+Visualizations combine:
+
+- visible labels
+- numerical values
+- stable categorical colors
+- redundant patterns
+- semantic status roles
+- keyboard focus
+- accessible textual summaries
+- forced-colors fallbacks
+- reduced-motion behavior
+
+This keeps chart meaning intact when palette perception, theme, device, or accessibility context changes.
 
 ## Loading Model
 

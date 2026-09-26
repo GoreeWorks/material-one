@@ -66,6 +66,25 @@ button, input, select { font: inherit; }
   line-height: var(--mo-line-body);
 }
 
+.reference-viz-status {
+  align-self: start;
+  padding: var(--mo-space-xs) var(--mo-space-sm);
+  border-radius: var(--mo-shape-pill);
+  font-size: var(--mo-type-label);
+  font-weight: 650;
+}
+
+.reference-viz-caption {
+  padding: 0 var(--mo-space-lg) var(--mo-space-lg);
+  color: var(--mo-sem-on-surface-muted);
+  font-size: var(--mo-type-supporting);
+}
+
+.reference-viz-value-42 { --mo-viz-value: 42%; }
+.reference-viz-value-31 { --mo-viz-value: 31%; }
+.reference-viz-value-17 { --mo-viz-value: 17%; }
+.reference-viz-value-10 { --mo-viz-value: 10%; }
+
 .reference-color-value-42 { --mo-color-value: 42%; }
 .reference-color-value-31 { --mo-color-value: 31%; }
 .reference-color-value-17 { --mo-color-value: 17%; }
