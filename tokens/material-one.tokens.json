@@ -1,0 +1,28 @@
+{
+  "name": "Material One Tokens",
+  "color": {
+    "primary": "semantic.primary",
+    "secondary": "semantic.secondary",
+    "surface": "semantic.surface",
+    "container": "semantic.container",
+    "status": {
+      "success": "semantic.success",
+      "warning": "semantic.warning",
+      "error": "semantic.error",
+      "information": "semantic.information"
+    }
+  },
+  "shape": {
+    "extraSmall": "adaptive",
+    "small": "adaptive",
+    "medium": "adaptive",
+    "large": "adaptive",
+    "extraLarge": "adaptive"
+  },
+  "motion": {
+    "instant": "interaction",
+    "small": "transition",
+    "standard": "transition",
+    "large": "transformation"
+  }
+}
