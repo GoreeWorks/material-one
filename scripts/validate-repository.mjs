@@ -42,7 +42,11 @@ const required = [
   "packages/themes/src/index.ts",
   "packages/icons/src/index.ts",
   "packages/controls/src/index.ts",
-  "packages/controls/css/material-one-controls.css"
+  "packages/controls/css/material-one-controls.css",
+  "packages/color-coding/src/index.ts",
+  "packages/color-coding/css/material-one-color-coding.css",
+  "packages/loading/src/index.ts",
+  "packages/loading/css/material-one-loading.css"
 ];
 
 for (const item of required) await exists(item);
