@@ -1,6 +1,6 @@
 {
   "name": "Material One Tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "color": {
     "primary": {
       "base": "#4F5FD7",
@@ -35,6 +35,22 @@
       "warning": "#8A5200",
       "error": "#B3261E",
       "information": "#365E9D"
+    },
+    "coding": {
+      "blue": { "base": "#365E9D", "container": "#D8E7FF", "onContainer": "#0B284F" },
+      "cyan": { "base": "#00677E", "container": "#C6F2FF", "onContainer": "#003642" },
+      "teal": { "base": "#006B5E", "container": "#A6F2DF", "onContainer": "#00372F" },
+      "green": { "base": "#176B43", "container": "#C7F1D9", "onContainer": "#0C3825" },
+      "amber": { "base": "#8A5200", "container": "#FFE1A8", "onContainer": "#4A2B00" },
+      "orange": { "base": "#9A4600", "container": "#FFDCC3", "onContainer": "#4C2100" },
+      "rose": { "base": "#9E315F", "container": "#FFD9E5", "onContainer": "#4C1430" },
+      "violet": { "base": "#6D4BC2", "container": "#EADCFF", "onContainer": "#2E176F" }
+    },
+    "loading": {
+      "skeletonBase": "#E8E8EE",
+      "skeletonHighlight": "#F7F7FA",
+      "skeletonBaseDark": "#2A2A34",
+      "skeletonHighlightDark": "#393944"
     }
   },
   "typography": {
@@ -67,6 +83,7 @@
     "small": "160ms",
     "standard": "280ms",
     "large": "460ms",
+    "skeleton": "1400ms",
     "easingStandard": "cubic-bezier(0.2, 0, 0, 1)",
     "easingEmphasized": "cubic-bezier(0.2, 0, 0, 1.2)"
   },
@@ -75,6 +92,12 @@
     "targetComfortable": "44px",
     "targetTouch": "48px",
     "focusRing": "3px"
+  },
+  "loading": {
+    "skeletonDelay": "180ms",
+    "skeletonMinimumVisible": "300ms",
+    "preserveLayout": true,
+    "reducedMotionMode": "static"
   },
   "elevation": {
     "level0": "none",
