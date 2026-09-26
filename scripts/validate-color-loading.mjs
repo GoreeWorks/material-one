@@ -56,21 +56,47 @@ const loadingCss = await readFile(
   "utf8"
 );
 
-for (const marker of ["forced-colors: active", "data-mo-color-code"]) {
+for (const marker of [
+  "forced-colors: active",
+  "data-mo-color-code",
+  "mo-color-surface",
+  "mo-color-track",
+  "mo-color-legend"
+]) {
   if (!colorCss.includes(marker)) throw new Error(`Color coding CSS missing ${marker}`);
 }
 
-for (const marker of ["mo-skeleton-shimmer", "prefers-reduced-motion", "forced-colors: active", "data-mo-kind"]) {
+for (const marker of [
+  "mo-skeleton-shimmer",
+  "prefers-reduced-motion",
+  "forced-colors: active",
+  "data-mo-kind",
+  "mo-loading-region",
+  "mo-skeleton-table",
+  "mo-content-reveal"
+]) {
   if (!loadingCss.includes(marker)) throw new Error(`Loading CSS missing ${marker}`);
 }
 
 const report = {
   tokenVersion: tokens.version,
   colorCodes: checks,
+  colorCoding: {
+    paletteSize: expectedCodes.length,
+    redundancyRequired: true,
+    statusColorsReserved: true
+  },
   skeleton: {
     delay: tokens.loading.skeletonDelay,
     minimumVisible: tokens.loading.skeletonMinimumVisible,
-    reducedMotionMode: tokens.loading.reducedMotionMode
+    reducedMotionMode: tokens.loading.reducedMotionMode,
+    preserveLayout: tokens.loading.preserveLayout
+  },
+  loadingPolicy: {
+    fastResponseThresholdMs: 180,
+    knownGeometry: "skeleton",
+    action: "progress",
+    staleRefresh: "stale-content"
   }
 };
 
@@ -80,4 +106,6 @@ await writeFile(
   JSON.stringify(report, null, 2) + "\n"
 );
 
-console.log(`Validated ${checks.length} color codes and Material One skeleton loading behavior.`);
+console.log(
+  `Validated ${checks.length} color codes, loading orchestration, skeleton geometry, and accessibility fallbacks.`
+);
