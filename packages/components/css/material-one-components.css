@@ -294,3 +294,30 @@
     opacity: 0.55;
   }
 }
+
+
+@media (forced-colors: active) {
+  .mo-component[data-mo-state="focused"],
+  .mo-button:focus-visible,
+  .mo-card[data-mo-interactive="true"]:focus-visible,
+  .mo-input:focus-visible,
+  .mo-nav-item:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  .mo-component[data-mo-state="selected"],
+  .mo-component[data-mo-state="success"],
+  .mo-component[data-mo-state="warning"],
+  .mo-component[data-mo-state="error"] {
+    border-color: CanvasText;
+  }
+
+  .mo-component[data-mo-state="disabled"],
+  .mo-button:disabled,
+  .mo-button[aria-disabled="true"],
+  .mo-input:disabled {
+    color: GrayText;
+    border-color: GrayText;
+  }
+}
