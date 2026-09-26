@@ -1,6 +1,6 @@
 {
   "name": "material-one",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "type": "module",
   "description": "Material One adaptive interface design language by GoreeWorks.",
@@ -10,13 +10,14 @@
   "scripts": {
     "validate": "node scripts/validate-repository.mjs",
     "typecheck": "npx -y -p typescript@5.9.2 tsc --noEmit",
-    "test": "npx -y tsx@4.20.5 --test tests/core.test.ts tests/shell.test.ts tests/controls.test.ts tests/themes-icons.test.ts tests/color-loading.test.ts tests/semantic-colors.test.ts tests/theme-visualization.test.ts tests/typography-motion.test.ts",
+    "test": "npx -y tsx@4.20.5 --test tests/core.test.ts tests/shell.test.ts tests/controls.test.ts tests/themes-icons.test.ts tests/color-loading.test.ts tests/semantic-colors.test.ts tests/theme-visualization.test.ts tests/typography-motion.test.ts tests/components-adaptive.test.ts",
     "manifest": "node scripts/generate-manifest.mjs",
-    "ci": "npm run validate && npm run validate:color-loading && npm run validate:semantic-colors && npm run validate:theme-visualization && npm run validate:typography-motion && npm run typecheck && npm test",
+    "ci": "npm run validate && npm run validate:color-loading && npm run validate:semantic-colors && npm run validate:theme-visualization && npm run validate:typography-motion && npm run validate:components && npm run typecheck && npm test",
     "validate:color-loading": "node scripts/validate-color-loading.mjs",
     "validate:semantic-colors": "node scripts/validate-semantic-colors.mjs",
     "validate:theme-visualization": "node scripts/validate-theme-visualization.mjs",
-    "validate:typography-motion": "node scripts/validate-typography-motion.mjs"
+    "validate:typography-motion": "node scripts/validate-typography-motion.mjs",
+    "validate:components": "node scripts/validate-components.mjs"
   },
   "engines": {
     "node": ">=22"
