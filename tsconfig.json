@@ -32,6 +32,9 @@
       ],
       "@material-one/loading": [
         "packages/loading/src/index.ts"
+      ],
+      "@material-one/semantic-colors": [
+        "packages/semantic-colors/src/index.ts"
       ]
     }
   },

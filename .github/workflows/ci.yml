@@ -23,7 +23,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: npm run validate
+      - name: Validate repository
+        run: npm run validate
+      - name: Validate color and loading systems
+        run: npm run validate:color-loading
+      - name: Validate semantic colors
+        run: npm run validate:semantic-colors
 
   cross-platform:
     name: ${{ matrix.os }} / Node ${{ matrix.node }}

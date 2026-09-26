@@ -14,6 +14,10 @@ test("themes serialize semantic variables", () => {
   const theme = {
     name: "sample",
     scheme: "light" as const,
+    semantic: {
+      focus: "#123456",
+      selectionContainer: "#eef1ff"
+    },
     colors: {
       primary: "#000001",
       onPrimary: "#ffffff",
@@ -44,6 +48,8 @@ test("themes serialize semantic variables", () => {
 
   const variables = themeToCssVariables(theme);
   assert.equal(variables["--mo-color-primary"], "#000001");
+  assert.equal(variables["--mo-sem-focus"], "#123456");
+  assert.equal(variables["--mo-sem-selection-container"], "#eef1ff");
   assert.match(serializeTheme(theme), /data-mo-theme="sample"/);
 });
 
