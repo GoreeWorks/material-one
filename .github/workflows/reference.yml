@@ -1,0 +1,50 @@
+name: Material One Reference Validation
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: material-one-reference-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reference-contract:
+    name: ${{ matrix.os }} / Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        node:
+          - 22
+          - 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Validate repository contracts
+        run: npm run validate
+      - name: Validate reference markup
+        run: npx -y html-validate@9.7.1 examples/reference-workspace/index.html
+      - name: Confirm reference assets
+        shell: bash
+        run: |
+          test -s examples/reference-workspace/index.html
+          test -s examples/reference-workspace/reference.css
+          test -s packages/patterns/css/material-one-patterns.css
+          test -s packages/patterns/css/page.css
+          test -s packages/patterns/css/layouts.css
+          test -s packages/patterns/css/catalog.css
+          test -s packages/patterns/css/responsive.css
