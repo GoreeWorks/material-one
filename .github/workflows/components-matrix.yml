@@ -1,0 +1,90 @@
+name: Material One Component Matrix
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: material-one-components-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  component-platform-matrix:
+    name: Components / ${{ matrix.os }} / Node ${{ matrix.node }} / Density ${{ matrix.density }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        node:
+          - 22
+          - 24
+        density:
+          - compact
+          - comfortable
+          - spacious
+        layout:
+          - compact
+          - expanded
+          - workspace
+    env:
+      MATERIAL_ONE_DENSITY: ${{ matrix.density }}
+      MATERIAL_ONE_LAYOUT: ${{ matrix.layout }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Validate component contracts
+        run: npm run validate:components
+      - name: Validate repository contracts
+        run: npm run validate
+      - name: Run component runtime tests
+        run: npm test
+
+  accessibility-matrix:
+    name: Accessibility / ${{ matrix.mode }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        mode:
+          - standard
+          - reduced-motion
+          - no-motion
+          - high-contrast
+    env:
+      MATERIAL_ONE_ACCESSIBILITY_MODE: ${{ matrix.mode }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate accessibility adaptations
+        run: npm run validate:components
+      - name: Run accessibility behavior tests
+        run: npm test
+
+  component-gate:
+    name: Component matrix gate
+    if: always()
+    runs-on: ubuntu-latest
+    needs:
+      - component-platform-matrix
+      - accessibility-matrix
+    steps:
+      - name: Verify component matrices
+        shell: bash
+        run: |
+          test "${{ needs.component-platform-matrix.result }}" = "success"
+          test "${{ needs.accessibility-matrix.result }}" = "success"
