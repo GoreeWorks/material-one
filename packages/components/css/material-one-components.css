@@ -1,5 +1,69 @@
 @import "../../../tokens/css/material-one.css";
 
+.mo-component {
+  min-block-size: var(--mo-target-comfortable);
+  transition:
+    transform var(--mo-motion-feedback) var(--mo-ease-standard),
+    opacity var(--mo-motion-feedback) var(--mo-ease-standard),
+    border-color var(--mo-motion-feedback) var(--mo-ease-standard),
+    box-shadow var(--mo-motion-feedback) var(--mo-ease-standard);
+}
+
+.mo-component[data-mo-density="compact"] {
+  min-block-size: var(--mo-target-compact);
+}
+
+.mo-component[data-mo-density="comfortable"] {
+  min-block-size: var(--mo-target-comfortable);
+}
+
+.mo-component[data-mo-density="spacious"] {
+  min-block-size: var(--mo-target-touch);
+}
+
+.mo-component[data-mo-state="hovered"] {
+  box-shadow: inset 0 0 0 999px var(--mo-sem-hover-overlay);
+}
+
+.mo-component[data-mo-state="focused"] {
+  outline: var(--mo-focus-ring) solid var(--mo-sem-focus);
+  outline-offset: 2px;
+}
+
+.mo-component[data-mo-state="pressed"] {
+  transform: scale(0.98);
+  box-shadow: inset 0 0 0 999px var(--mo-sem-pressed-overlay);
+}
+
+.mo-component[data-mo-state="selected"] {
+  border-color: var(--mo-sem-selection);
+}
+
+.mo-component[data-mo-state="loading"] {
+  pointer-events: none;
+  cursor: progress;
+  opacity: 0.72;
+}
+
+.mo-component[data-mo-state="disabled"] {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.mo-component[data-mo-state="success"] {
+  border-color: var(--mo-sem-success);
+}
+
+.mo-component[data-mo-state="warning"] {
+  border-color: var(--mo-sem-warning);
+}
+
+.mo-component[data-mo-state="error"] {
+  border-color: var(--mo-sem-error);
+}
+
+
 .mo-surface {
   color: var(--mo-text-primary);
   background: var(--mo-surface-base);
