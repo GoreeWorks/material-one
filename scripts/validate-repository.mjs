@@ -141,7 +141,7 @@ for (const requiredPattern of [
   }
 }
 
-if (!componentsCss.includes("data-mo-state=\\\"focused\\\"")) {
+if (!componentsCss.includes('data-mo-state="focused"')) {
   fail("Component CSS must expose canonical data-mo-state behavior");
 }
 
