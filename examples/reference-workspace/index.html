@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-mo-theme="light" data-mo-density="comfortable">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material One Reference Workspace</title>
+  <link rel="stylesheet" href="../../tokens/css/material-one.css">
+  <link rel="stylesheet" href="../../packages/components/css/material-one-components.css">
+  <link rel="stylesheet" href="../../packages/controls/css/material-one-controls.css">
+  <link rel="stylesheet" href="../../packages/shell/css/material-one-shell.css">
+  <link rel="stylesheet" href="../../packages/patterns/css/material-one-patterns.css">
+  <link rel="stylesheet" href="./reference.css">
+</head>
+<body class="mo-app-shell">
+  <div class="mo-shell-frame" data-mo-context="contextual">
+    <header class="mo-topbar">
+      <a class="reference-brand" href="#" aria-label="Material One home">
+        <span class="reference-mark" aria-hidden="true">M1</span>
+        <span>Material One</span>
+      </a>
+      <div class="mo-topbar-center">
+        <label class="mo-search-surface">
+          <span aria-hidden="true">⌕</span>
+          <input class="mo-search-input" type="search" aria-label="Search workspace" placeholder="Search workspace">
+          <kbd>⌘ K</kbd>
+        </label>
+      </div>
+      <div class="mo-topbar-actions">
+        <button class="mo-button" data-mo-variant="ghost" data-mo-icon-only="true" aria-label="Notifications">●</button>
+        <button class="mo-button" data-mo-variant="ghost" data-mo-icon-only="true" aria-label="Account">GW</button>
+      </div>
+    </header>
+
+    <aside class="mo-sidebar" aria-label="Primary navigation">
+      <nav class="mo-nav" data-mo-presentation="sidebar">
+        <a class="mo-nav-item" href="#" aria-current="page">Overview</a>
+        <a class="mo-nav-item" href="#">Orders</a>
+        <a class="mo-nav-item" href="#">Products</a>
+        <a class="mo-nav-item" href="#">Customers</a>
+        <a class="mo-nav-item" href="#">Analytics</a>
+      </nav>
+    </aside>
+
+    <aside class="mo-rail" aria-label="Primary navigation rail">
+      <a class="mo-nav-item" href="#" aria-current="page" aria-label="Overview">O</a>
+      <a class="mo-nav-item" href="#" aria-label="Orders">R</a>
+      <a class="mo-nav-item" href="#" aria-label="Products">P</a>
+      <a class="mo-nav-item" href="#" aria-label="Customers">C</a>
+    </aside>
+
+    <main class="mo-shell-main">
+      <div class="mo-shell-content" data-mo-width="fluid">
+        <section class="mo-page" data-mo-width="fluid" aria-labelledby="page-title">
+          <header class="mo-page-header">
+            <div>
+              <div class="mo-page-eyebrow">Commerce workspace</div>
+              <h1 class="mo-page-title" id="page-title">Good morning.</h1>
+              <p class="mo-page-description">A reference workspace showing adaptive navigation, data, controls, and layered surfaces.</p>
+            </div>
+            <div class="mo-page-header-actions">
+              <button class="mo-button" data-mo-variant="primary">Create order</button>
+            </div>
+          </header>
+
+          <section class="mo-pattern-grid" data-mo-columns="4" aria-label="Business metrics">
+            <article class="mo-stat"><span class="mo-stat-label">Revenue</span><strong class="mo-stat-value">$48.2K</strong><span class="mo-stat-supporting">+8.4% this period</span></article>
+            <article class="mo-stat"><span class="mo-stat-label">Orders</span><strong class="mo-stat-value">1,284</strong><span class="mo-stat-supporting">37 need attention</span></article>
+            <article class="mo-stat"><span class="mo-stat-label">Conversion</span><strong class="mo-stat-value">4.7%</strong><span class="mo-stat-supporting">Stable across devices</span></article>
+            <article class="mo-stat"><span class="mo-stat-label">Inventory</span><strong class="mo-stat-value">92%</strong><span class="mo-stat-supporting">18 low-stock items</span></article>
+          </section>
+
+          <section class="reference-section" aria-labelledby="orders-title">
+            <div class="reference-section-heading">
+              <div><h2 id="orders-title">Recent orders</h2><p>Structured data uses Material One controls and density.</p></div>
+              <div class="mo-segmented" aria-label="Order period">
+                <button class="mo-segment" aria-pressed="true">Today</button>
+                <button class="mo-segment" aria-pressed="false">Week</button>
+                <button class="mo-segment" aria-pressed="false">Month</button>
+              </div>
+            </div>
+            <div class="mo-data-table-wrap">
+              <table class="mo-data-table" data-mo-sticky-header="true">
+                <thead><tr><th>Order</th><th>Customer</th><th>Status</th><th>Total</th></tr></thead>
+                <tbody>
+                  <tr><td>#10428</td><td>Alex Morgan</td><td><span class="mo-chip" data-mo-selected="true">Ready</span></td><td>$184.00</td></tr>
+                  <tr><td>#10427</td><td>Jordan Lee</td><td><span class="mo-chip">Processing</span></td><td>$92.50</td></tr>
+                  <tr><td>#10426</td><td>Taylor Reed</td><td><span class="mo-chip">Review</span></td><td>$360.00</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <aside class="mo-context-pane" aria-label="Context panel">
+      <h2>Today</h2>
+      <p class="reference-muted">Context follows the current task without competing with the main workspace.</p>
+      <span class="mo-chip">Professional</span>
+    </aside>
+  </div>
+
+  <nav class="mo-bottom-nav" aria-label="Compact primary navigation">
+    <a class="mo-bottom-nav-item" href="#" aria-current="page"><span>O</span><span>Overview</span></a>
+    <a class="mo-bottom-nav-item" href="#"><span>R</span><span>Orders</span></a>
+    <a class="mo-bottom-nav-item" href="#"><span>P</span><span>Products</span></a>
+    <a class="mo-bottom-nav-item" href="#"><span>C</span><span>Customers</span></a>
+  </nav>
+</body>
+</html>
