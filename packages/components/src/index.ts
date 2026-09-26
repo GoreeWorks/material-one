@@ -12,6 +12,66 @@ export type ComponentState =
   | "error";
 
 export type ComponentEmphasis = "primary" | "secondary" | "tertiary" | "neutral" | "danger";
+export type ComponentDensity = "compact" | "comfortable" | "expanded";
+
+export interface AdaptiveComponentContext {
+  density: ComponentDensity;
+  layout: MaterialOneContext["layout"];
+  reducedMotion: boolean;
+  highContrast: boolean;
+}
+
+export interface AdaptiveComponentContract {
+  component: string;
+  state: ComponentState;
+  context: AdaptiveComponentContext;
+  semanticColorRole: string;
+  typographyRole: string;
+  motionIntent: string;
+}
+
+export const componentStates: ComponentState[] = [
+  "default",
+  "focused",
+  "pressed",
+  "selected",
+  "disabled",
+  "loading",
+  "success",
+  "warning",
+  "error"
+];
+
+export function createComponentContract(
+  component: string,
+  overrides: Partial<AdaptiveComponentContract> = {}
+): AdaptiveComponentContract {
+  return {
+    component,
+    state: "default",
+    context: {
+      density: "comfortable",
+      layout: "expanded",
+      reducedMotion: false,
+      highContrast: false
+    },
+    semanticColorRole: "surface-container",
+    typographyRole: "body",
+    motionIntent: "feedback",
+    ...overrides
+  };
+}
+
+export function resolveComponentDensity(
+  density: ComponentDensity,
+  layout: MaterialOneContext["layout"]
+): ComponentDensity {
+  if (layout === "compact" && density === "expanded") {
+    return "comfortable";
+  }
+
+  return density;
+}
 
 export interface ComponentRecipe {
   state: ComponentState;
@@ -45,10 +105,7 @@ function motionFor(context: MaterialOneContext): ComponentRecipe["motion"] {
   return "standard";
 }
 
-export function createButtonRecipe(
-  context: MaterialOneContext,
-  options: ButtonOptions = {}
-): ComponentRecipe {
+export function createButtonRecipe(context: MaterialOneContext, options: ButtonOptions = {}): ComponentRecipe {
   return {
     state: options.state ?? "default",
     emphasis: options.emphasis ?? "primary",
@@ -59,10 +116,7 @@ export function createButtonRecipe(
   };
 }
 
-export function createSurfaceRecipe(
-  context: MaterialOneContext,
-  options: SurfaceOptions = {}
-): ComponentRecipe {
+export function createSurfaceRecipe(context: MaterialOneContext, options: SurfaceOptions = {}): ComponentRecipe {
   return {
     state: options.state ?? "default",
     emphasis: "neutral",
@@ -73,10 +127,7 @@ export function createSurfaceRecipe(
   };
 }
 
-export function createCardRecipe(
-  context: MaterialOneContext,
-  interactive = false
-): ComponentRecipe {
+export function createCardRecipe(context: MaterialOneContext, interactive = false): ComponentRecipe {
   return {
     state: "default",
     emphasis: "neutral",
@@ -87,10 +138,7 @@ export function createCardRecipe(
   };
 }
 
-export function createFieldRecipe(
-  context: MaterialOneContext,
-  options: FieldOptions = {}
-): ComponentRecipe {
+export function createFieldRecipe(context: MaterialOneContext, options: FieldOptions = {}): ComponentRecipe {
   return {
     state: options.state ?? "default",
     emphasis: options.state === "error" ? "danger" : "neutral",
@@ -101,15 +149,8 @@ export function createFieldRecipe(
   };
 }
 
-export function createNavigationRecipe(
-  context: MaterialOneContext
-): ComponentRecipe & { presentation: "bar" | "rail" | "sidebar" } {
-  const presentation =
-    context.layout === "compact"
-      ? "bar"
-      : context.layout === "expanded"
-        ? "rail"
-        : "sidebar";
+export function createNavigationRecipe(context: MaterialOneContext): ComponentRecipe & { presentation: "bar" | "rail" | "sidebar" } {
+  const presentation = context.layout === "compact" ? "bar" : context.layout === "expanded" ? "rail" : "sidebar";
 
   return {
     state: "default",
