@@ -1,0 +1,46 @@
+:root {
+  /* Color Intelligence */
+  --mo-color-primary: var(--user-primary, #1a73e8);
+  --mo-color-secondary: var(--user-secondary, #5f6368);
+  --mo-color-tertiary: var(--user-tertiary, #a142f4);
+
+  --mo-surface-background: #ffffff;
+  --mo-surface-container: #f8f9fa;
+  --mo-surface-floating: #ffffff;
+
+  --mo-status-success: #137333;
+  --mo-status-warning: #b06000;
+  --mo-status-error: #c5221f;
+
+  /* Typography */
+  --mo-type-display: 3.5rem;
+  --mo-type-title: 2rem;
+  --mo-type-heading: 1.5rem;
+  --mo-type-body: 1rem;
+  --mo-type-label: .875rem;
+
+  /* Spacing */
+  --mo-space-xs: .25rem;
+  --mo-space-sm: .5rem;
+  --mo-space-md: 1rem;
+  --mo-space-lg: 1.5rem;
+  --mo-space-xl: 2.5rem;
+
+  /* Shape */
+  --mo-shape-extra-small: 4px;
+  --mo-shape-small: 8px;
+  --mo-shape-medium: 16px;
+  --mo-shape-large: 28px;
+  --mo-shape-extra-large: 40px;
+
+  /* Motion */
+  --mo-motion-instant: 100ms;
+  --mo-motion-standard: 300ms;
+  --mo-motion-large: 500ms;
+}
+
+[data-mo-theme="dark"] {
+  --mo-surface-background: #101010;
+  --mo-surface-container: #1c1c1c;
+  --mo-surface-floating: #242424;
+}
