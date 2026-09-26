@@ -1,0 +1,181 @@
+@import "../../../tokens/css/material-one.css";
+
+.mo-semantic-surface {
+  color: var(--mo-sem-on-surface);
+  background: var(--mo-sem-surface);
+}
+
+.mo-semantic-surface[data-mo-surface="subtle"] {
+  background: var(--mo-sem-surface-subtle);
+}
+
+.mo-semantic-surface[data-mo-surface="container"] {
+  background: var(--mo-sem-surface-container);
+}
+
+.mo-semantic-surface[data-mo-surface="container-high"] {
+  background: var(--mo-sem-surface-container-high);
+}
+
+.mo-semantic-surface[data-mo-surface="container-highest"] {
+  background: var(--mo-sem-surface-container-highest);
+}
+
+.mo-semantic-surface[data-mo-surface="floating"] {
+  background: var(--mo-sem-surface-floating);
+  box-shadow: var(--mo-elevation-2);
+}
+
+.mo-semantic-surface[data-mo-surface="inverse"] {
+  color: var(--mo-sem-on-surface-inverse);
+  background: var(--mo-sem-surface-inverse);
+}
+
+.mo-semantic-tone {
+  --mo-semantic-background: var(--mo-sem-primary-container);
+  --mo-semantic-foreground: var(--mo-sem-on-primary-container);
+  --mo-semantic-accent: var(--mo-sem-primary);
+  color: var(--mo-semantic-foreground);
+  background: var(--mo-semantic-background);
+  border-color: color-mix(
+    in srgb,
+    var(--mo-semantic-accent) 42%,
+    var(--mo-sem-outline)
+  );
+}
+
+.mo-semantic-tone[data-mo-tone="primary"] {
+  --mo-semantic-background: var(--mo-sem-primary-container);
+  --mo-semantic-foreground: var(--mo-sem-on-primary-container);
+  --mo-semantic-accent: var(--mo-sem-primary);
+}
+
+.mo-semantic-tone[data-mo-tone="secondary"] {
+  --mo-semantic-background: var(--mo-sem-secondary-container);
+  --mo-semantic-foreground: var(--mo-sem-on-secondary-container);
+  --mo-semantic-accent: var(--mo-sem-secondary);
+}
+
+.mo-semantic-tone[data-mo-tone="tertiary"] {
+  --mo-semantic-background: var(--mo-sem-tertiary-container);
+  --mo-semantic-foreground: var(--mo-sem-on-tertiary-container);
+  --mo-semantic-accent: var(--mo-sem-tertiary);
+}
+
+.mo-semantic-tone[data-mo-tone="success"] {
+  --mo-semantic-background: var(--mo-sem-success-container);
+  --mo-semantic-foreground: var(--mo-sem-on-success-container);
+  --mo-semantic-accent: var(--mo-sem-success);
+}
+
+.mo-semantic-tone[data-mo-tone="warning"] {
+  --mo-semantic-background: var(--mo-sem-warning-container);
+  --mo-semantic-foreground: var(--mo-sem-on-warning-container);
+  --mo-semantic-accent: var(--mo-sem-warning);
+}
+
+.mo-semantic-tone[data-mo-tone="error"] {
+  --mo-semantic-background: var(--mo-sem-error-container);
+  --mo-semantic-foreground: var(--mo-sem-on-error-container);
+  --mo-semantic-accent: var(--mo-sem-error);
+}
+
+.mo-semantic-tone[data-mo-tone="information"] {
+  --mo-semantic-background: var(--mo-sem-information-container);
+  --mo-semantic-foreground: var(--mo-sem-on-information-container);
+  --mo-semantic-accent: var(--mo-sem-information);
+}
+
+.mo-semantic-banner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--mo-space-sm);
+  padding: var(--mo-space-md);
+  border: 1px solid;
+  border-radius: var(--mo-shape-large);
+}
+
+.mo-semantic-banner::before {
+  content: "";
+  inline-size: 10px;
+  block-size: 10px;
+  margin-block-start: 0.35em;
+  background: var(--mo-semantic-accent);
+  border-radius: 50%;
+}
+
+.mo-semantic-link {
+  color: var(--mo-sem-link);
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--mo-sem-link) 60%,
+    transparent
+  );
+  text-underline-offset: 0.16em;
+}
+
+.mo-semantic-link:visited {
+  color: var(--mo-sem-visited-link);
+}
+
+.mo-semantic-interactive {
+  position: relative;
+}
+
+.mo-semantic-interactive:hover::after,
+.mo-semantic-interactive:active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.mo-semantic-interactive:hover::after {
+  background: var(--mo-sem-hover-overlay);
+}
+
+.mo-semantic-interactive:active::after {
+  background: var(--mo-sem-pressed-overlay);
+}
+
+.mo-semantic-interactive:focus-visible {
+  outline: var(--mo-focus-ring) solid var(--mo-sem-focus);
+  outline-offset: 2px;
+}
+
+.mo-semantic-disabled,
+[aria-disabled="true"].mo-semantic-interactive {
+  color: var(--mo-sem-on-disabled);
+  background: var(--mo-sem-disabled);
+  cursor: not-allowed;
+}
+
+.mo-selection {
+  color: var(--mo-sem-on-primary-container);
+  background: var(--mo-sem-selection-container);
+}
+
+::selection {
+  color: var(--mo-sem-on-primary-container);
+  background: var(--mo-sem-selection-container);
+}
+
+@media (forced-colors: active) {
+  .mo-semantic-tone,
+  .mo-semantic-banner,
+  .mo-semantic-disabled {
+    color: CanvasText;
+    background: Canvas;
+    border-color: CanvasText;
+  }
+
+  .mo-semantic-banner::before {
+    background: CanvasText;
+  }
+
+  .mo-semantic-interactive:focus-visible {
+    outline-color: Highlight;
+  }
+}
