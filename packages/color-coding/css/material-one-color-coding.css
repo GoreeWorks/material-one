@@ -133,6 +133,11 @@
   color: var(--mo-text-primary);
 }
 
+.mo-color-legend-item > .mo-color-track {
+  grid-column: 2 / -1;
+  inline-size: 100%;
+}
+
 .mo-color-track {
   --mo-code: var(--mo-code-blue);
   overflow: hidden;
