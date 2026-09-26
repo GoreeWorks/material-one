@@ -37,6 +37,7 @@ The same system applies across mobile, tablet, desktop, wearable, embedded, and 
 Material One
 ├── Design Tokens
 ├── Color Intelligence System
+├── Semantic Color System
 ├── Color Coding System
 ├── Typography Framework
 ├── Shape Framework
@@ -58,8 +59,9 @@ Material One
 packages/
 ├── core/          Adaptive context and preference engine
 ├── components/    Component recipes and CSS primitives
-├── controls/      Selection, form, data, disclosure, and feedback controls
-├── color-coding/  Semantic and categorical color coding
+├── controls/        Selection, form, data, disclosure, and feedback controls
+├── semantic-colors/ Semantic roles, schemes, status pairs, and interaction colors
+├── color-coding/    Categorical color coding and data color intelligence
 ├── loading/       Skeleton loading and progressive loading behavior
 ├── patterns/      Adaptive page and product patterns
 ├── shell/         Navigation, workspace shell, commands, and overlays
@@ -89,9 +91,13 @@ Material One is intended to provide the shared interface foundation for GoreeWor
 
 Products may have their own identity while extending the same Material One behavioral and semantic foundation.
 
+## Semantic Colors
+
+Semantic colors are a first-class Material One communication layer. Components request colors by meaning rather than hue: primary, surface, focus, selection, disabled, success, warning, error, and information. Light and dark schemes map those roles independently, and required foreground/background pairs are validated for contrast. Theme overrides may change a role's visual value without changing its meaning.
+
 ## Color Coding
 
-Color coding is a first-class Material One communication layer. Categorical colors stay stable for the same identity or category, while status colors remain reserved for success, warning, error, and information. The color intelligence runtime can assign deterministic colors, spread small category sets across the palette, and map ordinal priority without changing status semantics. Color must always be reinforced by text, iconography, shape, position, or another non-color cue.
+Color coding is a separate first-class Material One communication layer. Categorical colors stay stable for the same identity or category, while status colors remain reserved for success, warning, error, and information. The color intelligence runtime can assign deterministic colors, spread small category sets across the palette, and map ordinal priority without changing status semantics. Color must always be reinforced by text, iconography, shape, position, or another non-color cue.
 
 ## Skeleton Loading
 
@@ -103,7 +109,7 @@ Material One is validated through GitHub Actions across supported Node versions 
 
 ## Status
 
-Active foundational implementation. Core adaptation, semantic tokens, components, controls, color coding, skeleton loading, patterns, themes, icon contracts, accessibility foundations, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, semantic colors, categorical color coding, components, controls, skeleton loading, patterns, themes, icon contracts, accessibility foundations, and the adaptive application shell are under development.
 
 ## License
 
