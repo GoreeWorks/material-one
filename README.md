@@ -56,8 +56,8 @@ Material One
 
 ```
 packages/
-├── core/        Adaptive context and preference engine
-├── components/  Component recipes and CSS primitives
+├── core/          Adaptive context and preference engine
+├── components/    Component recipes and CSS primitives
 ├── controls/      Selection, form, data, disclosure, and feedback controls
 ├── color-coding/  Semantic and categorical color coding
 ├── loading/       Skeleton loading and progressive loading behavior
@@ -91,11 +91,11 @@ Products may have their own identity while extending the same Material One behav
 
 ## Color Coding
 
-Color coding is a first-class Material One communication layer. Categorical colors stay stable for the same identity or category, while status colors remain reserved for success, warning, error, and information. Color must always be reinforced by text, iconography, shape, position, or another non-color cue.
+Color coding is a first-class Material One communication layer. Categorical colors stay stable for the same identity or category, while status colors remain reserved for success, warning, error, and information. The color intelligence runtime can assign deterministic colors, spread small category sets across the palette, and map ordinal priority without changing status semantics. Color must always be reinforced by text, iconography, shape, position, or another non-color cue.
 
 ## Skeleton Loading
 
-Skeleton loading is the preferred loading treatment for content whose final layout is predictable. Skeletons preserve layout to reduce visual shift, use a short delay to avoid flashing during fast loads, remain visible long enough to prevent flicker, and become static when reduced motion is requested.
+Skeleton loading is the preferred loading treatment for content whose final layout is predictable. Skeletons preserve layout to reduce visual shift, use a short delay to avoid flashing during fast loads, remain visible long enough to prevent flicker, and become static when reduced motion is requested. Material One loading orchestration chooses between no placeholder, skeletons, progress feedback, and stale-content refresh depending on latency, task type, and whether the final geometry is known.
 
 ## Engineering Quality
 
