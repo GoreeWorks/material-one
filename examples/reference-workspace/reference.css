@@ -55,6 +55,17 @@ button, input, select { font: inherit; }
   color: var(--mo-text-muted);
 }
 
+.reference-semantic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--mo-space-md);
+}
+
+.reference-semantic-grid article p {
+  margin: var(--mo-space-xs) 0 0;
+  line-height: var(--mo-line-body);
+}
+
 .reference-color-value-42 { --mo-color-value: 42%; }
 .reference-color-value-31 { --mo-color-value: 31%; }
 .reference-color-value-17 { --mo-color-value: 17%; }
@@ -86,5 +97,9 @@ kbd {
   .reference-section-heading {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .reference-semantic-grid {
+    grid-template-columns: 1fr;
   }
 }
