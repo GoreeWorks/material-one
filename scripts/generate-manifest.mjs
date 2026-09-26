@@ -38,6 +38,7 @@ const manifest = {
   capabilities: [
     "adaptive-context",
     "semantic-tokens",
+    "semantic-colors",
     "components",
     "application-shell",
     "themes",
