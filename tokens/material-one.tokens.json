@@ -37,20 +37,86 @@
       "information": "#365E9D"
     },
     "coding": {
-      "blue": { "base": "#365E9D", "container": "#D8E7FF", "onContainer": "#0B284F" },
-      "cyan": { "base": "#00677E", "container": "#C6F2FF", "onContainer": "#003642" },
-      "teal": { "base": "#006B5E", "container": "#A6F2DF", "onContainer": "#00372F" },
-      "green": { "base": "#176B43", "container": "#C7F1D9", "onContainer": "#0C3825" },
-      "amber": { "base": "#8A5200", "container": "#FFE1A8", "onContainer": "#4A2B00" },
-      "orange": { "base": "#9A4600", "container": "#FFDCC3", "onContainer": "#4C2100" },
-      "rose": { "base": "#9E315F", "container": "#FFD9E5", "onContainer": "#4C1430" },
-      "violet": { "base": "#6D4BC2", "container": "#EADCFF", "onContainer": "#2E176F" }
+      "blue": {
+        "base": "#365E9D",
+        "container": "#D8E7FF",
+        "onContainer": "#0B284F"
+      },
+      "cyan": {
+        "base": "#00677E",
+        "container": "#C6F2FF",
+        "onContainer": "#003642"
+      },
+      "teal": {
+        "base": "#006B5E",
+        "container": "#A6F2DF",
+        "onContainer": "#00372F"
+      },
+      "green": {
+        "base": "#176B43",
+        "container": "#C7F1D9",
+        "onContainer": "#0C3825"
+      },
+      "amber": {
+        "base": "#8A5200",
+        "container": "#FFE1A8",
+        "onContainer": "#4A2B00"
+      },
+      "orange": {
+        "base": "#9A4600",
+        "container": "#FFDCC3",
+        "onContainer": "#4C2100"
+      },
+      "rose": {
+        "base": "#9E315F",
+        "container": "#FFD9E5",
+        "onContainer": "#4C1430"
+      },
+      "violet": {
+        "base": "#6D4BC2",
+        "container": "#EADCFF",
+        "onContainer": "#2E176F"
+      }
     },
     "loading": {
       "skeletonBase": "#E8E8EE",
       "skeletonHighlight": "#F7F7FA",
       "skeletonBaseDark": "#2A2A34",
       "skeletonHighlightDark": "#393944"
+    },
+    "codingDark": {
+      "blue": {
+        "container": "#1C355B",
+        "onContainer": "#D8E7FF"
+      },
+      "cyan": {
+        "container": "#123B45",
+        "onContainer": "#C6F2FF"
+      },
+      "teal": {
+        "container": "#123E37",
+        "onContainer": "#A6F2DF"
+      },
+      "green": {
+        "container": "#173D2A",
+        "onContainer": "#C7F1D9"
+      },
+      "amber": {
+        "container": "#4B3515",
+        "onContainer": "#FFE1A8"
+      },
+      "orange": {
+        "container": "#4F2C18",
+        "onContainer": "#FFDCC3"
+      },
+      "rose": {
+        "container": "#4F2637",
+        "onContainer": "#FFD9E5"
+      },
+      "violet": {
+        "container": "#35275B",
+        "onContainer": "#EADCFF"
+      }
     }
   },
   "typography": {
