@@ -4,7 +4,9 @@
   "description": "Theme contracts, semantic color overrides, and CSS variable generation for Material One.",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./light": "./css/light.css",
+    "./dark": "./css/dark.css"
   },
   "keywords": [
     "design-system",
