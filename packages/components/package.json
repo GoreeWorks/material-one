@@ -1,7 +1,7 @@
 {
   "name": "@material-one/components",
-  "version": "0.2.0",
-  "description": "Typed adaptive component contracts, presentation metadata, recipes, and CSS primitives for Material One.",
+  "version": "0.3.0",
+  "description": "Typed adaptive component contracts, accessible presentation metadata, recipes, and CSS primitives for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -11,7 +11,8 @@
     "@material-one/core": "^0.1.0",
     "@material-one/semantic-colors": "^0.1.0",
     "@material-one/typography": "^0.1.0",
-    "@material-one/motion": "^0.1.0"
+    "@material-one/motion": "^0.1.0",
+    "@material-one/accessibility": "^0.2.0"
   },
   "keywords": [
     "design-system",
