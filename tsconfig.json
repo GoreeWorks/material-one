@@ -35,6 +35,12 @@
       ],
       "@material-one/semantic-colors": [
         "packages/semantic-colors/src/index.ts"
+      ],
+      "@material-one/theme-intelligence": [
+        "packages/theme-intelligence/src/index.ts"
+      ],
+      "@material-one/data-visualization": [
+        "packages/data-visualization/src/index.ts"
       ]
     }
   },
