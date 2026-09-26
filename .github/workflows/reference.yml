@@ -36,6 +36,8 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Validate repository contracts
         run: npm run validate
+      - name: Validate color and loading contracts
+        run: npm run validate:color-loading
       - name: Validate reference markup
         run: npx -y html-validate@9.7.1 examples/reference-workspace/index.html
       - name: Confirm reference assets
@@ -48,3 +50,5 @@ jobs:
           test -s packages/patterns/css/layouts.css
           test -s packages/patterns/css/catalog.css
           test -s packages/patterns/css/responsive.css
+          test -s packages/color-coding/css/material-one-color-coding.css
+          test -s packages/loading/css/material-one-loading.css
