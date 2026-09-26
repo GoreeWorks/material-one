@@ -1,0 +1,12 @@
+{
+  "name": "@material-one/color-coding",
+  "version": "0.1.0",
+  "description": "Semantic and categorical color-coding system for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-color-coding.css"
+  },
+  "keywords": ["design-system", "color", "semantic-color", "data-visualization", "material-one"],
+  "license": "MIT"
+}
