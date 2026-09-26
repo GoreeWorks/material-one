@@ -95,7 +95,7 @@ for (const marker of [
   "mo-motion-enter",
   "mo-motion-feedback",
   "prefers-reduced-motion",
-  "data-mo-motion="none"",
+  'data-mo-motion="none"',
   "view-transition"
 ]) {
   if (!motionCss.includes(marker)) {
