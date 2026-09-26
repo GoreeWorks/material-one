@@ -9,12 +9,30 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@material-one/core": ["packages/core/src/index.ts"],
-      "@material-one/components": ["packages/components/src/index.ts"],
-      "@material-one/shell": ["packages/shell/src/index.ts"],
-      "@material-one/themes": ["packages/themes/src/index.ts"],
-      "@material-one/icons": ["packages/icons/src/index.ts"],
-      "@material-one/controls": ["packages/controls/src/index.ts"]
+      "@material-one/core": [
+        "packages/core/src/index.ts"
+      ],
+      "@material-one/components": [
+        "packages/components/src/index.ts"
+      ],
+      "@material-one/shell": [
+        "packages/shell/src/index.ts"
+      ],
+      "@material-one/themes": [
+        "packages/themes/src/index.ts"
+      ],
+      "@material-one/icons": [
+        "packages/icons/src/index.ts"
+      ],
+      "@material-one/controls": [
+        "packages/controls/src/index.ts"
+      ],
+      "@material-one/color-coding": [
+        "packages/color-coding/src/index.ts"
+      ],
+      "@material-one/loading": [
+        "packages/loading/src/index.ts"
+      ]
     }
   },
   "include": [

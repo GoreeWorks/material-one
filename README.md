@@ -37,6 +37,7 @@ The same system applies across mobile, tablet, desktop, wearable, embedded, and 
 Material One
 ├── Design Tokens
 ├── Color Intelligence System
+├── Color Coding System
 ├── Typography Framework
 ├── Shape Framework
 ├── Layout Engine
@@ -45,6 +46,7 @@ Material One
 ├── Application Shell
 ├── Iconography System
 ├── Motion Framework
+├── Skeleton Loading Framework
 ├── Accessibility Layer
 ├── Personalization Engine
 └── Device Adaptation System
@@ -56,10 +58,14 @@ Material One
 packages/
 ├── core/        Adaptive context and preference engine
 ├── components/  Component recipes and CSS primitives
-├── controls/    Selection, form, data, disclosure, and feedback controls
-├── shell/       Navigation, workspace shell, commands, and overlays
-├── themes/      Semantic theme contracts and CSS-variable generation
-└── icons/       Icon geometry and state contracts
+├── controls/      Selection, form, data, disclosure, and feedback controls
+├── color-coding/  Semantic and categorical color coding
+├── loading/       Skeleton loading and progressive loading behavior
+├── patterns/      Adaptive page and product patterns
+├── shell/         Navigation, workspace shell, commands, and overlays
+├── themes/        Semantic theme contracts and CSS-variable generation
+├── icons/         Icon geometry and state contracts
+└── accessibility/ Accessibility package foundation
 
 tokens/
 ├── material-one.tokens.json
@@ -83,13 +89,21 @@ Material One is intended to provide the shared interface foundation for GoreeWor
 
 Products may have their own identity while extending the same Material One behavioral and semantic foundation.
 
+## Color Coding
+
+Color coding is a first-class Material One communication layer. Categorical colors stay stable for the same identity or category, while status colors remain reserved for success, warning, error, and information. Color must always be reinforced by text, iconography, shape, position, or another non-color cue.
+
+## Skeleton Loading
+
+Skeleton loading is the preferred loading treatment for content whose final layout is predictable. Skeletons preserve layout to reduce visual shift, use a short delay to avoid flashing during fast loads, remain visible long enough to prevent flicker, and become static when reduced motion is requested.
+
 ## Engineering Quality
 
 Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Core adaptation, semantic tokens, components, controls, themes, icon contracts, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, semantic tokens, components, controls, color coding, skeleton loading, patterns, themes, icon contracts, accessibility foundations, and the adaptive application shell are under development.
 
 ## License
 

@@ -10,9 +10,10 @@
   "scripts": {
     "validate": "node scripts/validate-repository.mjs",
     "typecheck": "npx -y -p typescript@5.9.2 tsc --noEmit",
-    "test": "npx -y tsx@4.20.5 --test tests/core.test.ts tests/shell.test.ts tests/controls.test.ts tests/themes-icons.test.ts",
+    "test": "npx -y tsx@4.20.5 --test tests/core.test.ts tests/shell.test.ts tests/controls.test.ts tests/themes-icons.test.ts tests/color-loading.test.ts",
     "manifest": "node scripts/generate-manifest.mjs",
-    "ci": "npm run validate && npm run typecheck && npm test"
+    "ci": "npm run validate && npm run validate:color-loading && npm run typecheck && npm test",
+    "validate:color-loading": "node scripts/validate-color-loading.mjs"
   },
   "engines": {
     "node": ">=22"

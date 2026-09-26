@@ -30,6 +30,39 @@
   --mo-status-error: #b3261e;
   --mo-status-information: #365e9d;
 
+  /* Color coding */
+  --mo-code-blue: #365e9d;
+  --mo-code-blue-container: #d8e7ff;
+  --mo-code-blue-on-container: #0b284f;
+  --mo-code-cyan: #00677e;
+  --mo-code-cyan-container: #c6f2ff;
+  --mo-code-cyan-on-container: #003642;
+  --mo-code-teal: #006b5e;
+  --mo-code-teal-container: #a6f2df;
+  --mo-code-teal-on-container: #00372f;
+  --mo-code-green: #176b43;
+  --mo-code-green-container: #c7f1d9;
+  --mo-code-green-on-container: #0c3825;
+  --mo-code-amber: #8a5200;
+  --mo-code-amber-container: #ffe1a8;
+  --mo-code-amber-on-container: #4a2b00;
+  --mo-code-orange: #9a4600;
+  --mo-code-orange-container: #ffdcc3;
+  --mo-code-orange-on-container: #4c2100;
+  --mo-code-rose: #9e315f;
+  --mo-code-rose-container: #ffd9e5;
+  --mo-code-rose-on-container: #4c1430;
+  --mo-code-violet: #6d4bc2;
+  --mo-code-violet-container: #eadcff;
+  --mo-code-violet-on-container: #2e176f;
+
+  /* Skeleton loading */
+  --mo-skeleton-base: #e8e8ee;
+  --mo-skeleton-highlight: #f7f7fa;
+  --mo-skeleton-duration: 1400ms;
+  --mo-skeleton-delay: 180ms;
+  --mo-skeleton-minimum-visible: 300ms;
+
   /* Typography */
   --mo-type-display: 3.5rem;
   --mo-type-large-title: 2.5rem;
@@ -97,6 +130,8 @@
   --mo-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.30);
   --mo-elevation-2: 0 4px 14px rgba(0, 0, 0, 0.34);
   --mo-elevation-3: 0 14px 36px rgba(0, 0, 0, 0.40);
+  --mo-skeleton-base: #2a2a34;
+  --mo-skeleton-highlight: #393944;
 }
 
 [data-mo-density="compact"] {
@@ -127,6 +162,7 @@
     --mo-motion-small: 0ms;
     --mo-motion-standard: 0ms;
     --mo-motion-large: 0ms;
+    --mo-skeleton-duration: 0ms;
   }
 }
 

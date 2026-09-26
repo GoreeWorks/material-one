@@ -43,6 +43,8 @@ const manifest = {
     "themes",
     "icons",
     "controls",
+    "color-coding",
+    "skeleton-loading",
     "accessibility"
   ]
 };

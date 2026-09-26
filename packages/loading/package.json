@@ -1,0 +1,12 @@
+{
+  "name": "@material-one/loading",
+  "version": "0.1.0",
+  "description": "Skeleton loading and progressive loading behavior for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-loading.css"
+  },
+  "keywords": ["design-system", "loading", "skeleton", "progressive-rendering", "material-one"],
+  "license": "MIT"
+}
