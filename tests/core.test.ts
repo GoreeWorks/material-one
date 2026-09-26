@@ -54,3 +54,32 @@ test("context normalizes accessibility defaults", () => {
   assert.equal(context.preferences.accessibility.textScale, 1);
   assert.equal(context.interactionTarget, 44);
 });
+
+
+test("legacy runtime states normalize to the canonical state vocabulary", async () => {
+  const {
+    normalizeComponentState
+  } = await import("../packages/core/src/runtime.ts");
+
+  assert.equal(normalizeComponentState("idle"), "default");
+  assert.equal(normalizeComponentState("hover"), "hovered");
+  assert.equal(normalizeComponentState("focus"), "focused");
+  assert.equal(normalizeComponentState("active"), "pressed");
+  assert.equal(normalizeComponentState("selected"), "selected");
+});
+
+test("component runtime emits canonical data attributes", async () => {
+  const {
+    createComponentRuntime
+  } = await import("../packages/core/src/runtime.ts");
+
+  const runtime = createComponentRuntime({
+    component: "button",
+    state: "active",
+    semanticRole: "primary"
+  });
+
+  assert.equal(runtime.state, "pressed");
+  assert.equal(runtime.attributes["data-mo-component"], "button");
+  assert.equal(runtime.attributes["data-mo-state"], "pressed");
+});
