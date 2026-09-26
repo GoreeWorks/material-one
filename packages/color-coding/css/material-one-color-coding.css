@@ -95,6 +95,68 @@
   border-radius: var(--mo-shape-pill);
 }
 
+.mo-color-surface {
+  --mo-code: var(--mo-code-blue);
+  --mo-code-container: var(--mo-code-blue-container);
+  --mo-code-on-container: var(--mo-code-blue-on-container);
+  color: var(--mo-code-on-container);
+  background: var(--mo-code-container);
+  border: 1px solid color-mix(in srgb, var(--mo-code) 38%, var(--mo-border));
+  border-radius: var(--mo-shape-large);
+}
+
+.mo-color-outline {
+  --mo-code: var(--mo-code-blue);
+  border-inline-start: 4px solid var(--mo-code);
+}
+
+.mo-color-dot {
+  --mo-code: var(--mo-code-blue);
+  inline-size: 10px;
+  block-size: 10px;
+  display: inline-block;
+  flex: 0 0 auto;
+  background: var(--mo-code);
+  border-radius: 50%;
+}
+
+.mo-color-legend {
+  display: grid;
+  gap: var(--mo-space-sm);
+}
+
+.mo-color-legend-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--mo-space-sm);
+  color: var(--mo-text-primary);
+}
+
+.mo-color-track {
+  --mo-code: var(--mo-code-blue);
+  overflow: hidden;
+  min-block-size: 8px;
+  background: var(--mo-surface-container-high);
+  border-radius: var(--mo-shape-pill);
+}
+
+.mo-color-fill {
+  inline-size: var(--mo-color-value, 0%);
+  block-size: 100%;
+  background: var(--mo-code);
+  border-radius: inherit;
+  transition: inline-size var(--mo-motion-standard) var(--mo-ease-standard);
+}
+
+[data-mo-color-code="blue"] { --mo-code: var(--mo-code-blue); --mo-code-container: var(--mo-code-blue-container); --mo-code-on-container: var(--mo-code-blue-on-container); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mo-color-fill {
+    transition: none;
+  }
+}
+
 @media (forced-colors: active) {
   .mo-color-code {
     color: CanvasText;
@@ -103,7 +165,17 @@
   }
 
   .mo-color-code::before,
-  .mo-color-bar {
+  .mo-color-bar,
+  .mo-color-dot,
+  .mo-color-fill {
     background: CanvasText;
+  }
+
+  .mo-color-surface,
+  .mo-color-outline,
+  .mo-color-track {
+    color: CanvasText;
+    background: Canvas;
+    border-color: CanvasText;
   }
 }
