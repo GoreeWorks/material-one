@@ -1,0 +1,16 @@
+{
+  "name": "@material-one/themes",
+  "version": "0.1.0",
+  "description": "Theme contracts and CSS variable generation for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "keywords": [
+    "design-system",
+    "theme",
+    "personalization",
+    "material-one"
+  ],
+  "license": "MIT"
+}

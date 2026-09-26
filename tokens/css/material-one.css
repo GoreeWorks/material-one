@@ -1,46 +1,137 @@
 :root {
-  /* Color Intelligence */
-  --mo-color-primary: var(--user-primary, #1a73e8);
-  --mo-color-secondary: var(--user-secondary, #5f6368);
-  --mo-color-tertiary: var(--user-tertiary, #a142f4);
+  /* Semantic color */
+  --mo-color-primary: var(--user-primary, #4f5fd7);
+  --mo-color-on-primary: var(--user-on-primary, #ffffff);
+  --mo-color-primary-container: var(--user-primary-container, #e7e9ff);
+  --mo-color-on-primary-container: var(--user-on-primary-container, #171d61);
 
-  --mo-surface-background: #ffffff;
-  --mo-surface-container: #f8f9fa;
+  --mo-color-secondary: var(--user-secondary, #596078);
+  --mo-color-on-secondary: var(--user-on-secondary, #ffffff);
+  --mo-color-secondary-container: var(--user-secondary-container, #e0e4f8);
+  --mo-color-on-secondary-container: var(--user-on-secondary-container, #171b2c);
+
+  --mo-color-tertiary: var(--user-tertiary, #a43f7a);
+  --mo-color-on-tertiary: var(--user-on-tertiary, #ffffff);
+  --mo-color-tertiary-container: var(--user-tertiary-container, #ffd8ea);
+  --mo-color-on-tertiary-container: var(--user-on-tertiary-container, #3d0027);
+
+  --mo-surface-background: #fbfbfe;
+  --mo-surface-base: #ffffff;
+  --mo-surface-container: #f4f4f8;
+  --mo-surface-container-high: #ececf2;
   --mo-surface-floating: #ffffff;
 
-  --mo-status-success: #137333;
-  --mo-status-warning: #b06000;
-  --mo-status-error: #c5221f;
+  --mo-text-primary: #1b1b20;
+  --mo-text-muted: #61616b;
+  --mo-border: #d8d8e0;
+
+  --mo-status-success: #176b43;
+  --mo-status-warning: #8a5200;
+  --mo-status-error: #b3261e;
+  --mo-status-information: #365e9d;
 
   /* Typography */
   --mo-type-display: 3.5rem;
+  --mo-type-large-title: 2.5rem;
   --mo-type-title: 2rem;
   --mo-type-heading: 1.5rem;
   --mo-type-body: 1rem;
-  --mo-type-label: .875rem;
+  --mo-type-label: 0.875rem;
+  --mo-type-supporting: 0.75rem;
+  --mo-line-body: 1.5;
 
   /* Spacing */
-  --mo-space-xs: .25rem;
-  --mo-space-sm: .5rem;
+  --mo-space-xs: 0.25rem;
+  --mo-space-sm: 0.5rem;
   --mo-space-md: 1rem;
   --mo-space-lg: 1.5rem;
   --mo-space-xl: 2.5rem;
+  --mo-space-2xl: 4rem;
 
   /* Shape */
   --mo-shape-extra-small: 4px;
   --mo-shape-small: 8px;
-  --mo-shape-medium: 16px;
-  --mo-shape-large: 28px;
-  --mo-shape-extra-large: 40px;
+  --mo-shape-medium: 14px;
+  --mo-shape-large: 22px;
+  --mo-shape-extra-large: 32px;
+  --mo-shape-pill: 999px;
+
+  /* Elevation */
+  --mo-elevation-0: none;
+  --mo-elevation-1: 0 1px 2px rgba(20, 20, 30, 0.08);
+  --mo-elevation-2: 0 4px 12px rgba(20, 20, 30, 0.10);
+  --mo-elevation-3: 0 12px 32px rgba(20, 20, 30, 0.14);
 
   /* Motion */
-  --mo-motion-instant: 100ms;
-  --mo-motion-standard: 300ms;
-  --mo-motion-large: 500ms;
+  --mo-motion-instant: 90ms;
+  --mo-motion-small: 160ms;
+  --mo-motion-standard: 280ms;
+  --mo-motion-large: 460ms;
+  --mo-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --mo-ease-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+
+  /* Interaction */
+  --mo-target-compact: 36px;
+  --mo-target-comfortable: 44px;
+  --mo-target-touch: 48px;
+  --mo-focus-ring: 3px;
 }
 
 [data-mo-theme="dark"] {
-  --mo-surface-background: #101010;
-  --mo-surface-container: #1c1c1c;
-  --mo-surface-floating: #242424;
+  --mo-surface-background: #111116;
+  --mo-surface-base: #18181f;
+  --mo-surface-container: #202028;
+  --mo-surface-container-high: #292933;
+  --mo-surface-floating: #25252d;
+  --mo-text-primary: #f0f0f6;
+  --mo-text-muted: #b8b8c3;
+  --mo-border: #3c3c47;
+
+  --mo-color-primary-container: #2c347d;
+  --mo-color-on-primary-container: #e7e9ff;
+  --mo-color-secondary-container: #33394e;
+  --mo-color-on-secondary-container: #e0e4f8;
+  --mo-color-tertiary-container: #5d1945;
+  --mo-color-on-tertiary-container: #ffd8ea;
+
+  --mo-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --mo-elevation-2: 0 4px 14px rgba(0, 0, 0, 0.34);
+  --mo-elevation-3: 0 14px 36px rgba(0, 0, 0, 0.40);
+}
+
+[data-mo-density="compact"] {
+  --mo-control-height: var(--mo-target-compact);
+  --mo-density-gap: var(--mo-space-sm);
+}
+
+[data-mo-density="comfortable"],
+:root:not([data-mo-density]) {
+  --mo-control-height: var(--mo-target-comfortable);
+  --mo-density-gap: var(--mo-space-md);
+}
+
+[data-mo-density="spacious"] {
+  --mo-control-height: var(--mo-target-touch);
+  --mo-density-gap: var(--mo-space-lg);
+}
+
+@media (pointer: coarse) {
+  :root {
+    --mo-control-height: var(--mo-target-touch);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mo-motion-instant: 0ms;
+    --mo-motion-small: 0ms;
+    --mo-motion-standard: 0ms;
+    --mo-motion-large: 0ms;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --mo-focus-ring: 4px;
+  }
 }

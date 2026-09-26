@@ -1,0 +1,20 @@
+{
+  "name": "@material-one/components",
+  "version": "0.1.0",
+  "description": "Framework-independent component recipes and CSS primitives for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-components.css"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0"
+  },
+  "keywords": [
+    "design-system",
+    "components",
+    "adaptive-ui",
+    "material-one"
+  ],
+  "license": "MIT"
+}

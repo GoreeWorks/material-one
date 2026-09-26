@@ -1,0 +1,15 @@
+{
+  "name": "@material-one/icons",
+  "version": "0.1.0",
+  "description": "Icon geometry, metadata, and state contracts for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "keywords": [
+    "icons",
+    "design-system",
+    "material-one"
+  ],
+  "license": "MIT"
+}

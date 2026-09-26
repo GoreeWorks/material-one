@@ -1,28 +1,85 @@
 {
   "name": "Material One Tokens",
+  "version": "0.2.0",
   "color": {
-    "primary": "semantic.primary",
-    "secondary": "semantic.secondary",
-    "surface": "semantic.surface",
-    "container": "semantic.container",
+    "primary": {
+      "base": "#4F5FD7",
+      "on": "#FFFFFF",
+      "container": "#E7E9FF",
+      "onContainer": "#171D61"
+    },
+    "secondary": {
+      "base": "#596078",
+      "on": "#FFFFFF",
+      "container": "#E0E4F8",
+      "onContainer": "#171B2C"
+    },
+    "tertiary": {
+      "base": "#A43F7A",
+      "on": "#FFFFFF",
+      "container": "#FFD8EA",
+      "onContainer": "#3D0027"
+    },
+    "surface": {
+      "background": "#FBFBFE",
+      "base": "#FFFFFF",
+      "container": "#F4F4F8",
+      "containerHigh": "#ECECF2",
+      "floating": "#FFFFFF",
+      "text": "#1B1B20",
+      "textMuted": "#61616B",
+      "border": "#D8D8E0"
+    },
     "status": {
-      "success": "semantic.success",
-      "warning": "semantic.warning",
-      "error": "semantic.error",
-      "information": "semantic.information"
+      "success": "#176B43",
+      "warning": "#8A5200",
+      "error": "#B3261E",
+      "information": "#365E9D"
     }
   },
+  "typography": {
+    "display": "3.5rem",
+    "largeTitle": "2.5rem",
+    "title": "2rem",
+    "heading": "1.5rem",
+    "body": "1rem",
+    "label": "0.875rem",
+    "supporting": "0.75rem"
+  },
+  "spacing": {
+    "xs": "0.25rem",
+    "sm": "0.5rem",
+    "md": "1rem",
+    "lg": "1.5rem",
+    "xl": "2.5rem",
+    "2xl": "4rem"
+  },
   "shape": {
-    "extraSmall": "adaptive",
-    "small": "adaptive",
-    "medium": "adaptive",
-    "large": "adaptive",
-    "extraLarge": "adaptive"
+    "extraSmall": "4px",
+    "small": "8px",
+    "medium": "14px",
+    "large": "22px",
+    "extraLarge": "32px",
+    "pill": "999px"
   },
   "motion": {
-    "instant": "interaction",
-    "small": "transition",
-    "standard": "transition",
-    "large": "transformation"
+    "instant": "90ms",
+    "small": "160ms",
+    "standard": "280ms",
+    "large": "460ms",
+    "easingStandard": "cubic-bezier(0.2, 0, 0, 1)",
+    "easingEmphasized": "cubic-bezier(0.2, 0, 0, 1.2)"
+  },
+  "interaction": {
+    "targetCompact": "36px",
+    "targetComfortable": "44px",
+    "targetTouch": "48px",
+    "focusRing": "3px"
+  },
+  "elevation": {
+    "level0": "none",
+    "level1": "0 1px 2px rgba(20, 20, 30, 0.08)",
+    "level2": "0 4px 12px rgba(20, 20, 30, 0.10)",
+    "level3": "0 12px 32px rgba(20, 20, 30, 0.14)"
   }
 }
