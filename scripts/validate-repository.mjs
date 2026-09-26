@@ -48,7 +48,10 @@ const required = [
   "packages/loading/src/index.ts",
   "packages/loading/css/material-one-loading.css",
   "packages/semantic-colors/src/index.ts",
-  "packages/semantic-colors/css/material-one-semantic-colors.css"
+  "packages/semantic-colors/css/material-one-semantic-colors.css",
+  "packages/theme-intelligence/src/index.ts",
+  "packages/data-visualization/src/index.ts",
+  "packages/data-visualization/css/material-one-data-visualization.css"
 ];
 
 for (const item of required) await exists(item);
