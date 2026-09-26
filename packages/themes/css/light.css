@@ -1,0 +1,11 @@
+[data-mo-theme="light"] {
+  color-scheme: light;
+  --mo-surface-background: #fbfbfe;
+  --mo-surface-base: #ffffff;
+  --mo-surface-container: #f4f4f8;
+  --mo-surface-container-high: #ececf2;
+  --mo-surface-floating: #ffffff;
+  --mo-text-primary: #1b1b20;
+  --mo-text-muted: #61616b;
+  --mo-border: #d8d8e0;
+}
