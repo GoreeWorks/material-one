@@ -1,8 +1,21 @@
 import {
+  createComponentRuntime,
   materialOneComponentStates,
   type MaterialOneComponentState,
   type MaterialOneContext
 } from "@material-one/core";
+import {
+  semanticCssVariable,
+  type SemanticColorRole
+} from "@material-one/semantic-colors";
+import {
+  typographyCssVariable,
+  type TypographyRole
+} from "@material-one/typography";
+import {
+  motionCssVariables,
+  type MotionIntent
+} from "@material-one/motion";
 
 export type ComponentState = MaterialOneComponentState;
 export type ComponentEmphasis =
@@ -28,16 +41,22 @@ export interface AdaptiveComponentContract {
   component: string;
   state: ComponentState;
   context: AdaptiveComponentContext;
-  semanticColorRole: string;
-  typographyRole: string;
-  motionIntent: string;
+  semanticColorRole: SemanticColorRole;
+  typographyRole: TypographyRole;
+  motionIntent: MotionIntent;
 }
 
 export interface ComponentContractOptions {
   state?: ComponentState;
-  semanticColorRole?: string;
-  typographyRole?: string;
-  motionIntent?: string;
+  semanticColorRole?: SemanticColorRole;
+  typographyRole?: TypographyRole;
+  motionIntent?: MotionIntent;
+}
+
+export interface ComponentPresentation {
+  contract: AdaptiveComponentContract;
+  attributes: Record<string, string>;
+  style: Record<string, string>;
 }
 
 export const componentStates: readonly ComponentState[] =
@@ -82,9 +101,52 @@ export function createComponentContract(
     state: options.state ?? "default",
     context: createAdaptiveComponentContext(context),
     semanticColorRole:
-      options.semanticColorRole ?? "surface-container",
+      options.semanticColorRole ?? "surfaceContainer",
     typographyRole: options.typographyRole ?? "body",
     motionIntent: options.motionIntent ?? "feedback"
+  };
+}
+
+export function createComponentPresentation(
+  component: string,
+  context: MaterialOneContext,
+  options: ComponentContractOptions = {}
+): ComponentPresentation {
+  const contract = createComponentContract(
+    component,
+    context,
+    options
+  );
+  const runtime = createComponentRuntime({
+    component,
+    state: contract.state,
+    semanticRole: contract.semanticColorRole
+  });
+
+  return {
+    contract,
+    attributes: {
+      ...runtime.attributes,
+      "data-mo-density": contract.context.density,
+      "data-mo-layout": contract.context.layout,
+      "data-mo-input": contract.context.input,
+      "data-mo-contrast": contract.context.highContrast
+        ? "high"
+        : "standard",
+      "data-mo-semantic-role": contract.semanticColorRole,
+      "data-mo-typography-role": contract.typographyRole,
+      "data-mo-motion-intent": contract.motionIntent
+    },
+    style: {
+      "--mo-component-semantic-color":
+        `var(${semanticCssVariable(contract.semanticColorRole)})`,
+      "--mo-component-type-size":
+        `var(${typographyCssVariable(contract.typographyRole)})`,
+      ...motionCssVariables(
+        contract.motionIntent,
+        contract.context.motion
+      )
+    }
   };
 }
 

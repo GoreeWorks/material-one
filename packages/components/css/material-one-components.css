@@ -3,10 +3,14 @@
 .mo-component {
   min-block-size: var(--mo-target-comfortable);
   transition:
-    transform var(--mo-motion-feedback) var(--mo-ease-standard),
-    opacity var(--mo-motion-feedback) var(--mo-ease-standard),
-    border-color var(--mo-motion-feedback) var(--mo-ease-standard),
-    box-shadow var(--mo-motion-feedback) var(--mo-ease-standard);
+    transform var(--mo-motion-duration, var(--mo-motion-feedback))
+      var(--mo-motion-easing, var(--mo-ease-standard)),
+    opacity var(--mo-motion-duration, var(--mo-motion-feedback))
+      var(--mo-motion-easing, var(--mo-ease-standard)),
+    border-color var(--mo-motion-duration, var(--mo-motion-feedback))
+      var(--mo-motion-easing, var(--mo-ease-standard)),
+    box-shadow var(--mo-motion-duration, var(--mo-motion-feedback))
+      var(--mo-motion-easing, var(--mo-ease-standard));
 }
 
 .mo-component[data-mo-density="compact"] {

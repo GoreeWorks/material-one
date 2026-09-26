@@ -1,14 +1,17 @@
 {
   "name": "@material-one/components",
-  "version": "0.1.0",
-  "description": "Framework-independent component recipes and CSS primitives for Material One.",
+  "version": "0.2.0",
+  "description": "Typed adaptive component contracts, presentation metadata, recipes, and CSS primitives for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./styles": "./css/material-one-components.css"
   },
   "peerDependencies": {
-    "@material-one/core": "^0.1.0"
+    "@material-one/core": "^0.1.0",
+    "@material-one/semantic-colors": "^0.1.0",
+    "@material-one/typography": "^0.1.0",
+    "@material-one/motion": "^0.1.0"
   },
   "keywords": [
     "design-system",

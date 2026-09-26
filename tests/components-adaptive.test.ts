@@ -4,6 +4,7 @@ import { createMaterialOneContext } from "../packages/core/src/index.ts";
 import {
   componentStates,
   createComponentContract,
+  createComponentPresentation,
   resolveComponentDensity
 } from "../packages/components/src/index.ts";
 
@@ -53,27 +54,87 @@ test("adaptive component contracts inherit live Material One context", () => {
   assert.equal(contract.context.highContrast, true);
   assert.equal(contract.context.textScale, 1.25);
   assert.equal(contract.context.interactionTarget, 48);
-  assert.equal(contract.semanticColorRole, "surface-container");
+  assert.equal(contract.semanticColorRole, "surfaceContainer");
   assert.equal(contract.typographyRole, "body");
   assert.equal(contract.motionIntent, "feedback");
 });
 
-test("component contracts support semantic overrides without changing context", () => {
+test("component contracts use typed semantic subsystem roles", () => {
   const contract = createComponentContract("field", context, {
     state: "error",
-    semanticColorRole: "error-container",
+    semanticColorRole: "errorContainer",
     typographyRole: "label",
     motionIntent: "instant"
   });
 
   assert.equal(contract.state, "error");
-  assert.equal(contract.semanticColorRole, "error-container");
+  assert.equal(contract.semanticColorRole, "errorContainer");
   assert.equal(contract.typographyRole, "label");
   assert.equal(contract.motionIntent, "instant");
   assert.equal(contract.context.layout, "compact");
 });
 
+test("component presentation emits portable attributes and CSS variables", () => {
+  const presentation = createComponentPresentation(
+    "field",
+    context,
+    {
+      state: "error",
+      semanticColorRole: "errorContainer",
+      typographyRole: "label",
+      motionIntent: "feedback"
+    }
+  );
+
+  assert.equal(
+    presentation.attributes["data-mo-component"],
+    "field"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-state"],
+    "error"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-density"],
+    "comfortable"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-layout"],
+    "compact"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-contrast"],
+    "high"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-semantic-role"],
+    "errorContainer"
+  );
+  assert.equal(
+    presentation.style["--mo-component-semantic-color"],
+    "var(--mo-sem-error-container)"
+  );
+  assert.equal(
+    presentation.style["--mo-component-type-size"],
+    "var(--mo-type-label)"
+  );
+  assert.equal(
+    presentation.style["--mo-motion-duration"],
+    "100ms"
+  );
+  assert.equal(
+    presentation.style["--mo-motion-translate"],
+    "0px"
+  );
+});
+
 test("spacious density collapses only when compact layout requires it", () => {
-  assert.equal(resolveComponentDensity("spacious", "compact"), "comfortable");
-  assert.equal(resolveComponentDensity("spacious", "workspace"), "spacious");
+  assert.equal(
+    resolveComponentDensity("spacious", "compact"),
+    "comfortable"
+  );
+  assert.equal(
+    resolveComponentDensity("spacious", "workspace"),
+    "spacious"
+  );
 });
