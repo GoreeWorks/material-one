@@ -14,6 +14,7 @@ const runtimeSource = await readFile(
 for (const marker of [
   "createAdaptiveComponentContext",
   "createComponentContract",
+  "createComponentPresentation",
   "createButtonRecipe",
   "createSurfaceRecipe",
   "createCardRecipe",
@@ -58,4 +59,17 @@ for (const alias of ["idle", "hover", "focus", "active"]) {
   }
 }
 
-console.log("Validated Material One adaptive component and runtime contracts.");
+for (const typedContract of [
+  "SemanticColorRole",
+  "TypographyRole",
+  "MotionIntent",
+  "semanticCssVariable",
+  "typographyCssVariable",
+  "motionCssVariables"
+]) {
+  if (!componentSource.includes(typedContract)) {
+    throw new Error(`Typed component presentation missing ${typedContract}`);
+  }
+}
+
+console.log("Validated Material One adaptive, typed presentation, and runtime contracts.");
