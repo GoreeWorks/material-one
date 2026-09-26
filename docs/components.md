@@ -37,21 +37,38 @@ A component contract inherits the current Material One context, including:
 
 Compact layouts may reduce `spacious` component density to `comfortable` so large presentation spacing does not overwhelm narrow viewports. The Material One density vocabulary remains `compact`, `comfortable`, and `spacious` across core and components.
 
-## Semantic contract
+## Typed semantic contract
 
-Each adaptive component contract combines:
+Component contracts do not accept arbitrary design-system strings. They are typed directly against the authoritative subsystem contracts:
 
-- a canonical component state
-- a semantic color role
-- a typography role
-- a motion intent
-- the resolved adaptive context
+- `SemanticColorRole` from `@material-one/semantic-colors`
+- `TypographyRole` from `@material-one/typography`
+- `MotionIntent` from `@material-one/motion`
+
+This means a component cannot reference a misspelled or nonexistent semantic color, typography role, or motion intent without failing TypeScript validation.
+
+The default component semantic contract uses `surfaceContainer`, `body`, and `feedback`.
 
 State must never rely on color alone. Where meaning matters, pair color with text, iconography, shape, position, native semantics, or another redundant cue.
 
+## Presentation bridge
+
+`createComponentPresentation()` converts the typed component contract into framework-portable presentation metadata.
+
+It emits:
+
+- canonical `data-mo-component` and `data-mo-state` attributes
+- resolved density, layout, input, and contrast attributes
+- semantic-color, typography, and motion role attributes
+- `--mo-component-semantic-color`
+- `--mo-component-type-size`
+- reduced/full/no-motion variables from the Material One motion subsystem
+
+The output is intentionally plain attributes and CSS custom properties so React, Vue, Svelte, server-rendered HTML, browser extensions, and other adapters can consume the same contract without a framework-specific component dependency.
+
 ## Foundation recipes
 
-The component package currently provides framework-independent recipes for:
+The component package provides framework-independent recipes for:
 
 - buttons
 - surfaces
@@ -59,22 +76,22 @@ The component package currently provides framework-independent recipes for:
 - fields
 - navigation
 
-These recipes remain intentionally small. Product-specific components should compose them rather than inventing parallel state, density, accessibility, or motion systems.
+These recipes remain intentionally small. Product-specific components should compose them rather than inventing parallel state, density, accessibility, semantic-color, typography, or motion systems.
 
 ## Styling contract
 
 The shared component stylesheet recognizes `data-mo-state` and `data-mo-density` attributes on `.mo-component`. It provides baseline focus, selected, loading, disabled, success, warning, error, density, hover, and pressed behavior while preserving each component's own semantic styling.
 
-Reduced-motion preferences remove component transforms and transitions through the existing Material One motion rules.
+Component transition timing can consume the motion variables emitted by the presentation bridge. Reduced-motion preferences therefore use the same semantic motion resolver as the rest of Material One instead of a separate component timing system.
 
 ## Integration
 
 Components consume the Material One foundations in this order:
 
 1. `@material-one/core` for adaptive context and canonical component state.
-2. Semantic tokens for meaning-based color.
-3. Typography roles for hierarchy and readability.
-4. Motion intents for interaction feedback.
+2. `@material-one/semantic-colors` for typed meaning-based color.
+3. `@material-one/typography` for typed hierarchy and readability roles.
+4. `@material-one/motion` for typed interaction intent and motion preference adaptation.
 5. Component recipes for shape, elevation, targeting, and presentation.
 
-Downstream GoreeWorks products should import or synchronize these contracts from the current `GoreeWorks/material-one` source rather than defining competing state vocabularies.
+Downstream GoreeWorks products should consume these current contracts from `GoreeWorks/material-one` rather than defining competing component state, semantic, typography, or motion vocabularies.
