@@ -1,0 +1,192 @@
+@import "../../../tokens/css/material-one.css";
+
+:root {
+  --mo-motion-feedback: 160ms;
+  --mo-motion-enter: 220ms;
+  --mo-motion-exit: 160ms;
+  --mo-motion-navigation: 280ms;
+  --mo-motion-transform: 460ms;
+  --mo-motion-emphasis: 360ms;
+  --mo-motion-loading: 1400ms;
+  --mo-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --mo-motion-distance-small: 4px;
+  --mo-motion-distance-medium: 8px;
+  --mo-motion-distance-large: 16px;
+}
+
+.mo-motion {
+  --mo-motion-duration: var(--mo-motion-standard);
+  --mo-motion-easing: var(--mo-ease-standard);
+  --mo-motion-translate: var(--mo-motion-distance-medium);
+  --mo-motion-scale-from: 0.99;
+  --mo-motion-opacity-from: 0;
+}
+
+.mo-motion[data-mo-motion-intent="instant"] {
+  --mo-motion-duration: var(--mo-motion-instant);
+  --mo-motion-translate: 0;
+  --mo-motion-scale-from: 1;
+  --mo-motion-opacity-from: 1;
+}
+
+.mo-motion[data-mo-motion-intent="feedback"] {
+  --mo-motion-duration: var(--mo-motion-feedback);
+  --mo-motion-translate: 0;
+  --mo-motion-scale-from: 0.98;
+  --mo-motion-opacity-from: 1;
+}
+
+.mo-motion[data-mo-motion-intent="enter"] {
+  --mo-motion-duration: var(--mo-motion-enter);
+  --mo-motion-translate: var(--mo-motion-distance-medium);
+  --mo-motion-scale-from: 0.99;
+  --mo-motion-opacity-from: 0;
+}
+
+.mo-motion[data-mo-motion-intent="exit"] {
+  --mo-motion-duration: var(--mo-motion-exit);
+  --mo-motion-easing: var(--mo-ease-exit);
+  --mo-motion-translate: var(--mo-motion-distance-small);
+  --mo-motion-scale-from: 1;
+  --mo-motion-opacity-from: 1;
+}
+
+.mo-motion[data-mo-motion-intent="navigation"] {
+  --mo-motion-duration: var(--mo-motion-navigation);
+  --mo-motion-translate: 12px;
+  --mo-motion-scale-from: 0.995;
+  --mo-motion-opacity-from: 0;
+}
+
+.mo-motion[data-mo-motion-intent="transform"] {
+  --mo-motion-duration: var(--mo-motion-transform);
+  --mo-motion-translate: var(--mo-motion-distance-large);
+  --mo-motion-scale-from: 0.96;
+  --mo-motion-opacity-from: 1;
+}
+
+.mo-motion[data-mo-motion-intent="emphasis"] {
+  --mo-motion-duration: var(--mo-motion-emphasis);
+  --mo-motion-easing: var(--mo-ease-emphasized);
+  --mo-motion-translate: 0;
+  --mo-motion-scale-from: 0.94;
+  --mo-motion-opacity-from: 1;
+}
+
+.mo-motion[data-mo-motion-intent="loading"] {
+  --mo-motion-duration: var(--mo-motion-loading);
+  --mo-motion-translate: 0;
+  --mo-motion-scale-from: 1;
+  --mo-motion-opacity-from: 1;
+}
+
+.mo-motion-enter {
+  animation: mo-motion-enter
+    var(--mo-motion-duration)
+    var(--mo-motion-easing)
+    both;
+}
+
+.mo-motion-emphasis {
+  animation: mo-motion-emphasis
+    var(--mo-motion-duration)
+    var(--mo-motion-easing)
+    both;
+}
+
+.mo-motion-feedback {
+  transition:
+    transform var(--mo-motion-duration) var(--mo-motion-easing),
+    opacity var(--mo-motion-duration) var(--mo-motion-easing),
+    background-color var(--mo-motion-duration) var(--mo-motion-easing),
+    border-color var(--mo-motion-duration) var(--mo-motion-easing);
+}
+
+.mo-motion-feedback:active {
+  transform: scale(var(--mo-motion-scale-from));
+}
+
+.mo-motion-shared {
+  view-transition-name: var(--mo-motion-shared-name, none);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--mo-motion-navigation);
+  animation-timing-function: var(--mo-ease-standard);
+}
+
+@keyframes mo-motion-enter {
+  from {
+    opacity: var(--mo-motion-opacity-from);
+    transform:
+      translateY(var(--mo-motion-translate))
+      scale(var(--mo-motion-scale-from));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mo-motion-emphasis {
+  0% {
+    transform: scale(var(--mo-motion-scale-from));
+  }
+
+  62% {
+    transform: scale(1.015);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mo-motion-feedback: 80ms;
+    --mo-motion-enter: 0ms;
+    --mo-motion-exit: 0ms;
+    --mo-motion-navigation: 0ms;
+    --mo-motion-transform: 0ms;
+    --mo-motion-emphasis: 0ms;
+    --mo-motion-loading: 0ms;
+    --mo-motion-distance-small: 0px;
+    --mo-motion-distance-medium: 0px;
+    --mo-motion-distance-large: 0px;
+  }
+
+  .mo-motion-enter,
+  .mo-motion-emphasis {
+    animation: none;
+  }
+
+  .mo-motion-feedback {
+    transition-duration: 80ms;
+  }
+
+  .mo-motion-feedback:active {
+    transform: none;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+[data-mo-motion="none"] .mo-motion-enter,
+[data-mo-motion="none"] .mo-motion-emphasis,
+[data-mo-motion="none"] .mo-motion-feedback {
+  animation: none;
+  transition: none;
+  transform: none;
+}
+
+@media (forced-colors: active) {
+  .mo-motion-feedback {
+    transition-property: transform, opacity;
+  }
+}
