@@ -99,3 +99,5 @@ export function createMaterialOneContext(
     interactionTarget: resolveInteractionTarget(normalizedPreferences, device)
   };
 }
+
+export * from "./runtime";
