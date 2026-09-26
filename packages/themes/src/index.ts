@@ -1,3 +1,8 @@
+import {
+  semanticCssVariable,
+  type SemanticColorRole
+} from "@material-one/semantic-colors";
+
 export interface MaterialOneThemeColors {
   primary: string;
   onPrimary: string;
@@ -29,6 +34,7 @@ export interface MaterialOneTheme {
   name: string;
   scheme: "light" | "dark";
   colors: MaterialOneThemeColors;
+  semantic?: Partial<Record<SemanticColorRole, string>>;
 }
 
 const cssVariableMap: Record<keyof MaterialOneThemeColors, string> = {
@@ -61,12 +67,24 @@ const cssVariableMap: Record<keyof MaterialOneThemeColors, string> = {
 export function themeToCssVariables(
   theme: MaterialOneTheme
 ): Record<string, string> {
-  return Object.fromEntries(
+  const legacyVariables = Object.fromEntries(
     Object.entries(theme.colors).map(([key, value]) => [
       cssVariableMap[key as keyof MaterialOneThemeColors],
       value
     ])
   );
+
+  const semanticVariables = Object.fromEntries(
+    Object.entries(theme.semantic ?? {}).map(([role, value]) => [
+      semanticCssVariable(role as SemanticColorRole),
+      value
+    ])
+  );
+
+  return {
+    ...legacyVariables,
+    ...semanticVariables
+  };
 }
 
 export function serializeTheme(
