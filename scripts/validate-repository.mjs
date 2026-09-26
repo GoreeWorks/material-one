@@ -38,6 +38,7 @@ const required = [
   "tokens/css/material-one.css",
   "packages/core/src/index.ts",
   "packages/components/src/index.ts",
+  "packages/components/css/material-one-components.css",
   "packages/shell/src/index.ts",
   "packages/themes/src/index.ts",
   "packages/icons/src/index.ts",
@@ -106,6 +107,10 @@ const tokenCss = await readFile(
   path.join(root, "tokens/css/material-one.css"),
   "utf8"
 );
+const componentsCss = await readFile(
+  path.join(root, "packages/components/css/material-one-components.css"),
+  "utf8"
+);
 const controlsCss = await readFile(
   path.join(root, "packages/controls/css/material-one-controls.css"),
   "utf8"
@@ -117,6 +122,7 @@ const shellCss = await readFile(
 
 for (const [name, css] of [
   ["tokens", tokenCss],
+  ["components", componentsCss],
   ["controls", controlsCss],
   ["shell", shellCss]
 ]) {
@@ -133,6 +139,10 @@ for (const requiredPattern of [
   if (!tokenCss.includes(requiredPattern)) {
     fail(`Token CSS is missing required adaptive behavior: ${requiredPattern}`);
   }
+}
+
+if (!componentsCss.includes("data-mo-state=\\\"focused\\\"")) {
+  fail("Component CSS must expose canonical data-mo-state behavior");
 }
 
 if (!controlsCss.includes("forced-colors: active")) {
