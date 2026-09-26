@@ -98,6 +98,13 @@ const loadingCss = await readFile(
   "utf8"
 );
 
+for (const name of expectedCodes) {
+  const value = coding[name].base.toLowerCase();
+  if (!colorCss.includes(`--mo-code-${name}: ${value};`)) {
+    throw new Error(`Color coding CSS is out of sync for ${name}`);
+  }
+}
+
 for (const marker of [
   "forced-colors: active",
   "data-mo-color-code",
