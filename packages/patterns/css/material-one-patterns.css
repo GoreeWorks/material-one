@@ -1,0 +1,5 @@
+.mo-pattern-grid {
+  display: grid;
+  gap: var(--mo-space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
