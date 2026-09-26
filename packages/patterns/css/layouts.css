@@ -1,0 +1,45 @@
+.mo-pattern-grid {
+  --mo-pattern-columns: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--mo-pattern-columns), minmax(0, 1fr));
+  gap: var(--mo-space-lg);
+}
+
+.mo-pattern-grid[data-mo-columns="1"] { --mo-pattern-columns: 1; }
+.mo-pattern-grid[data-mo-columns="2"] { --mo-pattern-columns: 2; }
+.mo-pattern-grid[data-mo-columns="3"] { --mo-pattern-columns: 3; }
+.mo-pattern-grid[data-mo-columns="4"] { --mo-pattern-columns: 4; }
+
+.mo-master-detail {
+  min-block-size: 520px;
+  display: grid;
+  grid-template-columns: minmax(260px, .7fr) minmax(0, 1.6fr);
+  overflow: hidden;
+  background: var(--mo-surface-base);
+  border: 1px solid var(--mo-border);
+  border-radius: var(--mo-shape-extra-large);
+}
+
+.mo-master-pane {
+  overflow: auto;
+  background: var(--mo-surface-container);
+  border-inline-end: 1px solid var(--mo-border);
+}
+
+.mo-detail-pane {
+  min-inline-size: 0;
+  overflow: auto;
+  padding: var(--mo-space-lg);
+}
+
+.mo-settings-layout {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: var(--mo-space-xl);
+}
+
+.mo-settings-nav {
+  position: sticky;
+  inset-block-start: var(--mo-space-lg);
+  align-self: start;
+}
