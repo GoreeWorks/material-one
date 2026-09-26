@@ -1,0 +1,16 @@
+{
+  "name": "@material-one/patterns",
+  "version": "0.1.0",
+  "description": "Adaptive page and product experience patterns for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-patterns.css"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0",
+    "@material-one/shell": "^0.1.0"
+  },
+  "keywords": ["design-system", "patterns", "ecommerce", "dashboard", "workspace", "material-one"],
+  "license": "MIT"
+}
