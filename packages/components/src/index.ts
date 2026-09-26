@@ -1,23 +1,103 @@
-import type { MaterialOneContext } from "@material-one/core";
+import {
+  materialOneComponentStates,
+  type MaterialOneComponentState,
+  type MaterialOneContext
+} from "@material-one/core";
 
-export type ComponentState =
-  | "default"
-  | "focused"
-  | "pressed"
-  | "selected"
-  | "disabled"
-  | "loading"
-  | "success"
-  | "warning"
-  | "error";
+export type ComponentState = MaterialOneComponentState;
+export type ComponentEmphasis =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "neutral"
+  | "danger";
+export type ComponentDensity =
+  MaterialOneContext["preferences"]["density"];
 
-export type ComponentEmphasis = "primary" | "secondary" | "tertiary" | "neutral" | "danger";
+export interface AdaptiveComponentContext {
+  density: ComponentDensity;
+  layout: MaterialOneContext["layout"];
+  input: MaterialOneContext["device"]["input"];
+  motion: MaterialOneContext["preferences"]["motion"];
+  highContrast: boolean;
+  textScale: number;
+  interactionTarget: number;
+}
+
+export interface AdaptiveComponentContract {
+  component: string;
+  state: ComponentState;
+  context: AdaptiveComponentContext;
+  semanticColorRole: string;
+  typographyRole: string;
+  motionIntent: string;
+}
+
+export interface ComponentContractOptions {
+  state?: ComponentState;
+  semanticColorRole?: string;
+  typographyRole?: string;
+  motionIntent?: string;
+}
+
+export const componentStates: readonly ComponentState[] =
+  materialOneComponentStates;
+
+export function resolveComponentDensity(
+  density: ComponentDensity,
+  layout: MaterialOneContext["layout"]
+): ComponentDensity {
+  if (layout === "compact" && density === "spacious") {
+    return "comfortable";
+  }
+
+  return density;
+}
+
+export function createAdaptiveComponentContext(
+  context: MaterialOneContext
+): AdaptiveComponentContext {
+  return {
+    density: resolveComponentDensity(
+      context.preferences.density,
+      context.layout
+    ),
+    layout: context.layout,
+    input: context.device.input,
+    motion: context.preferences.motion,
+    highContrast:
+      context.preferences.accessibility.contrast === "high",
+    textScale: context.preferences.accessibility.textScale,
+    interactionTarget: context.interactionTarget
+  };
+}
+
+export function createComponentContract(
+  component: string,
+  context: MaterialOneContext,
+  options: ComponentContractOptions = {}
+): AdaptiveComponentContract {
+  return {
+    component,
+    state: options.state ?? "default",
+    context: createAdaptiveComponentContext(context),
+    semanticColorRole:
+      options.semanticColorRole ?? "surface-container",
+    typographyRole: options.typographyRole ?? "body",
+    motionIntent: options.motionIntent ?? "feedback"
+  };
+}
 
 export interface ComponentRecipe {
   state: ComponentState;
   emphasis: ComponentEmphasis;
   minTargetSize: number;
-  radius: "extra-small" | "small" | "medium" | "large" | "pill";
+  radius:
+    | "extra-small"
+    | "small"
+    | "medium"
+    | "large"
+    | "pill";
   elevation: 0 | 1 | 2 | 3;
   motion: "none" | "instant" | "small" | "standard" | "large";
 }
@@ -36,10 +116,21 @@ export interface SurfaceOptions {
 }
 
 export interface FieldOptions {
-  state?: Extract<ComponentState, "default" | "focused" | "disabled" | "loading" | "success" | "warning" | "error">;
+  state?: Extract<
+    ComponentState,
+    | "default"
+    | "focused"
+    | "disabled"
+    | "loading"
+    | "success"
+    | "warning"
+    | "error"
+  >;
 }
 
-function motionFor(context: MaterialOneContext): ComponentRecipe["motion"] {
+function motionFor(
+  context: MaterialOneContext
+): ComponentRecipe["motion"] {
   if (context.preferences.motion === "none") return "none";
   if (context.preferences.motion === "reduced") return "small";
   return "standard";
@@ -53,7 +144,8 @@ export function createButtonRecipe(
     state: options.state ?? "default",
     emphasis: options.emphasis ?? "primary",
     minTargetSize: context.interactionTarget,
-    radius: options.iconOnly || options.floating ? "pill" : "medium",
+    radius:
+      options.iconOnly || options.floating ? "pill" : "medium",
     elevation: options.floating ? 2 : 0,
     motion: motionFor(context)
   };
@@ -81,7 +173,10 @@ export function createCardRecipe(
     state: "default",
     emphasis: "neutral",
     minTargetSize: interactive ? context.interactionTarget : 0,
-    radius: context.preferences.experienceMode === "minimal" ? "small" : "large",
+    radius:
+      context.preferences.experienceMode === "minimal"
+        ? "small"
+        : "large",
     elevation: interactive ? 1 : 0,
     motion: motionFor(context)
   };
@@ -103,7 +198,9 @@ export function createFieldRecipe(
 
 export function createNavigationRecipe(
   context: MaterialOneContext
-): ComponentRecipe & { presentation: "bar" | "rail" | "sidebar" } {
+): ComponentRecipe & {
+  presentation: "bar" | "rail" | "sidebar";
+} {
   const presentation =
     context.layout === "compact"
       ? "bar"
