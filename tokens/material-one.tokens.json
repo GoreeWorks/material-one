@@ -169,7 +169,8 @@
         "disabled": "#E2E2E8",
         "onDisabled": "#64646E",
         "link": "#304F9B",
-        "visitedLink": "#6D4BC2"
+        "visitedLink": "#6D4BC2",
+        "onSurfaceMuted": "#61616B"
       },
       "dark": {
         "primary": "#BEC2FF",
@@ -221,7 +222,8 @@
         "disabled": "#2A2A31",
         "onDisabled": "#9B9BA6",
         "link": "#AFCBFF",
-        "visitedLink": "#D3BCFF"
+        "visitedLink": "#D3BCFF",
+        "onSurfaceMuted": "#B8B8C3"
       }
     }
   },
