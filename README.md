@@ -121,6 +121,10 @@ Typography uses semantic roles rather than arbitrary font sizes. Display, large 
 
 Motion is organized by intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Full, reduced, and no-motion preferences share the same state model. Reduced motion removes decorative spatial movement while retaining very short essential feedback when needed to communicate a direct action.
 
+## Adaptive Components
+
+Material One uses one canonical component-state vocabulary across core runtime attributes and component recipes: default, hovered, focused, pressed, selected, disabled, loading, success, warning, and error. Adaptive component contracts inherit layout, density, input method, motion preference, contrast preference, text scale, and interaction-target sizing from the current Material One context. Legacy runtime inputs from the first prototype are normalized before `data-mo-state` is emitted so downstream products can migrate without maintaining a second interaction language.
+
 ## Skeleton Loading
 
 Skeleton loading is the preferred loading treatment for content whose final layout is predictable. Skeletons preserve layout to reduce visual shift, use a short delay to avoid flashing during fast loads, remain visible long enough to prevent flicker, and become static when reduced motion is requested. Material One loading orchestration chooses between no placeholder, skeletons, progress feedback, and stale-content refresh depending on latency, task type, and whether the final geometry is known.
