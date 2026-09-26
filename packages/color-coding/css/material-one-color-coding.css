@@ -27,6 +27,25 @@
   --mo-code-violet-on-container: #2e176f;
 }
 
+[data-mo-theme="dark"] {
+  --mo-code-blue-container: #1c355b;
+  --mo-code-blue-on-container: #d8e7ff;
+  --mo-code-cyan-container: #123b45;
+  --mo-code-cyan-on-container: #c6f2ff;
+  --mo-code-teal-container: #123e37;
+  --mo-code-teal-on-container: #a6f2df;
+  --mo-code-green-container: #173d2a;
+  --mo-code-green-on-container: #c7f1d9;
+  --mo-code-amber-container: #4b3515;
+  --mo-code-amber-on-container: #ffe1a8;
+  --mo-code-orange-container: #4f2c18;
+  --mo-code-orange-on-container: #ffdcc3;
+  --mo-code-rose-container: #4f2637;
+  --mo-code-rose-on-container: #ffd9e5;
+  --mo-code-violet-container: #35275b;
+  --mo-code-violet-on-container: #eadcff;
+}
+
 .mo-color-code {
   --mo-code: var(--mo-code-blue);
   --mo-code-container: var(--mo-code-blue-container);
