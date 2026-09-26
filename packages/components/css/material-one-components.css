@@ -104,6 +104,25 @@
   border-radius: var(--mo-shape-pill);
 }
 
+.mo-button[data-mo-loading="true"] {
+  cursor: progress;
+}
+
+.mo-button[data-mo-loading="true"]::before {
+  content: "";
+  inline-size: 1em;
+  block-size: 1em;
+  flex: 0 0 auto;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: mo-button-progress 720ms linear infinite;
+}
+
+@keyframes mo-button-progress {
+  to { transform: rotate(360deg); }
+}
+
 .mo-field {
   display: grid;
   gap: var(--mo-space-xs);
@@ -185,5 +204,11 @@
   .mo-button,
   .mo-input {
     transition: none;
+  }
+
+  .mo-button[data-mo-loading="true"]::before {
+    border-inline-end-color: currentColor;
+    animation: none;
+    opacity: 0.55;
   }
 }

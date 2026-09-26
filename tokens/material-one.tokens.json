@@ -38,32 +38,32 @@
     },
     "coding": {
       "blue": {
-        "base": "#365E9D",
+        "base": "#4A5CC7",
         "container": "#D8E7FF",
         "onContainer": "#0B284F"
       },
       "cyan": {
-        "base": "#00677E",
+        "base": "#007A94",
         "container": "#C6F2FF",
         "onContainer": "#003642"
       },
       "teal": {
-        "base": "#006B5E",
+        "base": "#00705F",
         "container": "#A6F2DF",
         "onContainer": "#00372F"
       },
       "green": {
-        "base": "#176B43",
+        "base": "#477500",
         "container": "#C7F1D9",
         "onContainer": "#0C3825"
       },
       "amber": {
-        "base": "#8A5200",
+        "base": "#7F6500",
         "container": "#FFE1A8",
         "onContainer": "#4A2B00"
       },
       "orange": {
-        "base": "#9A4600",
+        "base": "#A83A00",
         "container": "#FFDCC3",
         "onContainer": "#4C2100"
       },

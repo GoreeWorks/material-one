@@ -31,22 +31,22 @@
   --mo-status-information: #365e9d;
 
   /* Color coding */
-  --mo-code-blue: #365e9d;
+  --mo-code-blue: #4a5cc7;
   --mo-code-blue-container: #d8e7ff;
   --mo-code-blue-on-container: #0b284f;
-  --mo-code-cyan: #00677e;
+  --mo-code-cyan: #007a94;
   --mo-code-cyan-container: #c6f2ff;
   --mo-code-cyan-on-container: #003642;
-  --mo-code-teal: #006b5e;
+  --mo-code-teal: #00705f;
   --mo-code-teal-container: #a6f2df;
   --mo-code-teal-on-container: #00372f;
-  --mo-code-green: #176b43;
+  --mo-code-green: #477500;
   --mo-code-green-container: #c7f1d9;
   --mo-code-green-on-container: #0c3825;
-  --mo-code-amber: #8a5200;
+  --mo-code-amber: #7f6500;
   --mo-code-amber-container: #ffe1a8;
   --mo-code-amber-on-container: #4a2b00;
-  --mo-code-orange: #9a4600;
+  --mo-code-orange: #a83a00;
   --mo-code-orange-container: #ffdcc3;
   --mo-code-orange-on-container: #4c2100;
   --mo-code-rose: #9e315f;

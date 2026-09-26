@@ -55,6 +55,10 @@ button, input, select { font: inherit; }
   color: var(--mo-text-muted);
 }
 
+.reference-color-value-42 { --mo-color-value: 42%; }
+.reference-color-value-31 { --mo-color-value: 31%; }
+.reference-color-value-17 { --mo-color-value: 17%; }
+
 kbd {
   padding: 2px 6px;
   color: var(--mo-text-muted);

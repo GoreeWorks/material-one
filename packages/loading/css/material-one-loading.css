@@ -107,6 +107,90 @@
   min-block-size: 48px;
 }
 
+.mo-loading-region {
+  position: relative;
+}
+
+.mo-loading-region[aria-busy="true"] {
+  cursor: progress;
+}
+
+.mo-loading-region[data-mo-loading-presentation="stale"] {
+  opacity: 0.78;
+}
+
+.mo-loading-region[data-mo-loading-presentation="stale"]::after {
+  content: "Refreshing";
+  position: absolute;
+  inset-block-start: var(--mo-space-sm);
+  inset-inline-end: var(--mo-space-sm);
+  padding: 4px 8px;
+  color: var(--mo-text-muted);
+  background: var(--mo-surface-floating);
+  border: 1px solid var(--mo-border);
+  border-radius: var(--mo-shape-pill);
+  box-shadow: var(--mo-elevation-1);
+  font-size: var(--mo-type-supporting);
+}
+
+.mo-skeleton-list {
+  display: grid;
+  gap: var(--mo-space-sm);
+}
+
+.mo-skeleton-list-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--mo-space-md);
+  min-block-size: 56px;
+}
+
+.mo-skeleton-table {
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  background: var(--mo-border);
+  border: 1px solid var(--mo-border);
+  border-radius: var(--mo-shape-large);
+}
+
+.mo-skeleton-table-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.8fr;
+  gap: var(--mo-space-md);
+  align-items: center;
+  min-block-size: 48px;
+  padding-inline: var(--mo-space-md);
+  background: var(--mo-surface-base);
+}
+
+.mo-skeleton-detail {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.7fr) minmax(0, 1.3fr);
+  gap: var(--mo-space-lg);
+}
+
+.mo-skeleton-media {
+  aspect-ratio: 4 / 3;
+  min-block-size: 180px;
+}
+
+.mo-content-reveal {
+  animation: mo-content-reveal var(--mo-motion-standard) var(--mo-ease-standard) both;
+}
+
+@keyframes mo-content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes mo-skeleton-shimmer {
   to { transform: translateX(110%); }
 }
@@ -120,6 +204,24 @@
   .mo-skeleton::after {
     display: none;
     animation: none;
+  }
+
+  .mo-content-reveal {
+    animation: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .mo-skeleton-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .mo-skeleton-table-row {
+    grid-template-columns: 1fr 0.7fr;
+  }
+
+  .mo-skeleton-table-row > :nth-child(3) {
+    display: none;
   }
 }
 
