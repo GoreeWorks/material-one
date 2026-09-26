@@ -1,0 +1,42 @@
+@import "../../../tokens/css/material-one.css";
+
+.mo-component {
+  min-block-size: var(--mo-target-comfortable);
+  transition:
+    transform var(--mo-motion-feedback) var(--mo-ease-standard),
+    opacity var(--mo-motion-feedback) var(--mo-ease-standard),
+    border-color var(--mo-motion-feedback) var(--mo-ease-standard);
+}
+
+.mo-component[data-mo-state="loading"] {
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.mo-component[data-mo-state="disabled"] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.mo-component[data-mo-density="compact"] {
+  min-block-size: var(--mo-target-compact);
+}
+
+.mo-component[data-mo-density="comfortable"] {
+  min-block-size: var(--mo-target-comfortable);
+}
+
+.mo-component[data-mo-density="expanded"] {
+  min-block-size: var(--mo-target-expanded);
+}
+
+.mo-component:focus-visible {
+  outline: var(--mo-focus-ring) solid var(--mo-sem-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mo-component {
+    transition-duration: 0ms;
+  }
+}
