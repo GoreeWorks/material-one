@@ -41,6 +41,12 @@
       ],
       "@material-one/data-visualization": [
         "packages/data-visualization/src/index.ts"
+      ],
+      "@material-one/typography": [
+        "packages/typography/src/index.ts"
+      ],
+      "@material-one/motion": [
+        "packages/motion/src/index.ts"
       ]
     }
   },

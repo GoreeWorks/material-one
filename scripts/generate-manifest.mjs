@@ -41,6 +41,8 @@ const manifest = {
     "semantic-colors",
     "theme-intelligence",
     "data-visualization",
+    "adaptive-typography",
+    "semantic-motion",
     "components",
     "application-shell",
     "themes",

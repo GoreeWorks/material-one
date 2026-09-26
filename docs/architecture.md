@@ -66,6 +66,22 @@ Visualizations combine:
 
 This keeps chart meaning intact when palette perception, theme, device, or accessibility context changes.
 
+## Adaptive Typography
+
+Typography roles describe purpose rather than arbitrary size. Display, large title, section heading, title, body, label, and supporting text share a coherent hierarchy.
+
+Large hierarchy roles adapt to compact, expanded, and workspace layouts. Body and utility text preserve their base scale instead of shrinking simply because a device is smaller.
+
+User text scaling is independent of layout adaptation, and readable line-length contracts constrain overly wide text.
+
+## Semantic Motion
+
+Motion is organized by intent rather than by component-specific animation constants.
+
+Material One defines instant, feedback, enter, exit, navigation, transform, emphasis, and loading motion intents. Each intent has a duration, easing, spatial distance, scale behavior, opacity behavior, and accessibility policy.
+
+Reduced motion removes non-essential spatial movement and scaling while preserving short essential interaction feedback. No Motion disables animation and transition behavior entirely while preserving state through other cues.
+
 ## Loading Model
 
 Predictable content uses skeleton loading that preserves the final layout. Material One applies a short delay before skeletons appear, keeps visible skeletons on screen long enough to avoid flicker, and disables shimmer for reduced-motion contexts.

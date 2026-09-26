@@ -42,6 +42,8 @@ jobs:
         run: npm run validate:semantic-colors
       - name: Validate theme and visualization contracts
         run: npm run validate:theme-visualization
+      - name: Validate typography and motion contracts
+        run: npm run validate:typography-motion
       - name: Validate reference markup
         run: npx -y html-validate@9.7.1 examples/reference-workspace/index.html
       - name: Confirm reference assets
@@ -58,3 +60,5 @@ jobs:
           test -s packages/loading/css/material-one-loading.css
           test -s packages/semantic-colors/css/material-one-semantic-colors.css
           test -s packages/data-visualization/css/material-one-data-visualization.css
+          test -s packages/typography/css/material-one-typography.css
+          test -s packages/motion/css/material-one-motion.css

@@ -66,6 +66,8 @@ packages/
 ├── color-coding/       Categorical color coding and data color intelligence
 ├── theme-intelligence/ Adaptive semantic theme generation and contrast validation
 ├── data-visualization/ Accessible chart encodings, patterns, legends, and data states
+├── typography/         Adaptive semantic typography and readable scaling
+├── motion/             Semantic motion intents and reduced-motion adaptation
 ├── loading/            Skeleton loading and progressive loading behavior
 ├── patterns/           Adaptive page and product patterns
 ├── shell/              Navigation, workspace shell, commands, and overlays
@@ -111,17 +113,25 @@ Theme Intelligence adapts Material One semantic schemes from product or user acc
 
 Data visualization uses categorical Material One color coding for peer series and semantic colors for meaningful states. Charts pair color with labels, values, patterns, focus treatment, and accessible summaries so information remains understandable when color perception, forced-colors mode, or display conditions change.
 
+## Adaptive Typography
+
+Typography uses semantic roles rather than arbitrary font sizes. Display, large title, section heading, title, body, label, and supporting text adapt to layout and user text scale while preserving body readability, line-height, and maximum readable line lengths.
+
+## Semantic Motion
+
+Motion is organized by intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Full, reduced, and no-motion preferences share the same state model. Reduced motion removes decorative spatial movement while retaining very short essential feedback when needed to communicate a direct action.
+
 ## Skeleton Loading
 
 Skeleton loading is the preferred loading treatment for content whose final layout is predictable. Skeletons preserve layout to reduce visual shift, use a short delay to avoid flashing during fast loads, remain visible long enough to prevent flicker, and become static when reduced motion is requested. Material One loading orchestration chooses between no placeholder, skeletons, progress feedback, and stale-content refresh depending on latency, task type, and whether the final geometry is known.
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, components, controls, skeleton loading, patterns, themes, icon contracts, accessibility foundations, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, accessibility foundations, and the adaptive application shell are under development.
 
 ## License
 
