@@ -84,6 +84,26 @@ export function mixHex(
     .join("")}`;
 }
 
+export function ensureContrast(
+  color: string,
+  background: string,
+  required = 4.5
+): string {
+  const normalized = normalizedHex(color);
+  if (contrastRatio(background, normalized) >= required) return normalized;
+
+  const blackRatio = contrastRatio(background, "#000000");
+  const whiteRatio = contrastRatio(background, "#FFFFFF");
+  const target = blackRatio >= whiteRatio ? "#000000" : "#FFFFFF";
+
+  for (let step = 1; step <= 20; step += 1) {
+    const candidate = mixHex(normalized, target, step / 20);
+    if (contrastRatio(background, candidate) >= required) return candidate;
+  }
+
+  return target;
+}
+
 export function readableForeground(
   background: string,
   candidates: readonly string[] = ["#000000", "#FFFFFF"]
@@ -148,10 +168,10 @@ function applyAccentFamily(
     scheme.onPrimary = onAccent;
     scheme.primaryContainer = container;
     scheme.onPrimaryContainer = onContainer;
-    scheme.focus = accent;
+    scheme.focus = ensureContrast(accent, scheme.background, 3);
     scheme.selection = accent;
     scheme.selectionContainer = container;
-    scheme.link = accent;
+    scheme.link = ensureContrast(accent, scheme.surface, 4.5);
     return;
   }
 
@@ -167,7 +187,7 @@ function applyAccentFamily(
   scheme.onTertiary = onAccent;
   scheme.tertiaryContainer = container;
   scheme.onTertiaryContainer = onContainer;
-  scheme.visitedLink = accent;
+  scheme.visitedLink = ensureContrast(accent, scheme.surface, 4.5);
 }
 
 export function createAdaptiveSemanticScheme(
