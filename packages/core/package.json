@@ -1,0 +1,11 @@
+{
+  "name": "@material-one/core",
+  "version": "0.1.0",
+  "description": "Framework-independent adaptive engine for Material One Design Language.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "keywords": ["design-system", "adaptive-ui", "material-one", "tokens"],
+  "license": "MIT"
+}
