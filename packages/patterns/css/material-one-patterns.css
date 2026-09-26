@@ -1,5 +1,6 @@
-.mo-pattern-grid {
-  display: grid;
-  gap: var(--mo-space-lg);
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
+@import "../../../tokens/css/material-one.css";
+@import "../../components/css/material-one-components.css";
+@import "./page.css";
+@import "./layouts.css";
+@import "./catalog.css";
+@import "./responsive.css";
