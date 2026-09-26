@@ -5,6 +5,10 @@ import {
   type MaterialOneContext
 } from "@material-one/core";
 import {
+  componentStateAccessibilityAttributes,
+  type AccessibilityAttributes
+} from "@material-one/accessibility";
+import {
   semanticCssVariable,
   type SemanticColorRole
 } from "@material-one/semantic-colors";
@@ -51,6 +55,11 @@ export interface ComponentContractOptions {
   semanticColorRole?: SemanticColorRole;
   typographyRole?: TypographyRole;
   motionIntent?: MotionIntent;
+}
+
+export interface ComponentPresentationOptions
+  extends ComponentContractOptions {
+  accessibility?: AccessibilityAttributes;
 }
 
 export interface ComponentPresentation {
@@ -110,7 +119,7 @@ export function createComponentContract(
 export function createComponentPresentation(
   component: string,
   context: MaterialOneContext,
-  options: ComponentContractOptions = {}
+  options: ComponentPresentationOptions = {}
 ): ComponentPresentation {
   const contract = createComponentContract(
     component,
@@ -127,6 +136,10 @@ export function createComponentPresentation(
     contract,
     attributes: {
       ...runtime.attributes,
+      ...componentStateAccessibilityAttributes(
+        contract.state
+      ),
+      ...options.accessibility,
       "data-mo-density": contract.context.density,
       "data-mo-layout": contract.context.layout,
       "data-mo-input": contract.context.input,
