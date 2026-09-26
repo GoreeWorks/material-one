@@ -1,0 +1,21 @@
+{
+  "name": "material-one",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Material One adaptive interface design language by GoreeWorks.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate-repository.mjs",
+    "typecheck": "npx -y -p typescript@5.9.2 tsc --noEmit",
+    "test": "npx -y tsx@4.20.5 --test tests/core.test.ts tests/shell.test.ts tests/controls.test.ts tests/themes-icons.test.ts",
+    "manifest": "node scripts/generate-manifest.mjs",
+    "ci": "npm run validate && npm run typecheck && npm test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

@@ -41,6 +41,7 @@ Material One
 ├── Shape Framework
 ├── Layout Engine
 ├── Component System
+├── Controls and Interactions
 ├── Application Shell
 ├── Iconography System
 ├── Motion Framework
@@ -55,6 +56,7 @@ Material One
 packages/
 ├── core/        Adaptive context and preference engine
 ├── components/  Component recipes and CSS primitives
+├── controls/    Selection, form, data, disclosure, and feedback controls
 ├── shell/       Navigation, workspace shell, commands, and overlays
 ├── themes/      Semantic theme contracts and CSS-variable generation
 └── icons/       Icon geometry and state contracts
@@ -81,9 +83,13 @@ Material One is intended to provide the shared interface foundation for GoreeWor
 
 Products may have their own identity while extending the same Material One behavioral and semantic foundation.
 
+## Engineering Quality
+
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+
 ## Status
 
-Active foundational implementation. Core adaptation, semantic tokens, components, themes, icon contracts, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, semantic tokens, components, controls, themes, icon contracts, and the adaptive application shell are under development.
 
 ## License
 

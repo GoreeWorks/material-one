@@ -1,0 +1,86 @@
+name: Material One CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: material-one-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-validation:
+    name: Repository and design-token validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm run validate
+
+  cross-platform:
+    name: ${{ matrix.os }} / Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        node:
+          - 22
+          - 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: TypeScript contract validation
+        run: npm run typecheck
+      - name: Runtime behavior tests
+        run: npm test
+
+  package-manifest:
+    name: Build implementation manifest
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - repository-validation
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm run manifest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: material-one-manifest
+          path: build/material-one-manifest.json
+          if-no-files-found: error
+          retention-days: 14
+
+  ci-gate:
+    name: Material One CI gate
+    if: always()
+    runs-on: ubuntu-latest
+    needs:
+      - repository-validation
+      - cross-platform
+      - package-manifest
+    steps:
+      - name: Verify required jobs
+        shell: bash
+        run: |
+          test "${{ needs.repository-validation.result }}" = "success"
+          test "${{ needs.cross-platform.result }}" = "success"
+          test "${{ needs.package-manifest.result }}" = "success"
