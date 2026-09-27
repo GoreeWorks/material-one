@@ -92,6 +92,22 @@ Personalization is an orchestration layer over existing Material One contracts. 
 
 Products may limit which settings controls they expose, but capability policy never weakens the effective accessibility policy. Theme, color, typography, shape, motion, and other subsystem-specific choices continue to use their authoritative typed contracts rather than parallel personalization strings.
 
+## Device Adaptation System
+
+Device adaptation describes the physical and capability environment after core has resolved the authoritative Material One context.
+
+The device adaptation layer preserves the distinction between:
+
+- physical viewport class and interface layout
+- primary input and broader hardware capability
+- known capability and unknown capability
+- one continuous viewport and segmented or foldable viewports
+- ordinary browser presentation and installed or fullscreen presentation
+
+It normalizes safe-area insets, pixel ratio, pointer and hover capability, keyboard and touch capability, display mode, and viewport segments into framework-portable presentation metadata.
+
+Core remains authoritative for layout resolution and interaction targets. Accessibility remains authoritative for effective safeguards. Personalization remains authoritative for requested-versus-effective preference orchestration. Device adaptation adds environmental facts without redefining those systems.
+
 ## Adaptive Experience
 
 Material One adapts based on:

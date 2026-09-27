@@ -1,0 +1,20 @@
+{
+  "name": "@material-one/device-adaptation",
+  "version": "0.1.0",
+  "description": "Typed device capability, viewport, and framework-portable adaptation contracts for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0"
+  },
+  "keywords": [
+    "device-adaptation",
+    "responsive",
+    "adaptive-ui",
+    "design-system",
+    "material-one"
+  ],
+  "license": "MIT"
+}

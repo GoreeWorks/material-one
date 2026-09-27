@@ -53,6 +53,9 @@
       ],
       "@material-one/personalization": [
         "packages/personalization/src/index.ts"
+      ],
+      "@material-one/device-adaptation": [
+        "packages/device-adaptation/src/index.ts"
       ]
     }
   },
