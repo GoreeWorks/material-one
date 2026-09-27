@@ -55,6 +55,7 @@ const manifest = {
     "controls",
     "color-coding",
     "skeleton-loading",
+    "loading-orchestration",
     "accessibility",
     "personalization",
     "device-adaptation"
