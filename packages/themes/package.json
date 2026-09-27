@@ -1,7 +1,7 @@
 {
   "name": "@material-one/themes",
-  "version": "0.2.0",
-  "description": "Theme contracts, semantic color overrides, and CSS variable generation for Material One.",
+  "version": "0.3.0",
+  "description": "Semantic-first theme runtime, adaptive theme generation bridge, compatibility aliases, registries, and CSS serialization for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -11,11 +11,14 @@
   "keywords": [
     "design-system",
     "theme",
+    "semantic-color",
     "personalization",
+    "accessibility",
     "material-one"
   ],
   "license": "MIT",
   "dependencies": {
-    "@material-one/semantic-colors": "^0.1.0"
+    "@material-one/semantic-colors": "^0.1.0",
+    "@material-one/theme-intelligence": "^0.1.0"
   }
 }

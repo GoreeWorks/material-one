@@ -62,6 +62,14 @@ Primary, secondary, and tertiary families may adapt to personalization. Success,
 
 Generated schemes are contrast-validated. High-contrast contexts may strengthen content contrast, outlines, and interaction overlays while preserving the same semantic role model.
 
+## Theme Runtime Bridge
+
+The Themes package is the runtime projection layer for semantic themes rather than an independent color authority.
+
+Semantic Colors owns the canonical role vocabulary and base light/dark schemes. Theme Intelligence owns adaptive generation and contrast validation. The Themes package resolves legacy theme input into those semantic roles, applies explicit semantic overrides last, and derives both modern `--mo-sem-*` variables and legacy compatibility aliases from the same resolved scheme.
+
+New themes should use complete semantic schemes or `createAdaptiveTheme()`. Legacy `MaterialOneThemeColors` input remains supported only as a migration boundary. `createThemePresentation()` validates the resolved semantic scheme before emitting runtime metadata, while named theme registries provide deterministic lookup for products and framework adapters.
+
 ## Data Visualization
 
 Material One data visualization shares the same color architecture as the rest of the interface.
