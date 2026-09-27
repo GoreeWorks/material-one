@@ -1,0 +1,49 @@
+.mo-icon,
+[data-mo-icon] {
+  inline-size: var(--mo-icon-size, 24px);
+  block-size: var(--mo-icon-size, 24px);
+  flex: 0 0 auto;
+  color: currentColor;
+  overflow: visible;
+  transform-origin: center;
+}
+
+.mo-icon path,
+.mo-icon circle,
+.mo-icon rect,
+.mo-icon line,
+.mo-icon polyline,
+.mo-icon polygon,
+[data-mo-icon] path,
+[data-mo-icon] circle,
+[data-mo-icon] rect,
+[data-mo-icon] line,
+[data-mo-icon] polyline,
+[data-mo-icon] polygon {
+  vector-effect: non-scaling-stroke;
+}
+
+[data-mo-icon-style="outline"] {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--mo-icon-stroke-width, 1.75);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+[data-mo-icon-style="filled"] {
+  fill: currentColor;
+  stroke: none;
+}
+
+[data-mo-icon-mirrored="true"] {
+  transform: scaleX(-1);
+}
+
+@media (forced-colors: active) {
+  .mo-icon,
+  [data-mo-icon] {
+    color: CanvasText;
+    forced-color-adjust: auto;
+  }
+}

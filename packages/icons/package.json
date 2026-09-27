@@ -1,13 +1,17 @@
 {
   "name": "@material-one/icons",
-  "version": "0.1.0",
-  "description": "Icon geometry, metadata, and state contracts for Material One.",
+  "version": "0.2.0",
+  "description": "Material One icon geometry, semantic purpose, accessibility, registry, directional, and presentation contracts.",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-icons.css"
   },
   "keywords": [
     "icons",
+    "iconography",
+    "accessibility",
+    "rtl",
     "design-system",
     "material-one"
   ],

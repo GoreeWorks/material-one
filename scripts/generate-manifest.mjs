@@ -51,7 +51,7 @@ const manifest = {
     "product-patterns",
     "application-shell",
     "themes",
-    "icons",
+    "iconography-system",
     "controls",
     "color-coding",
     "skeleton-loading",

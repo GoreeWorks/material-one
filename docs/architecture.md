@@ -124,6 +124,16 @@ The pattern layer owns page-width intent, page-header presentation, adaptive pro
 
 Typed pattern presentation metadata allows products to honor explicit Material One layout overrides even when raw viewport media queries would imply a different arrangement. Existing CSS media queries remain progressive fallbacks for hosts that do not apply runtime metadata.
 
+## Iconography System
+
+Iconography defines the shared visual and semantic contract for Material One interface icons.
+
+Icons use a canonical 24 × 24 geometry grid, semantic size classes, outline or filled style, and light, regular, or bold weight. Definitions may expose named state geometry and opt into right-to-left mirroring when horizontal direction is semantically meaningful.
+
+Icon purpose controls accessibility behavior. Decorative icons are hidden from assistive technology, while informative, action, navigation, and status icons require an accessible label. When an icon appears inside an already-labelled control, the control should normally own the accessible name and the icon should use decorative purpose.
+
+Typed registries enforce unique names, and `createIconPresentation()` emits portable state, size, weight, purpose, direction, mirroring, accessibility, and CSS-variable metadata. Semantic color remains owned by the surrounding Material One component through `currentColor`.
+
 ## Semantic Motion
 
 Motion is organized by intent rather than by component-specific animation constants.
