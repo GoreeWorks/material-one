@@ -35,7 +35,7 @@ test("token manifest inventories every required token group", () => {
   const manifest = createTokenManifest(document);
 
   assert.equal(manifest.name, "Material One Tokens");
-  assert.equal(manifest.version, "0.6.0");
+  assert.equal(manifest.version, "0.7.0");
   assert.ok(manifest.groups.typography > 20);
   assert.ok(manifest.groups.motion > 20);
   assert.ok(manifest.groups.spacing >= 6);
