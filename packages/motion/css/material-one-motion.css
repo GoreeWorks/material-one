@@ -190,3 +190,39 @@
     transition-property: transform, opacity;
   }
 }
+
+
+/* Runtime effective-motion enforcement. */
+[data-mo-motion="reduced"] {
+  --mo-motion-distance-small: 0px;
+  --mo-motion-distance-medium: 0px;
+  --mo-motion-distance-large: 0px;
+}
+
+[data-mo-motion="reduced"] .mo-motion-enter,
+[data-mo-motion="reduced"] .mo-motion-emphasis,
+.mo-motion-enter[data-mo-motion="reduced"],
+.mo-motion-emphasis[data-mo-motion="reduced"] {
+  animation: none;
+  transform: none;
+}
+
+[data-mo-motion="reduced"] .mo-motion-feedback:active,
+.mo-motion-feedback[data-mo-motion="reduced"]:active {
+  transform: none;
+}
+
+[data-mo-motion="none"] .mo-motion-enter,
+[data-mo-motion="none"] .mo-motion-emphasis,
+[data-mo-motion="none"] .mo-motion-feedback,
+.mo-motion-enter[data-mo-motion="none"],
+.mo-motion-emphasis[data-mo-motion="none"],
+.mo-motion-feedback[data-mo-motion="none"] {
+  animation: none;
+  transition: none;
+  transform: none;
+}
+
+.mo-motion[data-mo-motion-active="false"] {
+  animation: none;
+}

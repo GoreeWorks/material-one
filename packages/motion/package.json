@@ -1,17 +1,22 @@
 {
   "name": "@material-one/motion",
-  "version": "0.1.0",
-  "description": "Semantic motion roles, transition recipes, and reduced-motion adaptation for Material One.",
+  "version": "0.2.0",
+  "description": "Semantic motion intents, accessibility-aware adaptive recipes, and portable motion presentation for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./styles": "./css/material-one-motion.css"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0",
+    "@material-one/accessibility": "^0.1.0"
   },
   "keywords": [
     "design-system",
     "motion",
     "animation",
     "accessibility",
+    "adaptive-ui",
     "material-one"
   ],
   "license": "MIT"

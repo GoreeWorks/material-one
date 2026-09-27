@@ -47,6 +47,7 @@ const manifest = {
     "shape-framework",
     "layout-engine",
     "semantic-motion",
+    "adaptive-motion",
     "components",
     "product-patterns",
     "application-shell",

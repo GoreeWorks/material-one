@@ -1,3 +1,15 @@
+import type {
+  MaterialOneContext,
+  MotionPreference
+} from "@material-one/core";
+import type {
+  MaterialOneAccessibilityPolicy
+} from "@material-one/accessibility";
+
+export type {
+  MotionPreference
+} from "@material-one/core";
+
 export const motionIntents = [
   "instant",
   "feedback",
@@ -9,8 +21,8 @@ export const motionIntents = [
   "loading"
 ] as const;
 
-export type MotionIntent = (typeof motionIntents)[number];
-export type MotionPreference = "full" | "reduced" | "none";
+export type MotionIntent =
+  (typeof motionIntents)[number];
 
 export interface MotionRecipe {
   intent: MotionIntent;
@@ -22,10 +34,27 @@ export interface MotionRecipe {
   essential: boolean;
 }
 
-const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
+export interface MaterialOneMotionPolicy {
+  requested: MotionPreference;
+  effective: MotionPreference;
+  constrainedByAccessibility: boolean;
+}
+
+export interface MotionPresentation {
+  policy: MaterialOneMotionPolicy;
+  recipe: MotionRecipe;
+  attributes: Record<string, string>;
+  style: Record<string, string>;
+}
+
+const fullMotionRecipes: Record<
+  MotionIntent,
+  Omit<MotionRecipe, "intent">
+> = {
   instant: {
     durationMs: 90,
-    easing: "cubic-bezier(0.2, 0, 0, 1)",
+    easing:
+      "cubic-bezier(0.2, 0, 0, 1)",
     translatePx: 0,
     scaleFrom: 1,
     opacityFrom: 1,
@@ -33,7 +62,8 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   },
   feedback: {
     durationMs: 160,
-    easing: "cubic-bezier(0.2, 0, 0, 1)",
+    easing:
+      "cubic-bezier(0.2, 0, 0, 1)",
     translatePx: 0,
     scaleFrom: 0.98,
     opacityFrom: 1,
@@ -41,7 +71,8 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   },
   enter: {
     durationMs: 220,
-    easing: "cubic-bezier(0.2, 0, 0, 1)",
+    easing:
+      "cubic-bezier(0.2, 0, 0, 1)",
     translatePx: 8,
     scaleFrom: 0.99,
     opacityFrom: 0,
@@ -49,7 +80,8 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   },
   exit: {
     durationMs: 160,
-    easing: "cubic-bezier(0.4, 0, 1, 1)",
+    easing:
+      "cubic-bezier(0.4, 0, 1, 1)",
     translatePx: 4,
     scaleFrom: 1,
     opacityFrom: 1,
@@ -57,7 +89,8 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   },
   navigation: {
     durationMs: 280,
-    easing: "cubic-bezier(0.2, 0, 0, 1)",
+    easing:
+      "cubic-bezier(0.2, 0, 0, 1)",
     translatePx: 12,
     scaleFrom: 0.995,
     opacityFrom: 0,
@@ -65,7 +98,8 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   },
   transform: {
     durationMs: 460,
-    easing: "cubic-bezier(0.2, 0, 0, 1)",
+    easing:
+      "cubic-bezier(0.2, 0, 0, 1)",
     translatePx: 16,
     scaleFrom: 0.96,
     opacityFrom: 1,
@@ -73,7 +107,8 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   },
   emphasis: {
     durationMs: 360,
-    easing: "cubic-bezier(0.2, 0, 0, 1.2)",
+    easing:
+      "cubic-bezier(0.2, 0, 0, 1.2)",
     translatePx: 0,
     scaleFrom: 0.94,
     opacityFrom: 1,
@@ -81,7 +116,8 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   },
   loading: {
     durationMs: 1400,
-    easing: "cubic-bezier(0.2, 0, 0, 1)",
+    easing:
+      "cubic-bezier(0.2, 0, 0, 1)",
     translatePx: 0,
     scaleFrom: 1,
     opacityFrom: 1,
@@ -89,14 +125,21 @@ const fullMotionRecipes: Record<MotionIntent, Omit<MotionRecipe, "intent">> = {
   }
 };
 
-function reducedRecipe(intent: MotionIntent): MotionRecipe {
-  const full = fullMotionRecipes[intent];
+function reducedRecipe(
+  intent: MotionIntent
+): MotionRecipe {
+  const full =
+    fullMotionRecipes[intent];
 
   if (full.essential) {
     return {
       intent,
       ...full,
-      durationMs: Math.min(full.durationMs, 100),
+      durationMs:
+        Math.min(
+          full.durationMs,
+          100
+        ),
       translatePx: 0,
       scaleFrom: 1,
       opacityFrom: 1
@@ -115,7 +158,8 @@ function reducedRecipe(intent: MotionIntent): MotionRecipe {
 
 export function resolveMotionRecipe(
   intent: MotionIntent,
-  preference: MotionPreference = "full"
+  preference:
+    MotionPreference = "full"
 ): MotionRecipe {
   if (preference === "none") {
     return {
@@ -128,7 +172,9 @@ export function resolveMotionRecipe(
     };
   }
 
-  if (preference === "reduced") return reducedRecipe(intent);
+  if (preference === "reduced") {
+    return reducedRecipe(intent);
+  }
 
   return {
     intent,
@@ -136,31 +182,173 @@ export function resolveMotionRecipe(
   };
 }
 
+export function createMotionPolicy(
+  context: MaterialOneContext,
+  accessibility:
+    MaterialOneAccessibilityPolicy
+): MaterialOneMotionPolicy {
+  return {
+    requested:
+      context.preferences.motion,
+    effective:
+      accessibility.motion,
+    constrainedByAccessibility:
+      context.preferences.motion !==
+      accessibility.motion
+  };
+}
+
+export function resolveAdaptiveMotionRecipe(
+  context: MaterialOneContext,
+  accessibility:
+    MaterialOneAccessibilityPolicy,
+  intent: MotionIntent
+): MotionRecipe {
+  return resolveMotionRecipe(
+    intent,
+    createMotionPolicy(
+      context,
+      accessibility
+    ).effective
+  );
+}
+
 export function motionDuration(
   intent: MotionIntent,
-  preference: MotionPreference = "full"
+  preference:
+    MotionPreference = "full"
 ): number {
-  return resolveMotionRecipe(intent, preference).durationMs;
+  return resolveMotionRecipe(
+    intent,
+    preference
+  ).durationMs;
 }
 
 export function shouldAnimateMotion(
   intent: MotionIntent,
-  preference: MotionPreference = "full"
+  preference:
+    MotionPreference = "full"
 ): boolean {
-  return motionDuration(intent, preference) > 0;
+  return (
+    motionDuration(
+      intent,
+      preference
+    ) > 0
+  );
 }
 
 export function motionCssVariables(
   intent: MotionIntent,
-  preference: MotionPreference = "full"
+  preference:
+    MotionPreference = "full"
 ): Record<string, string> {
-  const recipe = resolveMotionRecipe(intent, preference);
+  const recipe =
+    resolveMotionRecipe(
+      intent,
+      preference
+    );
 
   return {
-    "--mo-motion-duration": `${recipe.durationMs}ms`,
-    "--mo-motion-easing": recipe.easing,
-    "--mo-motion-translate": `${recipe.translatePx}px`,
-    "--mo-motion-scale-from": String(recipe.scaleFrom),
-    "--mo-motion-opacity-from": String(recipe.opacityFrom)
+    "--mo-motion-duration":
+      `${recipe.durationMs}ms`,
+    "--mo-motion-easing":
+      recipe.easing,
+    "--mo-motion-translate":
+      `${recipe.translatePx}px`,
+    "--mo-motion-scale-from":
+      String(recipe.scaleFrom),
+    "--mo-motion-opacity-from":
+      String(recipe.opacityFrom)
+  };
+}
+
+export function createMotionPresentation(
+  intent: MotionIntent,
+  preference:
+    MotionPreference = "full"
+): MotionPresentation {
+  const recipe =
+    resolveMotionRecipe(
+      intent,
+      preference
+    );
+  const policy:
+    MaterialOneMotionPolicy = {
+      requested: preference,
+      effective: preference,
+      constrainedByAccessibility:
+        false
+    };
+
+  return {
+    policy,
+    recipe,
+    attributes: {
+      "data-mo-motion-intent":
+        intent,
+      "data-mo-motion":
+        preference,
+      "data-mo-motion-essential":
+        String(
+          recipe.essential
+        ),
+      "data-mo-motion-active":
+        String(
+          recipe.durationMs > 0
+        )
+    },
+    style:
+      motionCssVariables(
+        intent,
+        preference
+      )
+  };
+}
+
+export function createAdaptiveMotionPresentation(
+  context: MaterialOneContext,
+  accessibility:
+    MaterialOneAccessibilityPolicy,
+  intent: MotionIntent
+): MotionPresentation {
+  const policy =
+    createMotionPolicy(
+      context,
+      accessibility
+    );
+  const recipe =
+    resolveMotionRecipe(
+      intent,
+      policy.effective
+    );
+
+  return {
+    policy,
+    recipe,
+    attributes: {
+      "data-mo-motion-intent":
+        intent,
+      "data-mo-motion":
+        policy.effective,
+      "data-mo-motion-requested":
+        policy.requested,
+      "data-mo-motion-constrained":
+        String(
+          policy.constrainedByAccessibility
+        ),
+      "data-mo-motion-essential":
+        String(
+          recipe.essential
+        ),
+      "data-mo-motion-active":
+        String(
+          recipe.durationMs > 0
+        )
+    },
+    style:
+      motionCssVariables(
+        intent,
+        policy.effective
+      )
   };
 }
