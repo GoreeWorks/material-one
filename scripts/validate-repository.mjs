@@ -42,6 +42,7 @@ const required = [
   "packages/shell/src/index.ts",
   "packages/themes/src/index.ts",
   "packages/icons/src/index.ts",
+  "packages/icons/css/material-one-icons.css",
   "packages/controls/src/index.ts",
   "packages/controls/css/material-one-controls.css",
   "packages/color-coding/src/index.ts",
@@ -130,6 +131,10 @@ const controlsCss = await readFile(
   path.join(root, "packages/controls/css/material-one-controls.css"),
   "utf8"
 );
+const iconsCss = await readFile(
+  path.join(root, "packages/icons/css/material-one-icons.css"),
+  "utf8"
+);
 const shellCss = await readFile(
   path.join(root, "packages/shell/css/material-one-shell.css"),
   "utf8"
@@ -154,6 +159,7 @@ for (const [name, css] of [
   ["tokens", tokenCss],
   ["components", componentsCss],
   ["controls", controlsCss],
+  ["icons", iconsCss],
   ["shell", shellCss],
   ["accessibility", accessibilityCss],
   ["shape", shapeCss],
