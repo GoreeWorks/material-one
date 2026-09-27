@@ -1,0 +1,21 @@
+{
+  "name": "@material-one/shape",
+  "version": "0.1.0",
+  "description": "Semantic shape roles, adaptive shape policy, presentation metadata, and CSS aliases for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-shape.css"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0"
+  },
+  "keywords": [
+    "shape",
+    "radius",
+    "adaptive-ui",
+    "design-system",
+    "material-one"
+  ],
+  "license": "MIT"
+}
