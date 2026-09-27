@@ -159,9 +159,9 @@ The Application Shell composes the authoritative Material One layout mode into t
 
 Material One iconography uses a canonical 24 × 24 soft-geometric grid with semantic compact, standard, large, and display sizes plus light, regular, and bold weight contracts. Icon definitions can expose named geometry states and opt into RTL mirroring. `createIconPresentation()` resolves purpose, size, weight, state, direction, accessibility metadata, and portable CSS variables; meaningful icons require an accessible label, while decorative icons are hidden from the accessibility tree. Registries reject duplicate icon names.
 
-## Semantic Motion
+## Adaptive Motion
 
-Motion is organized by intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Full, reduced, and no-motion preferences share the same state model. Reduced motion removes decorative spatial movement while retaining very short essential feedback when needed to communicate a direct action.
+Motion is organized by semantic intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Core owns the canonical requested motion preference, while Accessibility owns the effective preference after platform and user safeguards are combined. `createAdaptiveMotionPresentation()` resolves recipes from that effective policy and exposes portable intent, requested/effective state, accessibility-constraint metadata, and implementation CSS variables. Reduced motion removes decorative spatial movement while retaining very short essential feedback; no-motion disables every animation while preserving state through other cues.
 
 ## Adaptive Accessibility
 
@@ -185,7 +185,7 @@ Loading is resolved from intent, latency, known geometry, stale-content availabi
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, visualization behavior, adaptive typography, accessibility-aware semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
