@@ -81,6 +81,27 @@ for (const typedContract of [
   }
 }
 
+const docs = await readFile(
+  path.join(root, "docs/component-system.md"),
+  "utf8"
+);
+
+for (const marker of [
+  "Requested and effective context",
+  "Effective component contract",
+  "Effective presentation",
+  "Motion safeguards",
+  "Typography safeguards",
+  "Controls integration",
+  "Compatibility"
+]) {
+  if (!docs.includes(marker)) {
+    throw new Error(
+      `Component documentation missing ${marker}`
+    );
+  }
+}
+
 console.log("Validated Material One adaptive, typed presentation, and runtime contracts.");
 
 
