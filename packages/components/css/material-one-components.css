@@ -1,4 +1,4 @@
-@import "../../../tokens/css/material-one.css";
+@import "../../shape/css/material-one-shape.css";
 
 .mo-component {
   min-block-size: var(--mo-target-comfortable);
@@ -72,7 +72,7 @@
   color: var(--mo-text-primary);
   background: var(--mo-surface-base);
   border: 1px solid var(--mo-border);
-  border-radius: var(--mo-shape-medium);
+  border-radius: var(--mo-shape-surface);
 }
 
 .mo-surface[data-mo-elevation="1"] { box-shadow: var(--mo-elevation-1); }
@@ -86,7 +86,7 @@
   color: var(--mo-text-primary);
   background: var(--mo-surface-base);
   border: 1px solid var(--mo-border);
-  border-radius: var(--mo-shape-large);
+  border-radius: var(--mo-shape-card);
   box-shadow: var(--mo-elevation-0);
   transition:
     box-shadow var(--mo-motion-small) var(--mo-ease-standard),
@@ -246,7 +246,7 @@
   color: var(--mo-text-primary);
   background: var(--mo-surface-container);
   border: 1px solid var(--mo-border);
-  border-radius: var(--mo-shape-large);
+  border-radius: var(--mo-shape-navigation);
 }
 
 .mo-nav[data-mo-presentation="rail"],
