@@ -7,6 +7,7 @@ import {
   createTabsRecipe,
   createToggleRecipe,
   createControlPresentation,
+  createAdaptiveControlPresentation,
   disclosurePresentation
 } from "../packages/controls/src/index.ts";
 import type { MaterialOneContext } from "../packages/core/src/index.ts";
@@ -123,5 +124,74 @@ test("data table presentation exposes adaptive row height and structure", () => 
   assert.equal(
     presentation.style["--mo-control-row-height"],
     "48px"
+  );
+});
+
+
+test("adaptive control presentation inherits effective Accessibility safeguards", () => {
+  const ctx = createMaterialOneContext(
+    {
+      theme: "system",
+      density: "compact",
+      motion: "full",
+      experienceMode: "professional"
+    },
+    {
+      width: 900,
+      height: 900,
+      input: "mouse",
+      orientation: "landscape"
+    }
+  );
+  const accessibility =
+    createAccessibilityPolicy(
+      ctx,
+      {
+        prefersReducedMotion: true,
+        prefersHighContrast: true
+      }
+    );
+  const recipe =
+    createToggleRecipe(
+      ctx,
+      "switch",
+      false
+    );
+  const presentation =
+    createAdaptiveControlPresentation(
+      ctx,
+      accessibility,
+      recipe
+    );
+
+  assert.equal(
+    presentation.attributes[
+      "data-mo-motion"
+    ],
+    "reduced"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-control-motion"
+    ],
+    "small"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-control-accessibility"
+    ],
+    "enhanced"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-motion-duration"
+    ],
+    "100ms"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-control-target-size"
+    ],
+    "36px"
   );
 });
