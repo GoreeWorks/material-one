@@ -70,25 +70,19 @@ Semantic Colors owns the canonical role vocabulary and base light/dark schemes. 
 
 New themes should use complete semantic schemes or `createAdaptiveTheme()`. Legacy `MaterialOneThemeColors` input remains supported only as a migration boundary. `createThemePresentation()` validates the resolved semantic scheme before emitting runtime metadata, while named theme registries provide deterministic lookup for products and framework adapters.
 
-## Data Visualization
+## Adaptive Data Visualization System
 
-Material One data visualization shares the same color architecture as the rest of the interface.
+Material One data visualization shares the same color and accessibility architecture as the rest of the interface.
 
-Peer data series use categorical color coding. Meaningful system states use semantic colors. A chart must not use a categorical palette to communicate error, warning, success, or information.
+Peer data series use Color Coding. Meaningful success, warning, error, and information states use Semantic Colors. Series pair categorical color with a redundant pattern and accessible text label so color is never the only information channel.
 
-Visualizations combine:
+Core owns the effective layout. Accessibility owns effective motion, contrast, forced-colors state, and the requirement for redundant cues. Motion owns semantic transition recipes. Data Visualization consumes those authoritative values rather than maintaining parallel preferences.
 
-- visible labels
-- numerical values
-- stable categorical colors
-- redundant patterns
-- semantic status roles
-- keyboard focus
-- accessible textual summaries
-- forced-colors fallbacks
-- reduced-motion behavior
+`createVisualizationPolicy()` resolves chart transition behavior from Accessibility-effective motion. `createVisualizationPresentation()` emits portable layout, motion, contrast, forced-colors, redundancy, and transition metadata. Series and status presentation helpers expose their existing categorical or semantic encodings without collapsing the two color systems together.
 
-This keeps chart meaning intact when palette perception, theme, device, or accessibility context changes.
+High-contrast and forced-colors runtime attributes provide portable behavior when products already know the effective Accessibility policy, while `prefers-reduced-motion` and `forced-colors` media queries remain environmental fallbacks.
+
+Accessible textual summaries remain available outside visual presentation, preserving an equivalent information path for chart distributions.
 
 ## Adaptive Typography Framework
 
