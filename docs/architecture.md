@@ -152,9 +152,15 @@ Material One defines instant, feedback, enter, exit, navigation, transform, emph
 
 Reduced motion removes non-essential spatial movement and scaling while preserving short essential interaction feedback. No Motion disables animation and transition behavior entirely while preserving state through other cues.
 
-## Loading Model
+## Adaptive Loading Framework
 
-Predictable content uses skeleton loading that preserves the final layout. Material One applies a short delay before skeletons appear, keeps visible skeletons on screen long enough to avoid flicker, and disables shimmer for reduced-motion contexts.
+Loading is a presentation-orchestration layer over Core and Accessibility rather than a parallel preference system.
+
+Intent, expected latency, known geometry, stale-content availability, and busy state determine whether the interface uses no placeholder, skeletons, progress feedback, or visible stale content. Core supplies the canonical density preference. Accessibility supplies the effective motion policy after user and platform requirements are combined.
+
+`createLoadingProfile()` produces the resolved loading presentation, optional skeleton recipe, and optional density-aware blueprint. `createLoadingPresentation()` and `createSkeletonPresentation()` expose portable metadata and CSS variables while keeping decorative skeleton geometry out of the accessibility tree. Existing low-level loading helpers remain compatible.
+
+Runtime loading metadata can disable reveal/shimmer motion even when media-query signals are unavailable. CSS media queries remain progressive environmental fallbacks for reduced motion, compact viewports, and forced-colors mode.
 
 ## Personalization Engine
 
