@@ -188,7 +188,8 @@ function defaultShapeRole(component: string): ShapeRole {
 export function createComponentContract(
   component: string,
   context: MaterialOneContext,
-  options: ComponentContractOptions = {}
+  options: ComponentContractOptions = {},
+  accessibility?: MaterialOneAccessibilityPolicy
 ): AdaptiveComponentContract {
   const shapeRole =
     options.shapeRole ?? defaultShapeRole(component);
@@ -196,7 +197,10 @@ export function createComponentContract(
   return {
     component,
     state: options.state ?? "default",
-    context: createAdaptiveComponentContext(context),
+    context: createAdaptiveComponentContext(
+      context,
+      accessibility
+    ),
     semanticColorRole:
       options.semanticColorRole ?? "surfaceContainer",
     typographyRole: options.typographyRole ?? "body",
@@ -249,6 +253,122 @@ export function createComponentPresentation(
         contract.motionIntent,
         contract.context.motion
       )
+    }
+  };
+}
+
+export function createEffectiveComponentContract(
+  component: string,
+  context: MaterialOneContext,
+  accessibility: MaterialOneAccessibilityPolicy,
+  options: ComponentContractOptions = {}
+): AdaptiveComponentContract {
+  return createComponentContract(
+    component,
+    context,
+    options,
+    accessibility
+  );
+}
+
+export function createAdaptiveComponentPresentation(
+  component: string,
+  context: MaterialOneContext,
+  accessibility: MaterialOneAccessibilityPolicy,
+  options: ComponentContractOptions = {}
+): ComponentPresentation {
+  const contract =
+    createEffectiveComponentContract(
+      component,
+      context,
+      accessibility,
+      options
+    );
+  const runtime =
+    createComponentRuntime({
+      component,
+      state: contract.state,
+      semanticRole:
+        contract.semanticColorRole
+    });
+  const typography =
+    createTypographyPresentation(
+      context,
+      accessibility,
+      contract.typographyRole
+    );
+  const motion =
+    createAdaptiveMotionPresentation(
+      context,
+      accessibility,
+      contract.motionIntent
+    );
+
+  return {
+    contract,
+    attributes: {
+      ...runtime.attributes,
+      "data-mo-density":
+        contract.context.density,
+      "data-mo-layout":
+        contract.context.layout,
+      "data-mo-input":
+        contract.context.input,
+      "data-mo-motion":
+        contract.context.motion,
+      "data-mo-motion-requested":
+        contract.context.requestedMotion,
+      "data-mo-contrast":
+        contract.context.contrast,
+      "data-mo-text-scale":
+        String(
+          contract.context.textScale
+        ),
+      "data-mo-text-scale-requested":
+        String(
+          contract.context
+            .requestedTextScale
+        ),
+      "data-mo-transparency":
+        contract.context
+          .reducedTransparency
+          ? "reduced"
+          : "standard",
+      "data-mo-forced-colors":
+        contract.context.forcedColors
+          ? "active"
+          : "inactive",
+      "data-mo-accessibility-constrained":
+        String(
+          contract.context
+            .constrainedByAccessibility
+        ),
+      "data-mo-semantic-role":
+        contract.semanticColorRole,
+      "data-mo-typography-role":
+        contract.typographyRole,
+      "data-mo-motion-intent":
+        contract.motionIntent,
+      "data-mo-shape-role":
+        contract.shapeRole,
+      "data-mo-shape-token":
+        contract.shapeToken
+    },
+    style: {
+      "--mo-component-semantic-color":
+        `var(${semanticCssVariable(
+          contract.semanticColorRole
+        )})`,
+      "--mo-component-type-size":
+        "var(--mo-type-effective-size)",
+      "--mo-component-radius":
+        `var(${shapeCssVariable(
+          contract.shapeToken
+        )})`,
+      "--mo-component-min-target":
+        `${contract.context.interactionTarget}px`,
+      ...typography.style,
+      ...motion.style
     }
   };
 }
