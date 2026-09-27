@@ -38,22 +38,10 @@ for (const marker of [
   }
 }
 
-for (const state of [
-  "hovered",
-  "focused",
-  "pressed",
-  "selected",
-  "disabled",
-  "loading",
-  "success",
-  "warning",
-  "error"
-]) {
-  if (!source.includes(`"${state}"`)) {
-    throw new Error(
-      `Controls runtime missing canonical state behavior for ${state}`
-    );
-  }
+if (!source.includes("export type ControlState = ComponentState;")) {
+  throw new Error(
+    "Controls must alias the canonical component state contract."
+  );
 }
 
 for (const marker of [
