@@ -62,7 +62,9 @@ const required = [
   "packages/personalization/src/index.ts",
   "packages/device-adaptation/src/index.ts",
   "packages/shape/src/index.ts",
-  "packages/shape/css/material-one-shape.css"
+  "packages/shape/css/material-one-shape.css",
+  "packages/layout/src/index.ts",
+  "packages/layout/css/material-one-layout.css"
 ];
 
 for (const item of required) await exists(item);
@@ -136,6 +138,10 @@ const shapeCss = await readFile(
   path.join(root, "packages/shape/css/material-one-shape.css"),
   "utf8"
 );
+const layoutCss = await readFile(
+  path.join(root, "packages/layout/css/material-one-layout.css"),
+  "utf8"
+);
 
 for (const [name, css] of [
   ["tokens", tokenCss],
@@ -143,7 +149,8 @@ for (const [name, css] of [
   ["controls", controlsCss],
   ["shell", shellCss],
   ["accessibility", accessibilityCss],
-  ["shape", shapeCss]
+  ["shape", shapeCss],
+  ["layout", layoutCss]
 ]) {
   const opens = (css.match(/{/g) ?? []).length;
   const closes = (css.match(/}/g) ?? []).length;
@@ -171,6 +178,16 @@ for (const requiredPattern of [
 ]) {
   if (!shapeCss.includes(requiredPattern)) {
     fail(`Shape CSS is missing semantic behavior: ${requiredPattern}`);
+  }
+}
+
+for (const requiredPattern of [
+  "--mo-layout-content-padding",
+  "--mo-layout-grid-columns",
+  ".mo-layout-multi-pane"
+]) {
+  if (!layoutCss.includes(requiredPattern)) {
+    fail(`Layout CSS is missing semantic behavior: ${requiredPattern}`);
   }
 }
 
