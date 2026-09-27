@@ -86,6 +86,12 @@ Reduced motion removes non-essential spatial movement and scaling while preservi
 
 Predictable content uses skeleton loading that preserves the final layout. Material One applies a short delay before skeletons appear, keeps visible skeletons on screen long enough to avoid flicker, and disables shimmer for reduced-motion contexts.
 
+## Personalization Engine
+
+Personalization is an orchestration layer over existing Material One contracts. Core retains ownership of requested user preferences and device-derived context. Accessibility then resolves effective safeguards. Personalization combines both into a framework-portable profile containing requested and effective presentation state.
+
+Products may limit which settings controls they expose, but capability policy never weakens the effective accessibility policy. Theme, color, typography, shape, motion, and other subsystem-specific choices continue to use their authoritative typed contracts rather than parallel personalization strings.
+
 ## Adaptive Experience
 
 Material One adapts based on:

@@ -1,0 +1,21 @@
+{
+  "name": "@material-one/personalization",
+  "version": "0.1.0",
+  "description": "Typed personalization orchestration and presentation contracts for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0",
+    "@material-one/accessibility": "^0.2.0"
+  },
+  "keywords": [
+    "personalization",
+    "preferences",
+    "adaptive-ui",
+    "design-system",
+    "material-one"
+  ],
+  "license": "MIT"
+}
