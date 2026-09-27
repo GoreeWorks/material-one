@@ -6,6 +6,7 @@ import {
   createSegmentedRecipe,
   createTabsRecipe,
   createToggleRecipe,
+  createControlPresentation,
   disclosurePresentation
 } from "../packages/controls/src/index.ts";
 import type { MaterialOneContext } from "../packages/core/src/index.ts";
@@ -66,4 +67,61 @@ test("pagination reduces visible pages on compact layouts", () => {
 test("tooltips adapt from hover to press for touch", () => {
   assert.equal(disclosurePresentation(context("workspace"), "tooltip"), "hover");
   assert.equal(disclosurePresentation(context("compact", "touch"), "tooltip"), "press");
+});
+
+
+test("controls share canonical hovered state and portable component presentation", () => {
+  const ctx = context("workspace");
+  const recipe = createToggleRecipe(
+    ctx,
+    "switch",
+    false,
+    "hovered"
+  );
+  const presentation = createControlPresentation(
+    ctx,
+    recipe
+  );
+
+  assert.equal(recipe.state, "hovered");
+  assert.equal(
+    presentation.attributes["data-mo-state"],
+    "hovered"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-control"],
+    "toggle"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-control-kind"],
+    "switch"
+  );
+  assert.equal(
+    presentation.style["--mo-control-target-size"],
+    "44px"
+  );
+});
+
+test("data table presentation exposes adaptive row height and structure", () => {
+  const ctx = context("workspace");
+  const recipe = createDataTableRecipe(ctx, {
+    columns: 6
+  });
+  const presentation = createControlPresentation(
+    ctx,
+    recipe
+  );
+
+  assert.equal(
+    presentation.attributes["data-mo-presentation"],
+    "table"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-sticky-header"],
+    "true"
+  );
+  assert.equal(
+    presentation.style["--mo-control-row-height"],
+    "48px"
+  );
 });
