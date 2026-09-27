@@ -288,6 +288,7 @@ export function inferTokenKind(
   if (Array.isArray(value)) return "list";
   if (typeof value === "number") return "number";
   if (typeof value === "boolean") return "boolean";
+  if (typeof value !== "string") return "list";
 
   if (
     path.startsWith("color.") ||
