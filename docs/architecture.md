@@ -108,6 +108,14 @@ The layout layer defines content padding and width, automatic grid columns, colu
 
 Application Shell and Product Patterns consume these contracts so responsive geometry remains centralized. Device Adaptation continues to describe physical viewport and capability facts independently from interface layout policy.
 
+## Controls and Interactions
+
+Controls are specialized adaptive components and share the canonical Material One component state vocabulary rather than maintaining a parallel interaction model.
+
+The controls layer owns recipes for toggles, sliders, segmented controls, tabs, chips, data tables, pagination, progress, and disclosure behavior. Recipes inherit the core interaction target, layout, input method, density, and motion preference.
+
+`createControlPresentation()` extends the component presentation bridge with control-specific metadata while preserving canonical `data-mo-state`, semantic color, typography, motion, and shape contracts. This keeps framework adapters and CSS aligned with the same runtime state language used by the Component System.
+
 ## Product Patterns
 
 Product Patterns compose lower-level Material One contracts into reusable page-scale structures.
