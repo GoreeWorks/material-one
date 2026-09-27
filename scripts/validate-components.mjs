@@ -63,9 +63,13 @@ for (const typedContract of [
   "SemanticColorRole",
   "TypographyRole",
   "MotionIntent",
+  "ShapeRole",
+  "ShapeToken",
   "semanticCssVariable",
   "typographyCssVariable",
-  "motionCssVariables"
+  "motionCssVariables",
+  "resolveShapeToken",
+  "shapeCssVariable"
 ]) {
   if (!componentSource.includes(typedContract)) {
     throw new Error(`Typed component presentation missing ${typedContract}`);
