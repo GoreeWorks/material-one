@@ -98,8 +98,18 @@
   background: var(--mo-code);
   border-radius: inherit;
   transition:
-    inline-size var(--mo-motion-standard) var(--mo-ease-standard),
-    filter var(--mo-motion-small) var(--mo-ease-standard);
+    inline-size
+      var(
+        --mo-viz-transition-duration,
+        var(--mo-motion-standard)
+      )
+      var(
+        --mo-viz-transition-easing,
+        var(--mo-ease-standard)
+      ),
+    filter
+      var(--mo-motion-small)
+      var(--mo-ease-standard);
 }
 
 .mo-viz-bar-fill[data-mo-viz-pattern="stripe"]::after,
@@ -329,4 +339,63 @@
   [data-mo-viz-selected="true"] {
     outline-color: Highlight;
   }
+}
+
+
+/* Runtime adaptive visualization presentation.
+   These selectors complement media-query fallbacks so the
+   effective Material One Accessibility policy remains authoritative. */
+
+[data-mo-viz-motion="reduced"] .mo-viz-bar-fill,
+[data-mo-viz-motion="none"] .mo-viz-bar-fill,
+.mo-viz[data-mo-viz-motion="reduced"] .mo-viz-bar-fill,
+.mo-viz[data-mo-viz-motion="none"] .mo-viz-bar-fill {
+  transition: none;
+}
+
+[data-mo-viz-contrast="high"] .mo-viz-description,
+[data-mo-viz-contrast="high"] .mo-viz-axis,
+[data-mo-viz-contrast="high"] .mo-viz-value,
+[data-mo-viz-contrast="high"] .mo-viz-legend-item {
+  color: var(--mo-sem-on-surface);
+}
+
+[data-mo-viz-contrast="high"] .mo-viz-grid {
+  background-image:
+    linear-gradient(
+      to bottom,
+      var(--mo-sem-outline-strong) 1px,
+      transparent 1px
+    );
+}
+
+[data-mo-viz-forced-colors="active"].mo-viz,
+[data-mo-viz-forced-colors="active"] .mo-viz,
+[data-mo-viz-forced-colors="active"] .mo-viz-bar-track,
+[data-mo-viz-forced-colors="active"] .mo-viz-heatmap-cell,
+[data-mo-viz-forced-colors="active"] .mo-viz-status,
+[data-mo-viz-forced-colors="active"] .mo-viz-data-table th,
+[data-mo-viz-forced-colors="active"] .mo-viz-data-table td {
+  color: CanvasText;
+  background: Canvas;
+  border-color: CanvasText;
+}
+
+[data-mo-viz-forced-colors="active"] .mo-viz-bar-fill,
+[data-mo-viz-forced-colors="active"] .mo-viz-swatch {
+  forced-color-adjust: none;
+  background: CanvasText;
+  border-color: CanvasText;
+}
+
+[data-mo-viz-forced-colors="active"] .mo-viz-bar-fill::after,
+[data-mo-viz-forced-colors="active"] .mo-viz-swatch::after {
+  background-image: none !important;
+}
+
+[data-mo-viz-forced-colors="active"] .mo-viz-point:focus-visible,
+[data-mo-viz-forced-colors="active"] .mo-viz-bar-fill:focus-visible,
+[data-mo-viz-forced-colors="active"] .mo-viz-heatmap-cell:focus-visible,
+[data-mo-viz-forced-colors="active"] [data-mo-viz-selected="true"] {
+  outline-color: Highlight;
 }

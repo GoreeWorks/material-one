@@ -67,7 +67,7 @@ packages/
 ├── semantic-colors/    Semantic roles, schemes, status pairs, and interaction colors
 ├── color-coding/       Categorical color coding and data color intelligence
 ├── theme-intelligence/ Adaptive semantic theme generation and contrast validation
-├── data-visualization/ Accessible chart encodings, patterns, legends, and data states
+├── data-visualization/ Accessibility-aware chart policy, encodings, patterns, legends, and data states
 ├── typography/         Core-layout, Accessibility-effective semantic typography and presentation
 ├── shape/              Semantic shape roles, adaptive geometry, and CSS aliases
 ├── layout/             Adaptive geometry, columns, pane strategy, and layout presentation
@@ -127,9 +127,9 @@ Theme Intelligence adapts Material One semantic schemes from product or user acc
 
 The Themes package is now a semantic-first runtime bridge rather than a second color model. Theme Intelligence generates validated semantic schemes, Semantic Colors owns the role vocabulary, and `@material-one/themes` resolves named themes into one authoritative scheme before emitting `--mo-sem-*` variables and legacy CSS aliases. Existing `colors` theme input remains supported only as a migration boundary; explicit semantic overrides win, adaptive themes can be generated directly from Theme Intelligence seeds, and runtime presentation includes validation, registry, and portable theme metadata.
 
-## Data Visualization
+## Adaptive Data Visualization
 
-Data visualization uses categorical Material One color coding for peer series and semantic colors for meaningful states. Charts pair color with labels, values, patterns, focus treatment, and accessible summaries so information remains understandable when color perception, forced-colors mode, or display conditions change.
+Data visualization uses Color Coding for peer series and Semantic Colors for meaningful states, with redundant patterns and accessible text labels required whenever color carries meaning. Core supplies effective layout, while Accessibility supplies effective motion, contrast, forced-colors state, and redundant-cue policy. `createVisualizationPresentation()` turns those effective values into portable runtime attributes and transition variables; `createSeriesPresentation()` preserves categorical color plus pattern, while status presentation stays semantic. Runtime high-contrast, forced-colors, and reduced/no-motion behavior complements browser media-query fallbacks instead of replacing them.
 
 ## Adaptive Typography
 
@@ -185,7 +185,7 @@ Loading is resolved from intent, latency, known geometry, stale-content availabi
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, visualization behavior, accessibility-aware adaptive typography, accessibility-aware semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, accessibility-aware adaptive visualization, accessibility-aware adaptive typography, accessibility-aware semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
