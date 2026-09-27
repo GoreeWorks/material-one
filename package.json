@@ -1,6 +1,6 @@
 {
   "name": "material-one",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "private": true,
   "type": "module",
   "description": "Material One adaptive interface design language by GoreeWorks.",
@@ -10,9 +10,9 @@
   "scripts": {
     "validate": "node scripts/validate-repository.mjs",
     "typecheck": "npx -y -p typescript@5.9.2 tsc --noEmit",
-    "test": "npx -y tsx@4.20.5 --test tests/core.test.ts tests/shell.test.ts tests/controls.test.ts tests/themes-icons.test.ts tests/color-loading.test.ts tests/semantic-colors.test.ts tests/theme-visualization.test.ts tests/typography-motion.test.ts tests/components-adaptive.test.ts tests/accessibility.test.ts tests/personalization.test.ts tests/device-adaptation.test.ts tests/shape.test.ts tests/layout.test.ts tests/color-intelligence.test.ts tests/tokens.test.ts tests/patterns.test.ts tests/icons.test.ts tests/loading.test.ts",
+    "test": "npx -y tsx@4.20.5 --test tests/core.test.ts tests/shell.test.ts tests/controls.test.ts tests/themes-icons.test.ts tests/color-loading.test.ts tests/semantic-colors.test.ts tests/theme-visualization.test.ts tests/typography-motion.test.ts tests/components-adaptive.test.ts tests/accessibility.test.ts tests/personalization.test.ts tests/device-adaptation.test.ts tests/shape.test.ts tests/layout.test.ts tests/color-intelligence.test.ts tests/tokens.test.ts tests/patterns.test.ts tests/icons.test.ts tests/loading.test.ts tests/themes.test.ts",
     "manifest": "node scripts/generate-manifest.mjs",
-    "ci": "npm run validate && npm run validate:color-loading && npm run validate:semantic-colors && npm run validate:theme-visualization && npm run validate:typography-motion && npm run validate:components && npm run validate:accessibility && npm run validate:personalization && npm run validate:device-adaptation && npm run validate:shape && npm run validate:layout && npm run validate:color-intelligence && npm run validate:tokens && npm run validate:patterns && npm run validate:controls && npm run validate:icons && npm run validate:shell && npm run validate:loading && npm run typecheck && npm test",
+    "ci": "npm run validate && npm run validate:color-loading && npm run validate:semantic-colors && npm run validate:theme-visualization && npm run validate:typography-motion && npm run validate:components && npm run validate:accessibility && npm run validate:personalization && npm run validate:device-adaptation && npm run validate:shape && npm run validate:layout && npm run validate:color-intelligence && npm run validate:tokens && npm run validate:patterns && npm run validate:controls && npm run validate:icons && npm run validate:shell && npm run validate:loading && npm run validate:themes && npm run typecheck && npm test",
     "validate:color-loading": "node scripts/validate-color-loading.mjs",
     "validate:semantic-colors": "node scripts/validate-semantic-colors.mjs",
     "validate:theme-visualization": "node scripts/validate-theme-visualization.mjs",
@@ -29,7 +29,8 @@
     "validate:controls": "node scripts/validate-controls.mjs",
     "validate:icons": "node scripts/validate-icons.mjs",
     "validate:shell": "node scripts/validate-shell.mjs",
-    "validate:loading": "node scripts/validate-loading.mjs"
+    "validate:loading": "node scripts/validate-loading.mjs",
+    "validate:themes": "node scripts/validate-themes.mjs"
   },
   "engines": {
     "node": ">=22"
