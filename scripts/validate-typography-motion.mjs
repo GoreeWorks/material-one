@@ -32,6 +32,10 @@ if (typography.lineHeight.body < 1.4) {
   throw new Error("Body line height must preserve readable text spacing.");
 }
 
+if (typography.textScale.minimum !== 0.8) {
+  throw new Error("Typography minimum text scale must align with Accessibility at 80%.");
+}
+
 if (typography.textScale.maximum < 2) {
   throw new Error("Typography must support at least 200% text scaling.");
 }

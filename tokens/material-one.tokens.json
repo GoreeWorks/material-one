@@ -1,6 +1,6 @@
 {
   "name": "Material One Tokens",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "color": {
     "primary": {
       "base": "#4F5FD7",
@@ -274,7 +274,7 @@
       "supporting": "58ch"
     },
     "textScale": {
-      "minimum": 0.9,
+      "minimum": 0.8,
       "default": 1,
       "maximum": 2,
       "presets": {

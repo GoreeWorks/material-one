@@ -68,7 +68,7 @@ packages/
 ├── color-coding/       Categorical color coding and data color intelligence
 ├── theme-intelligence/ Adaptive semantic theme generation and contrast validation
 ├── data-visualization/ Accessible chart encodings, patterns, legends, and data states
-├── typography/         Adaptive semantic typography and readable scaling
+├── typography/         Core-layout, Accessibility-effective semantic typography and presentation
 ├── shape/              Semantic shape roles, adaptive geometry, and CSS aliases
 ├── layout/             Adaptive geometry, columns, pane strategy, and layout presentation
 ├── motion/             Semantic motion intents and reduced-motion adaptation
@@ -133,7 +133,7 @@ Data visualization uses categorical Material One color coding for peer series an
 
 ## Adaptive Typography
 
-Typography uses semantic roles rather than arbitrary font sizes. Display, large title, section heading, title, body, label, and supporting text adapt to layout and user text scale while preserving body readability, line-height, and maximum readable line lengths.
+Typography uses semantic roles rather than arbitrary font sizes. Core owns the resolved compact/expanded/workspace layout, density, and requested text scale; Accessibility owns the effective text scale after clamping; Typography owns semantic role geometry and presentation derived from those values. `createTypographyPolicy()` exposes requested/effective scale and whether Accessibility constrained it, while `createTypographyPresentation()` emits portable role/layout/density/scale metadata and implementation values. The canonical text-scale range is now aligned at 0.8–2.0 across tokens, Accessibility, and Typography. Body and utility text preserve structural readability while large hierarchy roles adapt to layout and density.
 
 ## Semantic Shape
 
@@ -185,7 +185,7 @@ Loading is resolved from intent, latency, known geometry, stale-content availabi
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, visualization behavior, adaptive typography, accessibility-aware semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, visualization behavior, accessibility-aware adaptive typography, accessibility-aware semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 

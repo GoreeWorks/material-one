@@ -90,13 +90,17 @@ Visualizations combine:
 
 This keeps chart meaning intact when palette perception, theme, device, or accessibility context changes.
 
-## Adaptive Typography
+## Adaptive Typography Framework
 
 Typography roles describe purpose rather than arbitrary size. Display, large title, section heading, title, body, label, and supporting text share a coherent hierarchy.
 
-Large hierarchy roles adapt to compact, expanded, and workspace layouts. Body and utility text preserve their base scale instead of shrinking simply because a device is smaller.
+Core owns the resolved compact, expanded, or workspace layout, density preference, and requested accessibility text scale. Accessibility owns the effective text scale after applying the canonical 0.8–2.0 range. Typography consumes those authoritative values rather than maintaining independent layout, density, or accessibility preference unions.
 
-User text scaling is independent of layout adaptation, and readable line-length contracts constrain overly wide text.
+Large hierarchy roles adapt to layout and density. Body and utility text preserve their structural base scale instead of shrinking simply because a device is smaller. Text scaling then applies independently across every role.
+
+`createTypographyPolicy()` exposes requested versus effective text scale and whether Accessibility constrained the request. `resolveAdaptiveTypographyRole()` and `createTypographyPresentation()` use the effective Accessibility value and emit portable runtime metadata and implementation CSS variables.
+
+Readable line-length contracts constrain overly wide text, while runtime layout and contrast selectors follow viewport/environment fallbacks so explicit Material One policy remains authoritative.
 
 ## Shape Framework
 
