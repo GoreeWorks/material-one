@@ -37,6 +37,7 @@ const manifest = {
   packages,
   capabilities: [
     "adaptive-context",
+    "design-token-system",
     "semantic-tokens",
     "color-intelligence",
     "semantic-colors",

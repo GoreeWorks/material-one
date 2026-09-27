@@ -26,6 +26,14 @@ Material One is built as a layered adaptive interface system.
 18. Personalization Engine
 19. Device Adaptation System
 
+## Design Tokens
+
+Design Tokens are the foundational value layer for Material One.
+
+The canonical token data remains in `tokens/material-one.tokens.json`, while `tokens/css/material-one.css` is the browser-facing custom-property representation. The `@material-one/tokens` package wraps those sources with typed validation, deterministic token enumeration, canonical dotted paths, lookup, search, primitive-kind classification, CSS-variable traceability, and inventory manifests.
+
+The token package does not copy values into a second registry. Higher-level systems such as Semantic Colors, Typography, Shape, Motion, Layout, Loading, and Accessibility continue to own semantic interpretation and adaptive policy.
+
 ## Color Intelligence System
 
 Color Intelligence routes each color decision to one authoritative subsystem based on meaning.

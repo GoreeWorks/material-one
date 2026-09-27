@@ -65,6 +65,9 @@
       ],
       "@material-one/color-intelligence": [
         "packages/color-intelligence/src/index.ts"
+      ],
+      "@material-one/tokens": [
+        "packages/tokens/src/index.ts"
       ]
     }
   },

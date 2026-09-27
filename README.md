@@ -59,6 +59,7 @@ Material One
 
 ```
 packages/
+├── tokens/             Typed validation, lookup, inventory, and CSS tracing for canonical design tokens
 ├── core/               Adaptive context and preference engine
 ├── components/         Component recipes and CSS primitives
 ├── controls/           Selection, form, data, disclosure, and feedback controls
@@ -101,6 +102,10 @@ Material One is intended to provide the shared interface foundation for GoreeWor
 - future device experiences
 
 Products may have their own identity while extending the same Material One behavioral and semantic foundation.
+
+## Design Tokens
+
+Material One keeps token values in one canonical JSON source and one canonical CSS representation. The `@material-one/tokens` package adds typed validation, deterministic enumeration, dotted-path lookup, primitive-kind classification, token inventory manifests, and CSS-variable traceability without duplicating token values into another registry. Its stylesheet export wraps the canonical token CSS so runtime and browser consumers can use one named package boundary.
 
 ## Color Intelligence
 
@@ -160,11 +165,11 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
+Active foundational implementation. Design tokens, core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
 
 ## License
 
