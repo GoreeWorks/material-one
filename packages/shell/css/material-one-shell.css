@@ -1,11 +1,11 @@
-@import "../../../tokens/css/material-one.css";
+@import "../../layout/css/material-one-layout.css";
 @import "../../components/css/material-one-components.css";
 
 :root {
   --mo-shell-topbar-height: 68px;
   --mo-shell-nav-width: 280px;
   --mo-shell-context-width: 320px;
-  --mo-shell-content-padding: 32px;
+  --mo-shell-content-padding: var(--mo-layout-content-padding);
   --mo-shell-bottom-nav-height: 72px;
 }
 
@@ -89,11 +89,12 @@
   min-inline-size: 0;
   min-block-size: 0;
   overflow: auto;
-  padding: var(--mo-shell-content-padding);
+  padding: var(--mo-layout-content-padding, var(--mo-shell-content-padding));
 }
 
 .mo-shell-content {
-  inline-size: min(100%, 1440px);
+  inline-size: 100%;
+  max-inline-size: var(--mo-layout-content-max, 1440px);
   margin-inline: auto;
 }
 
@@ -328,7 +329,7 @@
     --mo-shell-topbar-height: 64px;
     --mo-shell-nav-width: 88px;
     --mo-shell-context-width: 0px;
-    --mo-shell-content-padding: 24px;
+    --mo-shell-content-padding: var(--mo-layout-content-padding);
   }
 
   .mo-shell-frame {
@@ -355,7 +356,7 @@
   :root {
     --mo-shell-topbar-height: 56px;
     --mo-shell-nav-width: 0px;
-    --mo-shell-content-padding: 16px;
+    --mo-shell-content-padding: var(--mo-layout-content-padding);
   }
 
   .mo-shell-frame {
