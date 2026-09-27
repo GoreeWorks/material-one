@@ -145,7 +145,7 @@ Core selects the authoritative compact, expanded, or workspace layout mode. The 
 
 ## Controls and Interactions
 
-Controls specialize the canonical Material One component contract for selection, input, navigation, data, feedback, and disclosure. Control state now aliases the shared component state vocabulary—including hovered—and `createControlPresentation()` extends the component presentation bridge with control-specific checked, orientation, presentation, placement, selection, table, pagination, and progress metadata plus adaptive target-size CSS variables.
+Controls specialize the canonical Material One component contract for selection, input, navigation, data, feedback, and disclosure. Control state aliases the shared component state vocabulary—including hovered. `createControlPresentation()` remains the Core-only compatibility bridge, while `createAdaptiveControlPresentation()` extends the effective Accessibility-aware component presentation with control-specific checked, orientation, placement, selection, table, pagination, progress, motion, and target-size metadata.
 
 ## Product Patterns
 
