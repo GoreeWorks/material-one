@@ -56,7 +56,9 @@ const required = [
   "packages/typography/src/index.ts",
   "packages/typography/css/material-one-typography.css",
   "packages/motion/src/index.ts",
-  "packages/motion/css/material-one-motion.css"
+  "packages/motion/css/material-one-motion.css",
+  "packages/accessibility/src/index.ts",
+  "packages/accessibility/css/material-one-accessibility.css"
 ];
 
 for (const item of required) await exists(item);
@@ -119,12 +121,20 @@ const shellCss = await readFile(
   path.join(root, "packages/shell/css/material-one-shell.css"),
   "utf8"
 );
+const accessibilityCss = await readFile(
+  path.join(
+    root,
+    "packages/accessibility/css/material-one-accessibility.css"
+  ),
+  "utf8"
+);
 
 for (const [name, css] of [
   ["tokens", tokenCss],
   ["components", componentsCss],
   ["controls", controlsCss],
-  ["shell", shellCss]
+  ["shell", shellCss],
+  ["accessibility", accessibilityCss]
 ]) {
   const opens = (css.match(/{/g) ?? []).length;
   const closes = (css.match(/}/g) ?? []).length;
@@ -151,6 +161,19 @@ if (!controlsCss.includes("forced-colors: active")) {
 
 if (!shellCss.includes("max-width: 599px")) {
   fail("Application shell must include a compact layout breakpoint");
+}
+
+for (const requiredPattern of [
+  "prefers-reduced-motion",
+  "prefers-contrast",
+  "forced-colors: active",
+  ":focus-visible"
+]) {
+  if (!accessibilityCss.includes(requiredPattern)) {
+    fail(
+      `Accessibility CSS is missing required adaptive behavior: ${requiredPattern}`
+    );
+  }
 }
 
 console.log(
