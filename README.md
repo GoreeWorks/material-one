@@ -73,7 +73,8 @@ packages/
 ├── shell/              Navigation, workspace shell, commands, and overlays
 ├── themes/             Semantic theme contracts and CSS-variable generation
 ├── icons/              Icon geometry and state contracts
-└── accessibility/      Adaptive accessibility policy, focus, target, and assistive contracts
+├── accessibility/      Adaptive accessibility policy, focus, target, and assistive contracts
+└── personalization/    Requested/effective preference orchestration and presentation
 
 tokens/
 ├── material-one.tokens.json
@@ -125,6 +126,10 @@ Motion is organized by intent: instant, feedback, enter, exit, navigation, trans
 
 Accessibility is resolved as an adaptive Material One policy rather than a collection of component-specific exceptions. The accessibility runtime combines the current Material One context with platform signals for reduced motion, higher contrast, reduced transparency, and forced colors. It produces portable data attributes and CSS variables, preserves the core interaction-target contract, provides target-size audits and assistive live-region helpers, and requires redundant non-color cues for meaning. Accessibility resolves before higher-level personalization so optional presentation choices cannot silently weaken user accessibility requirements.
 
+## Personalization Orchestration
+
+Personalization combines requested Material One preferences with the effective accessibility policy instead of creating a second preference vocabulary. The runtime preserves requested settings for user-facing controls while exposing effective motion, contrast, text scale, transparency, layout, density, and interaction-target behavior for products and framework adapters. Typed control capability state lets a product expose only the personalization controls it supports while accessibility remains authoritative.
+
 ## Adaptive Components
 
 Material One uses one canonical component-state vocabulary across core runtime attributes and component recipes: default, hovered, focused, pressed, selected, disabled, loading, success, warning, and error. Adaptive component contracts inherit layout, density, input method, motion preference, contrast preference, text scale, and interaction-target sizing from the current Material One context. Component semantic color, typography, and motion fields are typed directly against their authoritative Material One subsystems, and `createComponentPresentation()` converts those contracts into portable data attributes and CSS variables for framework adapters. Legacy runtime inputs from the first prototype are normalized before `data-mo-state` is emitted so downstream products can migrate without maintaining a second interaction language.
@@ -135,11 +140,11 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, and the adaptive application shell are under development.
 
 ## License
 
