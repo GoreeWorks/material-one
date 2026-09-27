@@ -43,9 +43,9 @@ Control-specific recipe fields remain explicit, such as checked state, orientati
 
 ## Presentation bridge
 
-`createControlPresentation()` builds on `createComponentPresentation()`.
+`createControlPresentation()` remains the Core-only compatibility bridge. When the effective Accessibility policy is available, `createAdaptiveControlPresentation()` builds on `createAdaptiveComponentPresentation()` so controls inherit effective motion, contrast, text scale, forced-colors, and minimum-target safeguards.
 
-The resulting attributes include the canonical component metadata plus control-specific metadata such as:
+Both presentation paths include canonical component metadata plus control-specific metadata such as:
 
 - `data-mo-control`
 - `data-mo-state`
@@ -62,6 +62,14 @@ The resulting attributes include the canonical component metadata plus control-s
 - `data-mo-indeterminate`
 
 The presentation also emits `--mo-control-target-size` and recipe-specific CSS variables such as data-table row height.
+
+## Effective Accessibility propagation
+
+Adaptive control presentation preserves the control recipe's structural choices while projecting the effective Accessibility policy into presentation metadata.
+
+Effective reduced motion changes `data-mo-control-motion` without rewriting the original recipe. Effective minimum target size is applied to `--mo-control-target-size`.
+
+This preserves compatibility while ensuring framework adapters do not accidentally render a control below the effective target size or restore motion that Accessibility already reduced.
 
 ## Semantic defaults
 
