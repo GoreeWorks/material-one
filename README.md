@@ -74,7 +74,7 @@ packages/
 ├── motion/             Semantic motion intents and reduced-motion adaptation
 ├── loading/            Skeleton loading and progressive loading behavior
 ├── patterns/           Typed page, grid, master/detail, settings, and catalog patterns
-├── shell/              Navigation, workspace shell, commands, and overlays
+├── shell/              Typed navigation, context, command, overlay, and shell presentation
 ├── themes/             Semantic theme contracts and CSS-variable generation
 ├── icons/              Icon geometry and state contracts
 ├── accessibility/      Adaptive accessibility policy, focus, target, and assistive contracts
@@ -147,6 +147,10 @@ Controls specialize the canonical Material One component contract for selection,
 
 Product Patterns compose Material One contracts at page scale. Typed recipes cover page width/header structure, adaptive grids, master/detail flows, settings navigation, and catalog filtering. Patterns derive structural decisions from the authoritative core layout mode and Layout Engine, then expose portable attributes and CSS variables so explicit layout overrides do not get lost behind viewport-only media queries.
 
+## Application Shell
+
+The Application Shell composes the authoritative Material One layout mode into top bar, primary navigation, main content, optional context pane, command surfaces, and overlays. `createApplicationShellPresentation()` emits runtime navigation, context, command, and geometry metadata so explicit compact/expanded/workspace choices can override viewport-only fallbacks. `createOverlayPresentation()` exposes presentation, modality, backdrop behavior, max-width, and recommended accessibility metadata for menus, dialogs, sheets, commands, and notifications.
+
 ## Iconography
 
 Material One iconography uses a canonical 24 × 24 soft-geometric grid with semantic compact, standard, large, and display sizes plus light, regular, and bold weight contracts. Icon definitions can expose named geometry states and opt into RTL mirroring. `createIconPresentation()` resolves purpose, size, weight, state, direction, accessibility metadata, and portable CSS variables; meaningful icons require an accessible label, while decorative icons are hidden from the accessibility tree. Registries reject duplicate icon names.
@@ -177,7 +181,7 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 

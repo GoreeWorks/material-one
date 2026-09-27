@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  createApplicationShellPresentation,
+  createOverlayPresentation,
   resolveApplicationShell,
   resolveOverlay,
   resolveShellNavigation
@@ -68,4 +70,137 @@ test("overlays adapt presentation", () => {
   assert.equal(resolveOverlay(context("compact"), "dialog").presentation, "sheet");
   assert.equal(resolveOverlay(context("workspace"), "menu").presentation, "popover");
   assert.equal(resolveOverlay(context("compact"), "command").presentation, "fullscreen");
+});
+
+
+test("shell presentation emits portable runtime geometry and policy", () => {
+  const presentation =
+    createApplicationShellPresentation(
+      context("compact")
+    );
+
+  assert.equal(
+    presentation.attributes[
+      "data-mo-shell-navigation"
+    ],
+    "bottom"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-shell-context"
+    ],
+    "none"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-shell-command-surface"
+    ],
+    "overlay"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-shell-topbar-height"
+    ],
+    "56px"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-shell-nav-width"
+    ],
+    "0px"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-shell-bottom-nav-height"
+    ],
+    "72px"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-shell-content-max"
+    ],
+    "720px"
+  );
+});
+
+test("explicit layout mode controls shell presentation independently of physical width", () => {
+  const forcedWorkspace = {
+    ...context("compact"),
+    layout: "workspace" as const
+  };
+
+  const presentation =
+    createApplicationShellPresentation(
+      forcedWorkspace,
+      {
+        contextPane: "persistent"
+      }
+    );
+
+  assert.equal(
+    presentation.recipe.navigation,
+    "sidebar"
+  );
+  assert.equal(
+    presentation.recipe.contextPane,
+    "persistent"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-shell-nav-width"
+    ],
+    "280px"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-shell-context-width"
+    ],
+    "320px"
+  );
+});
+
+test("overlay presentation emits modality and accessibility metadata", () => {
+  const compactCommand =
+    createOverlayPresentation(
+      context("compact"),
+      "command"
+    );
+  const notification =
+    createOverlayPresentation(
+      context("workspace"),
+      "notification"
+    );
+
+  assert.equal(
+    compactCommand.attributes[
+      "data-mo-overlay-presentation"
+    ],
+    "fullscreen"
+  );
+  assert.equal(
+    compactCommand.attributes.role,
+    "dialog"
+  );
+  assert.equal(
+    compactCommand.attributes[
+      "aria-modal"
+    ],
+    "true"
+  );
+  assert.equal(
+    notification.attributes.role,
+    "status"
+  );
+  assert.equal(
+    notification.attributes[
+      "aria-live"
+    ],
+    "polite"
+  );
+  assert.equal(
+    notification.style[
+      "--mo-overlay-max-width"
+    ],
+    "420px"
+  );
 });

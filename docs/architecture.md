@@ -124,6 +124,16 @@ The pattern layer owns page-width intent, page-header presentation, adaptive pro
 
 Typed pattern presentation metadata allows products to honor explicit Material One layout overrides even when raw viewport media queries would imply a different arrangement. Existing CSS media queries remain progressive fallbacks for hosts that do not apply runtime metadata.
 
+## Application Shell
+
+The Application Shell composes the effective Material One layout into the persistent product frame.
+
+Primary navigation resolves to bottom navigation in compact layout, a rail in expanded layout, and a sidebar in workspace layout. Context panes are available only when the workspace layout has structural capacity for them. Command surfaces adapt independently as overlay, inline, or anchored presentation.
+
+`createApplicationShellPresentation()` exposes navigation, context, command-surface, top-bar, navigation-size, content, and context-pane geometry through portable data attributes and CSS variables. Runtime selectors follow viewport media-query fallbacks in the cascade so an explicit Material One layout preference remains authoritative even when physical viewport width would imply another shell.
+
+Overlay kind remains semantic—menu, dialog, sheet, command, or notification—while layout resolves the concrete popover, dialog, sheet, fullscreen, or toast presentation. `createOverlayPresentation()` adds portable modality, backdrop, max-width, and recommended accessibility metadata while products retain responsibility for complete focus management and keyboard behavior.
+
 ## Iconography System
 
 Iconography defines the shared visual and semantic contract for Material One interface icons.

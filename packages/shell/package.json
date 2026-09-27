@@ -1,7 +1,7 @@
 {
   "name": "@material-one/shell",
-  "version": "0.2.0",
-  "description": "Adaptive application shell, navigation, command surfaces, and overlays for Material One.",
+  "version": "0.3.0",
+  "description": "Typed adaptive application shell, navigation, context, command, overlay, and portable presentation contracts for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -16,6 +16,7 @@
     "design-system",
     "application-shell",
     "navigation",
+    "overlays",
     "adaptive-ui",
     "material-one"
   ],
