@@ -1,4 +1,5 @@
 .mo-catalog-layout {
+  --mo-pattern-card-min: 230px;
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   gap: var(--mo-space-lg);
@@ -16,7 +17,14 @@
 
 .mo-catalog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(
+        min(100%, var(--mo-pattern-card-min)),
+        1fr
+      )
+    );
   gap: var(--mo-space-lg);
 }
 
@@ -39,4 +47,14 @@
   display: grid;
   gap: var(--mo-space-sm);
   padding: var(--mo-space-md);
+}
+
+
+.mo-catalog-layout[data-mo-pattern-presentation="stacked"] {
+  grid-template-columns: 1fr;
+}
+
+.mo-catalog-layout[data-mo-filter-presentation="drawer"] .mo-filter-pane,
+.mo-filter-pane[data-mo-filter-presentation="drawer"] {
+  position: static;
 }
