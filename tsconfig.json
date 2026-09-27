@@ -68,6 +68,9 @@
       ],
       "@material-one/tokens": [
         "packages/tokens/src/index.ts"
+      ],
+      "@material-one/patterns": [
+        "packages/patterns/src/index.ts"
       ]
     }
   },
