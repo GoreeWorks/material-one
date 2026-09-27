@@ -14,7 +14,9 @@ const runtimeSource = await readFile(
 for (const marker of [
   "createAdaptiveComponentContext",
   "createComponentContract",
+  "createEffectiveComponentContract",
   "createComponentPresentation",
+  "createAdaptiveComponentPresentation",
   "createButtonRecipe",
   "createSurfaceRecipe",
   "createCardRecipe",
@@ -61,6 +63,9 @@ for (const alias of ["idle", "hover", "focus", "active"]) {
 
 for (const typedContract of [
   "SemanticColorRole",
+  "MaterialOneAccessibilityPolicy",
+  "createTypographyPresentation",
+  "createAdaptiveMotionPresentation",
   "TypographyRole",
   "MotionIntent",
   "ShapeRole",
@@ -77,3 +82,21 @@ for (const typedContract of [
 }
 
 console.log("Validated Material One adaptive, typed presentation, and runtime contracts.");
+
+
+const componentCss = await readFile(
+  path.join(root, "packages/components/css/material-one-components.css"),
+  "utf8"
+);
+
+for (const marker of [
+  'data-mo-motion="reduced"',
+  'data-mo-motion="none"',
+  'data-mo-forced-colors="active"'
+]) {
+  if (!componentCss.includes(marker)) {
+    throw new Error(
+      `Effective component CSS missing ${marker}`
+    );
+  }
+}
