@@ -41,6 +41,7 @@ jobs:
           npm run validate:shell
           npm run validate:loading
           npm run validate:themes
+          npm run validate:motion
           npm run validate:accessibility
           npm run validate:personalization
           npm run validate:device-adaptation
