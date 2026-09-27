@@ -11,9 +11,12 @@
 .mo-pattern-grid[data-mo-columns="4"] { --mo-pattern-columns: 4; }
 
 .mo-master-detail {
+  --mo-pattern-master-width: 260px;
   min-block-size: 520px;
   display: grid;
-  grid-template-columns: minmax(260px, .7fr) minmax(0, 1.6fr);
+  grid-template-columns:
+    minmax(var(--mo-pattern-master-width), .7fr)
+    minmax(0, 1.6fr);
   overflow: hidden;
   background: var(--mo-surface-base);
   border: 1px solid var(--mo-border);
@@ -33,8 +36,11 @@
 }
 
 .mo-settings-layout {
+  --mo-pattern-settings-nav-width: 260px;
   display: grid;
-  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  grid-template-columns:
+    minmax(180px, var(--mo-pattern-settings-nav-width))
+    minmax(0, 1fr);
   gap: var(--mo-space-xl);
 }
 
@@ -42,4 +48,25 @@
   position: sticky;
   inset-block-start: var(--mo-space-lg);
   align-self: start;
+}
+
+
+.mo-master-detail[data-mo-pattern-presentation="stacked"] {
+  display: block;
+  min-block-size: 0;
+}
+
+.mo-master-detail[data-mo-pattern-presentation="stacked"] .mo-master-pane {
+  border-inline-end: 0;
+  border-block-end: 1px solid var(--mo-border);
+}
+
+.mo-settings-layout[data-mo-pattern-presentation="stacked"] {
+  grid-template-columns: 1fr;
+  gap: var(--mo-space-lg);
+}
+
+.mo-settings-layout[data-mo-pattern-presentation="stacked"] .mo-settings-nav,
+.mo-settings-layout[data-mo-sticky-navigation="false"] .mo-settings-nav {
+  position: static;
 }
