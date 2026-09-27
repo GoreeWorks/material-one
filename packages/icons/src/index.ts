@@ -144,33 +144,44 @@ export function defineMaterialOneIcon(
   );
 
   const stateNames = new Set<string>();
+  const states = (icon.states ?? []).map(
+    (state) => {
+      const stateName =
+        state.name.trim();
 
-  for (const state of icon.states ?? []) {
-    const stateName = state.name.trim();
+      if (!stateName) {
+        throw new Error(
+          `Material One icon "${name}" requires named states.`
+        );
+      }
 
-    if (!stateName) {
-      throw new Error(
-        `Material One icon "${name}" requires named states.`
+      if (stateNames.has(stateName)) {
+        throw new Error(
+          `Material One icon "${name}" has duplicate state "${stateName}".`
+        );
+      }
+
+      stateNames.add(stateName);
+      validatePaths(
+        state.paths,
+        `Material One icon "${name}" state "${stateName}"`
       );
-    }
 
-    if (stateNames.has(stateName)) {
-      throw new Error(
-        `Material One icon "${name}" has duplicate state "${stateName}".`
-      );
+      return {
+        ...state,
+        name: stateName
+      };
     }
-
-    stateNames.add(stateName);
-    validatePaths(
-      state.paths,
-      `Material One icon "${name}" state "${stateName}"`
-    );
-  }
+  );
 
   return {
     ...icon,
     name,
     viewBox: "0 0 24 24",
+    states:
+      states.length > 0
+        ? states
+        : undefined,
     label: icon.label?.trim() || undefined
   };
 }
@@ -182,7 +193,7 @@ export function getIconState(
   return (
     icon.states?.find(
       (state) =>
-        state.name === stateName
+        state.name === stateName.trim()
     )?.paths ?? icon.paths
   );
 }
