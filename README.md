@@ -68,6 +68,7 @@ packages/
 ├── data-visualization/ Accessible chart encodings, patterns, legends, and data states
 ├── typography/         Adaptive semantic typography and readable scaling
 ├── shape/              Semantic shape roles, adaptive geometry, and CSS aliases
+├── layout/             Adaptive geometry, columns, pane strategy, and layout presentation
 ├── motion/             Semantic motion intents and reduced-motion adaptation
 ├── loading/            Skeleton loading and progressive loading behavior
 ├── patterns/           Adaptive page and product patterns
@@ -124,6 +125,10 @@ Typography uses semantic roles rather than arbitrary font sizes. Display, large 
 
 Shape is organized by interface purpose rather than component-specific radius constants. Stable raw tokens feed semantic roles for controls, fields, surfaces, cards, navigation, floating surfaces, icon buttons, and chips. Experience modes resolve to minimal, balanced, or expressive geometry, while compact layouts can strengthen navigation enclosure independently. Components consume typed shape roles and tokens, and framework adapters can apply portable semantic CSS aliases.
 
+## Adaptive Layout
+
+Core selects the authoritative compact, expanded, or workspace layout mode. The Layout Engine turns that mode into shared structural geometry: content padding and width, adaptive grid columns and capacity, minimum useful column widths, pane strategy, and secondary/context-pane availability. Application shell and product patterns consume the same layout contracts so responsive structure does not drift into component-specific breakpoint logic.
+
 ## Semantic Motion
 
 Motion is organized by intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Full, reduced, and no-motion preferences share the same state model. Reduced motion removes decorative spatial movement while retaining very short essential feedback when needed to communicate a direct action.
@@ -150,11 +155,11 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
 
 ## License
 
