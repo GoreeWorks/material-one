@@ -2,7 +2,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createMaterialOneContext } from "../packages/core/src/index.ts";
 import {
+  createAccessibilityPolicy
+} from "../packages/accessibility/src/index.ts";
+import {
   componentStates,
+  createAdaptiveComponentContext,
+  createAdaptiveComponentPresentation,
   createComponentContract,
   createComponentPresentation,
   resolveComponentDensity
@@ -152,5 +157,182 @@ test("spacious density collapses only when compact layout requires it", () => {
   assert.equal(
     resolveComponentDensity("spacious", "workspace"),
     "spacious"
+  );
+});
+
+
+test("effective component context applies Accessibility safeguards over requested preferences", () => {
+  const requested = createMaterialOneContext(
+    {
+      theme: "system",
+      density: "compact",
+      motion: "full",
+      experienceMode: "professional",
+      accessibility: {
+        contrast: "standard",
+        textScale: 0.4,
+        reducedTransparency: false
+      }
+    },
+    {
+      width: 900,
+      height: 900,
+      input: "mouse",
+      orientation: "landscape"
+    }
+  );
+  const accessibility =
+    createAccessibilityPolicy(
+      requested,
+      {
+        prefersReducedMotion: true,
+        prefersHighContrast: true,
+        prefersReducedTransparency: true,
+        forcedColors: true
+      }
+    );
+  const effective =
+    createAdaptiveComponentContext(
+      requested,
+      accessibility
+    );
+
+  assert.equal(
+    effective.requestedMotion,
+    "full"
+  );
+  assert.equal(
+    effective.motion,
+    "reduced"
+  );
+  assert.equal(
+    effective.requestedContrast,
+    "standard"
+  );
+  assert.equal(
+    effective.contrast,
+    "high"
+  );
+  assert.equal(
+    effective.requestedTextScale,
+    0.4
+  );
+  assert.equal(
+    effective.textScale,
+    0.8
+  );
+  assert.equal(
+    effective.reducedTransparency,
+    true
+  );
+  assert.equal(
+    effective.forcedColors,
+    true
+  );
+  assert.equal(
+    effective.constrainedByAccessibility,
+    true
+  );
+});
+
+test("adaptive component presentation uses effective typography, motion, contrast, and target policy", () => {
+  const requested = createMaterialOneContext(
+    {
+      theme: "system",
+      density: "compact",
+      motion: "full",
+      experienceMode: "professional",
+      accessibility: {
+        contrast: "standard",
+        textScale: 0.4,
+        reducedTransparency: false
+      }
+    },
+    {
+      width: 900,
+      height: 900,
+      input: "mouse",
+      orientation: "landscape"
+    }
+  );
+  const accessibility =
+    createAccessibilityPolicy(
+      requested,
+      {
+        prefersReducedMotion: true,
+        prefersHighContrast: true,
+        forcedColors: true
+      }
+    );
+  const presentation =
+    createAdaptiveComponentPresentation(
+      "button",
+      requested,
+      accessibility,
+      {
+        typographyRole: "label",
+        motionIntent: "navigation"
+      }
+    );
+
+  assert.equal(
+    presentation.attributes[
+      "data-mo-motion"
+    ],
+    "reduced"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-motion-requested"
+    ],
+    "full"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-contrast"
+    ],
+    "high"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-text-scale"
+    ],
+    "0.8"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-forced-colors"
+    ],
+    "active"
+  );
+  assert.equal(
+    presentation.attributes[
+      "data-mo-accessibility-constrained"
+    ],
+    "true"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-motion-duration"
+    ],
+    "0ms"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-component-type-size"
+    ],
+    "var(--mo-type-effective-size)"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-type-effective-size"
+    ],
+    "0.7rem"
+  );
+  assert.equal(
+    presentation.style[
+      "--mo-component-min-target"
+    ],
+    "36px"
   );
 });
