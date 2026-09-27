@@ -30,7 +30,8 @@
     "validate:icons": "node scripts/validate-icons.mjs",
     "validate:shell": "node scripts/validate-shell.mjs",
     "validate:loading": "node scripts/validate-loading.mjs",
-    "validate:themes": "node scripts/validate-themes.mjs",\n    "validate:motion": "node scripts/validate-motion.mjs"
+    "validate:themes": "node scripts/validate-themes.mjs",
+    "validate:motion": "node scripts/validate-motion.mjs"
   },
   "engines": {
     "node": ">=22"
