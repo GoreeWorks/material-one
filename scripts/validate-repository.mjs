@@ -69,7 +69,9 @@ const required = [
   "packages/tokens/src/index.ts",
   "packages/tokens/css/material-one-tokens.css",
   "packages/patterns/src/index.ts",
-  "packages/patterns/css/material-one-patterns.css"
+  "packages/patterns/css/material-one-patterns.css",
+  "packages/controls/src/index.ts",
+  "packages/controls/css/material-one-controls.css"
 ];
 
 for (const item of required) await exists(item);

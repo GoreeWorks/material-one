@@ -62,7 +62,7 @@ packages/
 ├── tokens/             Typed validation, lookup, inventory, and CSS tracing for canonical design tokens
 ├── core/               Adaptive context and preference engine
 ├── components/         Component recipes and CSS primitives
-├── controls/           Selection, form, data, disclosure, and feedback controls
+├── controls/           Canonical-state selection, form, data, disclosure, and feedback controls
 ├── color-intelligence/ Color-purpose routing across semantic, status, categorical, and priority systems
 ├── semantic-colors/    Semantic roles, schemes, status pairs, and interaction colors
 ├── color-coding/       Categorical color coding and data color intelligence
@@ -139,6 +139,10 @@ Shape is organized by interface purpose rather than component-specific radius co
 
 Core selects the authoritative compact, expanded, or workspace layout mode. The Layout Engine turns that mode into shared structural geometry: content padding and width, adaptive grid columns and capacity, minimum useful column widths, pane strategy, and secondary/context-pane availability. Application shell and product patterns consume the same layout contracts so responsive structure does not drift into component-specific breakpoint logic.
 
+## Controls and Interactions
+
+Controls specialize the canonical Material One component contract for selection, input, navigation, data, feedback, and disclosure. Control state now aliases the shared component state vocabulary—including hovered—and `createControlPresentation()` extends the component presentation bridge with control-specific checked, orientation, presentation, placement, selection, table, pagination, and progress metadata plus adaptive target-size CSS variables.
+
 ## Product Patterns
 
 Product Patterns compose Material One contracts at page scale. Typed recipes cover page width/header structure, adaptive grids, master/detail flows, settings navigation, and catalog filtering. Patterns derive structural decisions from the authoritative core layout mode and Layout Engine, then expose portable attributes and CSS variables so explicit layout overrides do not get lost behind viewport-only media queries.
@@ -169,7 +173,7 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 

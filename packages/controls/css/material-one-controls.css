@@ -1,3 +1,13 @@
+[data-mo-control] {
+  --mo-control-height:
+    var(--mo-control-target-size, var(--mo-target-comfortable));
+}
+
+[data-mo-control][data-mo-state="disabled"] {
+  opacity: 0.46;
+  cursor: not-allowed;
+}
+
 @import "../../components/css/material-one-components.css";
 
 .mo-switch,
@@ -189,14 +199,16 @@
   border-radius: var(--mo-shape-large);
 }
 
-.mo-segmented[data-mo-scrollable="true"] {
+.mo-segmented[data-mo-scrollable="true"],
+.mo-segmented[data-mo-presentation="scrollable"] {
   display: flex;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scrollbar-width: none;
 }
 
-.mo-segmented[data-mo-scrollable="true"]::-webkit-scrollbar {
+.mo-segmented[data-mo-scrollable="true"]::-webkit-scrollbar,
+.mo-segmented[data-mo-presentation="scrollable"]::-webkit-scrollbar {
   display: none;
 }
 
@@ -351,7 +363,7 @@
 
 .mo-data-table th,
 .mo-data-table td {
-  block-size: 48px;
+  block-size: var(--mo-control-row-height, 48px);
   padding-inline: var(--mo-space-md);
   border-block-end: 1px solid var(--mo-border);
   text-align: start;
