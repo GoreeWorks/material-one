@@ -1,61 +1,144 @@
-# Material One Component System
+# Material One Effective Component System
 
-Material One components are:
+The Component System is the shared presentation bridge between Material One's semantic subsystems and product-facing interface components.
 
-- adaptive
-- state-aware
-- accessible
-- reusable
-- color-aware
-- loading-aware
+Core owns requested context. Accessibility resolves effective safeguards. Semantic Colors, Typography, Motion, and Shape own their specialized presentation contracts. Components compose those systems into one portable component contract.
 
-## Component States
+## Component states
 
-Every component supports:
+Every component uses the canonical state vocabulary:
 
-- Default
-- Focused
-- Pressed
-- Selected
-- Disabled
-- Loading
-- Success
-- Warning
-- Error
+- default
+- hovered
+- focused
+- pressed
+- selected
+- disabled
+- loading
+- success
+- warning
+- error
 
-## Color-Coded Components
+Legacy runtime aliases are normalized before presentation metadata is emitted.
 
-Material One may use stable categorical color codes for grouping, identity, filters, tags, charts, priorities, and related information.
+## Contract boundary
 
-Color coding must not be the only signal. Components pair color with readable text, iconography, shape, pattern, placement, or another non-color cue.
+The Component System owns:
 
-Status colors remain reserved for success, warning, error, and information so categorical color never changes the meaning of system feedback.
+- canonical component state
+- component semantic role selection
+- component typography role selection
+- component motion intent
+- component shape role
+- component presentation metadata
+- composition of effective Accessibility policy into component presentation
 
-## Loading Components
+The Component System does not redefine color, typography, motion, shape, or accessibility policy.
 
-When the final content geometry is predictable, the Loading state should use a skeleton that preserves the expected layout.
+## Requested and effective context
 
-Skeletons:
+`createAdaptiveComponentContext()` accepts Core context and, optionally, the effective Accessibility policy.
 
-- appear after a short delay to avoid flashing during fast loads
-- remain visible long enough to prevent flicker
-- match the approximate shape of the content they replace
-- avoid exposing placeholder content to assistive technology
-- use the surrounding region to communicate busy state
-- become static when reduced motion is requested
+The resulting context preserves both requested and effective values for:
 
-Small action controls may use progress indicators when a full skeleton would not preserve useful context.
+- motion
+- contrast
+- text scale
+- reduced transparency
+- interaction target
 
-## Intelligent Components
+It also exposes forced-colors state and whether Accessibility constrained any requested value.
 
-Components may adapt:
+Without an Accessibility policy, the function remains compatible with the earlier Core-only behavior.
 
-- size
-- density
-- arrangement
-- available actions
-- interaction style
-- color coding
-- loading treatment
+## Effective component contract
 
-based on device, preferences, accessibility requirements, and context.
+`createEffectiveComponentContract()` builds the existing typed component contract using the effective Accessibility-aware context.
+
+Semantic color, typography, motion intent, and shape roles remain typed against their authoritative packages.
+
+## Effective presentation
+
+`createAdaptiveComponentPresentation()` composes:
+
+- Core component runtime state
+- effective Accessibility context
+- adaptive Typography presentation
+- adaptive Motion presentation
+- Semantic Color CSS variables
+- Shape role/token resolution
+
+The presentation emits portable requested/effective metadata including:
+
+- `data-mo-motion`
+- `data-mo-motion-requested`
+- `data-mo-contrast`
+- `data-mo-text-scale`
+- `data-mo-text-scale-requested`
+- `data-mo-transparency`
+- `data-mo-forced-colors`
+- `data-mo-accessibility-constrained`
+
+It also emits effective typography and motion implementation variables plus the effective minimum interaction target.
+
+## Motion safeguards
+
+Components using effective presentation cannot restore decorative motion after Accessibility reduces or disables it.
+
+Runtime `data-mo-motion` selectors disable component transitions, pressed transforms, and loading-spinner animation where needed.
+
+Browser `prefers-reduced-motion` rules remain progressive fallbacks.
+
+## Typography safeguards
+
+Effective component presentation delegates type geometry to `createTypographyPresentation()`.
+
+The component type-size alias points to `--mo-type-effective-size`, so Accessibility text-scale clamping remains authoritative.
+
+## Interaction target
+
+The effective component context uses the larger of Core's interaction target and Accessibility's minimum target size.
+
+The resolved value is exposed as `--mo-component-min-target` for framework adapters and specialized controls.
+
+## Color and forced colors
+
+Semantic component color remains a role reference rather than a literal hue.
+
+Effective presentation exposes forced-colors state so framework adapters and Material One CSS can preserve focus and state communication under system-color rendering.
+
+Categorical color coding remains separate from semantic component status.
+
+## Loading components
+
+Predictable loading geometry should use the Adaptive Loading Framework rather than component-local placeholder policy.
+
+Skeleton geometry remains decorative; surrounding regions own busy/live semantics.
+
+## Controls integration
+
+Controls are specialized components.
+
+`createAdaptiveControlPresentation()` extends the effective component bridge with control-specific metadata and uses effective Accessibility motion and minimum-target policy.
+
+The older `createControlPresentation()` remains available for compatibility when only Core context is available.
+
+## Compatibility
+
+Existing APIs remain supported:
+
+- `createAdaptiveComponentContext(context)`
+- `createComponentContract()`
+- `createComponentPresentation()`
+- component recipe helpers
+- `createControlPresentation()`
+
+New product code that has an Accessibility policy should prefer:
+
+- `createEffectiveComponentContract()`
+- `createAdaptiveComponentPresentation()`
+- `createAdaptiveControlPresentation()`
+
+## Principle
+
+Resolve accessibility once, then carry the effective policy through every component presentation layer. Higher-level controls may specialize behavior, but they must not reconstruct or weaken motion, contrast, text-scale, forced-colors, or target-size safeguards.
