@@ -15,6 +15,32 @@ const docs = await readFile(
   path.join(root, "docs/loading-framework.md"),
   "utf8"
 );
+const tokens = JSON.parse(
+  await readFile(
+    path.join(root, "tokens/material-one.tokens.json"),
+    "utf8"
+  )
+);
+
+const delayMs = Number.parseInt(
+  tokens.loading.skeletonDelay,
+  10
+);
+const minimumVisibleMs = Number.parseInt(
+  tokens.loading.skeletonMinimumVisible,
+  10
+);
+
+if (
+  !source.includes(`delayMs: ${delayMs}`) ||
+  !source.includes(
+    `minimumVisibleMs: ${minimumVisibleMs}`
+  )
+) {
+  throw new Error(
+    "Loading runtime timing defaults are out of sync with canonical loading tokens."
+  );
+}
 
 for (const marker of [
   "MaterialOneLoadingPolicy",
