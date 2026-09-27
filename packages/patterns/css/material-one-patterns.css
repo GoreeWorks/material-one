@@ -1,4 +1,4 @@
-@import "../../../tokens/css/material-one.css";
+@import "../../layout/css/material-one-layout.css";
 @import "../../components/css/material-one-components.css";
 @import "./page.css";
 @import "./layouts.css";
