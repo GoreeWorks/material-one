@@ -50,6 +50,7 @@ const manifest = {
     "semantic-motion",
     "adaptive-motion",
     "components",
+    "effective-component-presentation",
     "product-patterns",
     "application-shell",
     "themes",

@@ -1,5 +1,9 @@
 import type { MaterialOneContext } from "@material-one/core";
+import type {
+  MaterialOneAccessibilityPolicy
+} from "@material-one/accessibility";
 import {
+  createAdaptiveComponentPresentation,
   createComponentPresentation,
   type ComponentPresentation,
   type ComponentState
@@ -464,6 +468,74 @@ export function createControlPresentation(
     component,
     attributes,
     style
+  };
+}
+
+export function createAdaptiveControlPresentation(
+  context: MaterialOneContext,
+  accessibility: MaterialOneAccessibilityPolicy,
+  recipe: AnyControlRecipe
+): ControlPresentation {
+  const legacy =
+    createControlPresentation(
+      context,
+      recipe
+    );
+  const component =
+    createAdaptiveComponentPresentation(
+      `control:${recipe.control}`,
+      context,
+      accessibility,
+      {
+        state: recipe.state,
+        semanticColorRole:
+          semanticRoleForState(
+            recipe.state
+          ),
+        typographyRole: "label",
+        motionIntent:
+          recipe.control === "progress" &&
+          !recipe.determinate
+            ? "loading"
+            : "feedback",
+        shapeRole:
+          shapeRoleForControl(
+            recipe.control
+          )
+      }
+    );
+
+  const effectiveMotion:
+    ControlRecipe["motion"] =
+      accessibility.motion === "none"
+        ? "none"
+        : accessibility.motion ===
+            "reduced"
+          ? "small"
+          : "standard";
+
+  return {
+    recipe,
+    component,
+    attributes: {
+      ...legacy.attributes,
+      ...component.attributes,
+      "data-mo-control":
+        recipe.control,
+      "data-mo-control-motion":
+        effectiveMotion,
+      "data-mo-control-accessibility":
+        accessibility.mode
+    },
+    style: {
+      ...legacy.style,
+      ...component.style,
+      "--mo-control-target-size":
+        `${Math.max(
+          recipe.minTargetSize,
+          accessibility.minTargetSize
+        )}px`
+    }
   };
 }
 

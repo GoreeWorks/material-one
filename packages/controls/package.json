@@ -1,7 +1,7 @@
 {
   "name": "@material-one/controls",
-  "version": "0.2.0",
-  "description": "Adaptive controls, selection, disclosure, data, and feedback primitives for Material One.",
+  "version": "0.3.0",
+  "description": "Canonical-state adaptive control recipes with Accessibility-effective component presentation for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -9,14 +9,15 @@
   },
   "peerDependencies": {
     "@material-one/core": "^0.1.0",
-    "@material-one/components": "^0.3.0"
+    "@material-one/accessibility": "^0.1.0",
+    "@material-one/components": "^0.4.0"
   },
   "keywords": [
     "design-system",
     "controls",
     "forms",
-    "data-table",
-    "adaptive-ui",
+    "interactions",
+    "accessibility",
     "material-one"
   ],
   "license": "MIT"

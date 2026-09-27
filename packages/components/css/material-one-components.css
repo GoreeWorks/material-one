@@ -294,3 +294,42 @@
     opacity: 0.55;
   }
 }
+
+
+/* Effective Accessibility policy overrides.
+   Runtime metadata complements environmental media-query fallbacks. */
+
+[data-mo-component][data-mo-motion="reduced"],
+[data-mo-component][data-mo-motion="none"] {
+  --mo-motion-distance-small: 0px;
+  --mo-motion-distance-medium: 0px;
+  --mo-motion-distance-large: 0px;
+}
+
+.mo-card[data-mo-motion="reduced"],
+.mo-card[data-mo-motion="none"],
+.mo-button[data-mo-motion="reduced"],
+.mo-button[data-mo-motion="none"],
+.mo-input[data-mo-motion="reduced"],
+.mo-input[data-mo-motion="none"] {
+  transition: none;
+}
+
+.mo-button[data-mo-motion="reduced"]:active:not(:disabled),
+.mo-button[data-mo-motion="none"]:active:not(:disabled),
+.mo-component[data-mo-motion="reduced"][data-mo-state="pressed"],
+.mo-component[data-mo-motion="none"][data-mo-state="pressed"] {
+  transform: none;
+}
+
+.mo-button[data-mo-motion="reduced"][data-mo-loading="true"]::before,
+.mo-button[data-mo-motion="none"][data-mo-loading="true"]::before {
+  border-inline-end-color: currentColor;
+  animation: none;
+  opacity: 0.55;
+}
+
+[data-mo-component][data-mo-forced-colors="active"]:focus-visible,
+[data-mo-component][data-mo-forced-colors="active"][data-mo-state="focused"] {
+  outline-color: Highlight;
+}

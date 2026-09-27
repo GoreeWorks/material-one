@@ -114,9 +114,19 @@ The layout layer defines content padding and width, automatic grid columns, colu
 
 Application Shell and Product Patterns consume these contracts so responsive geometry remains centralized. Device Adaptation continues to describe physical viewport and capability facts independently from interface layout policy.
 
+## Effective Component System
+
+The Component System is the composition boundary between Core context, effective Accessibility safeguards, and Material One's semantic presentation subsystems.
+
+Core owns requested layout, density, input, motion, contrast, text scale, transparency, and interaction context. Accessibility owns the effective safeguards that may constrain those requests. Semantic Colors, Typography, Motion, and Shape remain authoritative for their own roles and implementation values.
+
+`createAdaptiveComponentContext()` can preserve both requested and effective state. `createEffectiveComponentContract()` carries that state into the typed component contract, while `createAdaptiveComponentPresentation()` composes adaptive Typography and Motion presentation with Semantic Color and Shape references.
+
+The effective presentation exposes motion, contrast, text scale, transparency, forced-colors, accessibility-constraint, and minimum-target metadata. Component CSS consumes effective motion metadata for transitions, pressed transforms, loading animation, and forced-colors focus treatment. The older Core-only component presentation remains supported as a compatibility path.
+
 ## Controls and Interactions
 
-Controls are specialized adaptive components and share the canonical Material One component state vocabulary rather than maintaining a parallel interaction model.
+Controls are specialized adaptive components and share the canonical Material One component state vocabulary rather than maintaining a parallel interaction model. When an effective Accessibility policy is available, `createAdaptiveControlPresentation()` extends the effective component bridge instead of reconstructing motion, contrast, typography, or target safeguards.
 
 The controls layer owns recipes for toggles, sliders, segmented controls, tabs, chips, data tables, pagination, progress, and disclosure behavior. Recipes inherit the core interaction target, layout, input method, density, and motion preference.
 

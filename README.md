@@ -61,8 +61,8 @@ Material One
 packages/
 ├── tokens/             Typed validation, lookup, inventory, and CSS tracing for canonical design tokens
 ├── core/               Adaptive context and preference engine
-├── components/         Component recipes and CSS primitives
-├── controls/           Canonical-state selection, form, data, disclosure, and feedback controls
+├── components/         Effective Accessibility-aware component contracts, presentation, recipes, and CSS
+├── controls/           Canonical-state controls with effective component presentation
 ├── color-intelligence/ Color-purpose routing across semantic, status, categorical, and priority systems
 ├── semantic-colors/    Semantic roles, schemes, status pairs, and interaction colors
 ├── color-coding/       Categorical color coding and data color intelligence
@@ -145,7 +145,7 @@ Core selects the authoritative compact, expanded, or workspace layout mode. The 
 
 ## Controls and Interactions
 
-Controls specialize the canonical Material One component contract for selection, input, navigation, data, feedback, and disclosure. Control state now aliases the shared component state vocabulary—including hovered—and `createControlPresentation()` extends the component presentation bridge with control-specific checked, orientation, presentation, placement, selection, table, pagination, and progress metadata plus adaptive target-size CSS variables.
+Controls specialize the canonical Material One component contract for selection, input, navigation, data, feedback, and disclosure. Control state aliases the shared component state vocabulary—including hovered. `createControlPresentation()` remains the Core-only compatibility bridge, while `createAdaptiveControlPresentation()` extends the effective Accessibility-aware component presentation with control-specific checked, orientation, placement, selection, table, pagination, progress, motion, and target-size metadata.
 
 ## Product Patterns
 
@@ -175,9 +175,9 @@ Personalization combines requested Material One preferences with the effective a
 
 Device adaptation formalizes the physical and capability environment around the core Material One context without creating a second layout system. The runtime distinguishes physical device class from interface layout, preserves mixed-input and unknown-capability states, normalizes safe-area insets and segmented viewports, and emits portable data attributes and CSS variables for framework adapters. Core remains authoritative for layout and interaction-target resolution while the device layer describes what the host environment actually knows.
 
-## Adaptive Components
+## Effective Adaptive Components
 
-Material One uses one canonical component-state vocabulary across core runtime attributes and component recipes: default, hovered, focused, pressed, selected, disabled, loading, success, warning, and error. Adaptive component contracts inherit layout, density, input method, motion preference, contrast preference, text scale, and interaction-target sizing from the current Material One context. Component semantic color, typography, motion, and shape fields are typed directly against their authoritative Material One subsystems, and `createComponentPresentation()` converts those contracts into portable data attributes and CSS variables for framework adapters. Legacy runtime inputs from the first prototype are normalized before `data-mo-state` is emitted so downstream products can migrate without maintaining a second interaction language.
+Material One uses one canonical component-state vocabulary across core runtime attributes and component recipes: default, hovered, focused, pressed, selected, disabled, loading, success, warning, and error. Core remains the requested context, while Accessibility supplies effective motion, contrast, text scale, transparency, forced-colors state, and minimum target policy. `createAdaptiveComponentPresentation()` composes those effective safeguards with adaptive Typography and Motion plus Semantic Color and Shape contracts, exposing requested/effective metadata without letting component code re-enable a constrained preference. The original `createComponentPresentation()` remains available as the Core-only compatibility path. Controls can use `createAdaptiveControlPresentation()` to inherit the same effective bridge.
 
 ## Adaptive Loading
 
@@ -185,7 +185,7 @@ Loading is resolved from intent, latency, known geometry, stale-content availabi
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, accessibility-aware adaptive visualization, accessibility-aware adaptive typography, accessibility-aware semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, accessibility-aware adaptive visualization, accessibility-aware adaptive typography, accessibility-aware semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, effective component/control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
