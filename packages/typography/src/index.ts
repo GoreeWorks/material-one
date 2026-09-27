@@ -1,3 +1,12 @@
+import type {
+  DensityPreference,
+  LayoutMode,
+  MaterialOneContext
+} from "@material-one/core";
+import type {
+  MaterialOneAccessibilityPolicy
+} from "@material-one/accessibility";
+
 export const typographyRoles = [
   "display",
   "largeTitle",
@@ -8,9 +17,14 @@ export const typographyRoles = [
   "supporting"
 ] as const;
 
-export type TypographyRole = (typeof typographyRoles)[number];
-export type TypographyLayout = "compact" | "expanded" | "workspace";
-export type TypographyDensity = "compact" | "comfortable" | "spacious";
+export type TypographyRole =
+  (typeof typographyRoles)[number];
+
+export type TypographyLayout =
+  LayoutMode;
+
+export type TypographyDensity =
+  DensityPreference;
 
 export interface TypographyRoleSpec {
   role: TypographyRole;
@@ -27,7 +41,30 @@ export interface TypographyContext {
   density?: TypographyDensity;
 }
 
-const baseSpecs: Record<TypographyRole, Omit<TypographyRoleSpec, "role">> = {
+export interface MaterialOneTypographyPolicy {
+  layout: LayoutMode;
+  density: DensityPreference;
+  requestedTextScale: number;
+  effectiveTextScale: number;
+  constrainedByAccessibility: boolean;
+}
+
+export interface TypographyPresentation {
+  policy: MaterialOneTypographyPolicy;
+  spec: TypographyRoleSpec;
+  attributes: Record<string, string>;
+  style: Record<string, string>;
+}
+
+export const typographyTextScaleRange = {
+  minimum: 0.8,
+  maximum: 2
+} as const;
+
+const baseSpecs: Record<
+  TypographyRole,
+  Omit<TypographyRoleSpec, "role">
+> = {
   display: {
     fontSizeRem: 3.5,
     lineHeight: 1.02,
@@ -79,21 +116,38 @@ const baseSpecs: Record<TypographyRole, Omit<TypographyRoleSpec, "role">> = {
   }
 };
 
-const layoutScale: Record<TypographyLayout, number> = {
+const layoutScale: Record<
+  TypographyLayout,
+  number
+> = {
   compact: 0.92,
   expanded: 1,
   workspace: 1.06
 };
 
-const densityScale: Record<TypographyDensity, number> = {
+const densityScale: Record<
+  TypographyDensity,
+  number
+> = {
   compact: 0.97,
   comfortable: 1,
   spacious: 1.03
 };
 
-function clampTextScale(scale: number): number {
-  if (!Number.isFinite(scale)) return 1;
-  return Math.max(0.9, Math.min(2, scale));
+export function clampTypographyTextScale(
+  scale: number
+): number {
+  if (!Number.isFinite(scale)) {
+    return 1;
+  }
+
+  return Math.max(
+    typographyTextScaleRange.minimum,
+    Math.min(
+      typographyTextScaleRange.maximum,
+      scale
+    )
+  );
 }
 
 export function resolveTypographyRole(
@@ -101,38 +155,126 @@ export function resolveTypographyRole(
   context: TypographyContext
 ): TypographyRoleSpec {
   const base = baseSpecs[role];
-  const textScale = clampTextScale(context.textScale ?? 1);
-  const density = densityScale[context.density ?? "comfortable"];
-  const layout = layoutScale[context.layout];
+  const textScale =
+    clampTypographyTextScale(
+      context.textScale ?? 1
+    );
+  const density =
+    densityScale[
+      context.density ??
+      "comfortable"
+    ];
+  const layout =
+    layoutScale[context.layout];
 
   const structuralScale =
-    role === "body" || role === "label" || role === "supporting"
+    role === "body" ||
+    role === "label" ||
+    role === "supporting"
       ? 1
       : layout * density;
 
   return {
     role,
     ...base,
-    fontSizeRem: Number((base.fontSizeRem * structuralScale * textScale).toFixed(4))
+    fontSizeRem:
+      Number(
+        (
+          base.fontSizeRem *
+          structuralScale *
+          textScale
+        ).toFixed(4)
+      )
   };
 }
 
 export function resolveTypographyScale(
   context: TypographyContext
-): Record<TypographyRole, TypographyRoleSpec> {
+): Record<
+  TypographyRole,
+  TypographyRoleSpec
+> {
   return Object.fromEntries(
-    typographyRoles.map((role) => [role, resolveTypographyRole(role, context)])
-  ) as Record<TypographyRole, TypographyRoleSpec>;
+    typographyRoles.map(
+      (role) => [
+        role,
+        resolveTypographyRole(
+          role,
+          context
+        )
+      ]
+    )
+  ) as Record<
+    TypographyRole,
+    TypographyRoleSpec
+  >;
+}
+
+export function createTypographyPolicy(
+  context: MaterialOneContext,
+  accessibility:
+    MaterialOneAccessibilityPolicy
+): MaterialOneTypographyPolicy {
+  const requestedTextScale =
+    context.preferences
+      .accessibility.textScale;
+  const effectiveTextScale =
+    accessibility.textScale;
+
+  return {
+    layout: context.layout,
+    density:
+      context.preferences.density,
+    requestedTextScale,
+    effectiveTextScale,
+    constrainedByAccessibility:
+      requestedTextScale !==
+      effectiveTextScale
+  };
+}
+
+export function resolveAdaptiveTypographyRole(
+  context: MaterialOneContext,
+  accessibility:
+    MaterialOneAccessibilityPolicy,
+  role: TypographyRole
+): TypographyRoleSpec {
+  const policy =
+    createTypographyPolicy(
+      context,
+      accessibility
+    );
+
+  return resolveTypographyRole(
+    role,
+    {
+      layout: policy.layout,
+      density: policy.density,
+      textScale:
+        policy.effectiveTextScale
+    }
+  );
 }
 
 export function readableLineLength(
   role: TypographyRole
 ): number | undefined {
-  return baseSpecs[role].maxLineLengthCh;
+  return (
+    baseSpecs[role]
+      .maxLineLengthCh
+  );
 }
 
-export function typographyCssVariable(role: TypographyRole): string {
-  const kebab = role.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+export function typographyCssVariable(
+  role: TypographyRole
+): string {
+  const kebab =
+    role.replace(
+      /[A-Z]/g,
+      (letter) =>
+        `-${letter.toLowerCase()}`
+    );
+
   return `--mo-type-${kebab}`;
 }
 
@@ -140,15 +282,85 @@ export function typographyStyle(
   role: TypographyRole,
   context: TypographyContext
 ): Record<string, string> {
-  const spec = resolveTypographyRole(role, context);
+  const spec =
+    resolveTypographyRole(
+      role,
+      context
+    );
 
   return {
-    fontSize: `${spec.fontSizeRem}rem`,
-    lineHeight: String(spec.lineHeight),
-    fontWeight: String(spec.fontWeight),
-    letterSpacing: `${spec.letterSpacingEm}em`,
+    fontSize:
+      `${spec.fontSizeRem}rem`,
+    lineHeight:
+      String(spec.lineHeight),
+    fontWeight:
+      String(spec.fontWeight),
+    letterSpacing:
+      `${spec.letterSpacingEm}em`,
     ...(spec.maxLineLengthCh
-      ? { maxInlineSize: `${spec.maxLineLengthCh}ch` }
+      ? {
+          maxInlineSize:
+            `${spec.maxLineLengthCh}ch`
+        }
       : {})
+  };
+}
+
+export function createTypographyPresentation(
+  context: MaterialOneContext,
+  accessibility:
+    MaterialOneAccessibilityPolicy,
+  role: TypographyRole
+): TypographyPresentation {
+  const policy =
+    createTypographyPolicy(
+      context,
+      accessibility
+    );
+  const spec =
+    resolveAdaptiveTypographyRole(
+      context,
+      accessibility,
+      role
+    );
+
+  return {
+    policy,
+    spec,
+    attributes: {
+      "data-mo-type-role":
+        role,
+      "data-mo-layout":
+        policy.layout,
+      "data-mo-density":
+        policy.density,
+      "data-mo-text-scale-requested":
+        String(
+          policy.requestedTextScale
+        ),
+      "data-mo-text-scale":
+        String(
+          policy.effectiveTextScale
+        ),
+      "data-mo-text-scale-constrained":
+        String(
+          policy
+            .constrainedByAccessibility
+        )
+    },
+    style: {
+      "--mo-type-effective-size":
+        `${spec.fontSizeRem}rem`,
+      "--mo-type-effective-line-height":
+        String(spec.lineHeight),
+      "--mo-type-effective-weight":
+        String(spec.fontWeight),
+      "--mo-type-effective-tracking":
+        `${spec.letterSpacingEm}em`,
+      "--mo-type-effective-max-line":
+        spec.maxLineLengthCh
+          ? `${spec.maxLineLengthCh}ch`
+          : "none"
+    }
   };
 }
