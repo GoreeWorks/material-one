@@ -94,7 +94,11 @@
 
 .mo-shell-content {
   inline-size: 100%;
-  max-inline-size: var(--mo-layout-content-max, 1440px);
+  max-inline-size:
+    var(
+      --mo-shell-content-max,
+      var(--mo-layout-content-max, 1440px)
+    );
   margin-inline: auto;
 }
 
@@ -180,7 +184,7 @@
 
 .mo-menu {
   min-inline-size: 220px;
-  max-inline-size: 360px;
+  max-inline-size: var(--mo-overlay-max-width, 360px);
   padding: var(--mo-space-sm);
   color: var(--mo-text-primary);
   background: var(--mo-surface-floating);
@@ -228,7 +232,11 @@
 
 .mo-dialog,
 .mo-command-dialog {
-  inline-size: min(100%, 640px);
+  inline-size:
+    min(
+      100%,
+      var(--mo-overlay-max-width, 640px)
+    );
   max-block-size: min(84dvh, 900px);
   overflow: auto;
   color: var(--mo-text-primary);
@@ -239,7 +247,11 @@
 }
 
 .mo-command-dialog {
-  inline-size: min(100%, 720px);
+  inline-size:
+    min(
+      100%,
+      var(--mo-overlay-max-width, 720px)
+    );
 }
 
 .mo-dialog-header,
@@ -300,7 +312,11 @@
   z-index: 120;
   inset-inline-end: var(--mo-space-lg);
   inset-block-end: var(--mo-space-lg);
-  inline-size: min(calc(100vw - 2 * var(--mo-space-lg)), 420px);
+  inline-size:
+    min(
+      calc(100vw - 2 * var(--mo-space-lg)),
+      var(--mo-overlay-max-width, 420px)
+    );
   display: grid;
   gap: var(--mo-space-sm);
   pointer-events: none;
@@ -470,4 +486,131 @@
   .mo-bottom-nav {
     background: var(--mo-surface-base);
   }
+}
+
+
+/* Typed runtime presentation overrides.
+   These follow viewport fallbacks so explicit Material One
+   layout policy remains authoritative. */
+
+[data-mo-shell-navigation="sidebar"] .mo-shell-frame {
+  padding-block-end: 0;
+  grid-template:
+    "topbar topbar topbar" var(--mo-shell-topbar-height)
+    "nav main context" minmax(0, 1fr)
+    / var(--mo-shell-nav-width)
+      minmax(0, 1fr)
+      var(--mo-shell-context-width);
+}
+
+[data-mo-shell-navigation="sidebar"] .mo-sidebar {
+  display: flex;
+}
+
+[data-mo-shell-navigation="sidebar"] .mo-rail,
+[data-mo-shell-navigation="sidebar"] .mo-bottom-nav {
+  display: none;
+}
+
+[data-mo-shell-navigation="rail"] .mo-shell-frame {
+  padding-block-end: 0;
+  grid-template:
+    "topbar topbar" var(--mo-shell-topbar-height)
+    "nav main" minmax(0, 1fr)
+    / var(--mo-shell-nav-width) minmax(0, 1fr);
+}
+
+[data-mo-shell-navigation="rail"] .mo-sidebar,
+[data-mo-shell-navigation="rail"] .mo-bottom-nav {
+  display: none;
+}
+
+[data-mo-shell-navigation="rail"] .mo-rail {
+  display: flex;
+}
+
+[data-mo-shell-navigation="bottom"] .mo-shell-frame {
+  padding-block-end: var(--mo-shell-bottom-nav-height);
+  grid-template:
+    "topbar" var(--mo-shell-topbar-height)
+    "main" minmax(0, 1fr)
+    / minmax(0, 1fr);
+}
+
+[data-mo-shell-navigation="bottom"] .mo-sidebar,
+[data-mo-shell-navigation="bottom"] .mo-rail {
+  display: none;
+}
+
+[data-mo-shell-navigation="bottom"] .mo-topbar {
+  padding-inline: var(--mo-space-md);
+}
+
+[data-mo-shell-navigation="bottom"] .mo-topbar-center {
+  justify-content: flex-end;
+}
+
+[data-mo-shell-navigation="bottom"] .mo-bottom-nav {
+  position: fixed;
+  z-index: 50;
+  inset-inline: var(--mo-space-sm);
+  inset-block-end: var(--mo-space-sm);
+  min-block-size:
+    calc(
+      var(--mo-shell-bottom-nav-height) -
+      var(--mo-space-sm)
+    );
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: center;
+  gap: var(--mo-space-xs);
+  padding: var(--mo-space-xs);
+  background:
+    color-mix(
+      in srgb,
+      var(--mo-surface-floating) 94%,
+      transparent
+    );
+  border: 1px solid var(--mo-border);
+  border-radius: var(--mo-shape-extra-large);
+  box-shadow: var(--mo-elevation-2);
+  backdrop-filter: blur(18px) saturate(1.2);
+}
+
+[data-mo-shell-context="none"] .mo-context-pane {
+  display: none;
+}
+
+[data-mo-shell-context="none"] {
+  --mo-shell-context-width: 0px;
+}
+
+.mo-overlay[data-mo-overlay-presentation="sheet"] {
+  align-items: end;
+  padding: 0;
+}
+
+.mo-overlay[data-mo-overlay-presentation="sheet"] .mo-dialog,
+.mo-overlay[data-mo-overlay-presentation="sheet"] .mo-command-dialog {
+  inline-size: 100%;
+  max-block-size: 88dvh;
+  border-radius:
+    var(--mo-shape-extra-large)
+    var(--mo-shape-extra-large)
+    0
+    0;
+}
+
+.mo-overlay[data-mo-overlay-presentation="fullscreen"] {
+  padding: 0;
+}
+
+.mo-overlay[data-mo-overlay-presentation="fullscreen"] .mo-dialog,
+.mo-overlay[data-mo-overlay-presentation="fullscreen"] .mo-command-dialog {
+  inline-size: 100%;
+  block-size: 100dvh;
+  max-block-size: none;
+  border: 0;
+  border-radius: 0;
 }
