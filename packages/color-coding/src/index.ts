@@ -18,6 +18,18 @@ export type ColorCodeUsage =
   | "workflow";
 export type ColorCodeCue = "dot" | "bar" | "surface" | "outline";
 
+export const goreeWorksPriorityLevels = [
+  "horizon",
+  "current",
+  "pulse",
+  "beacon",
+  "surge",
+  "apex"
+] as const;
+
+export type GoreeWorksPriorityLevel =
+  (typeof goreeWorksPriorityLevels)[number];
+
 export interface ColorCodeAssignment {
   key: string;
   label: string;
@@ -102,13 +114,15 @@ export function createColorCodeRegistry(
 }
 
 export function priorityColorCode(
-  priority: "low" | "normal" | "high" | "urgent"
+  priority: GoreeWorksPriorityLevel
 ): ColorCodeName {
-  const map: Record<typeof priority, ColorCodeName> = {
-    low: "teal",
-    normal: "blue",
-    high: "amber",
-    urgent: "rose"
+  const map: Record<GoreeWorksPriorityLevel, ColorCodeName> = {
+    horizon: "teal",
+    current: "blue",
+    pulse: "cyan",
+    beacon: "violet",
+    surge: "amber",
+    apex: "rose"
   };
 
   return map[priority];
