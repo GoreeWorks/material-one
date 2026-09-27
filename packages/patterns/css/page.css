@@ -1,6 +1,10 @@
 .mo-page {
   inline-size: 100%;
-  max-inline-size: var(--mo-layout-content-max, 1440px);
+  max-inline-size:
+    var(
+      --mo-pattern-page-max,
+      var(--mo-layout-content-max, 1440px)
+    );
   margin-inline: auto;
 }
 
@@ -49,3 +53,10 @@
 .mo-stat-label { color: var(--mo-text-muted); font-size: var(--mo-type-label); }
 .mo-stat-value { font-size: var(--mo-type-title); font-weight: 760; line-height: 1; }
 .mo-stat-supporting { color: var(--mo-text-muted); font-size: var(--mo-type-supporting); }
+
+
+.mo-page[data-mo-pattern-presentation="stacked"] .mo-page-header {
+  grid-template-columns: 1fr;
+  gap: var(--mo-space-md);
+  margin-block-end: var(--mo-space-lg);
+}
