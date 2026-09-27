@@ -1,4 +1,4 @@
-@import "../../../tokens/css/material-one.css";
+@import "../../shape/css/material-one-shape.css";
 
 .mo-component {
   min-block-size: var(--mo-target-comfortable);
@@ -72,7 +72,7 @@
   color: var(--mo-text-primary);
   background: var(--mo-surface-base);
   border: 1px solid var(--mo-border);
-  border-radius: var(--mo-shape-medium);
+  border-radius: var(--mo-shape-surface);
 }
 
 .mo-surface[data-mo-elevation="1"] { box-shadow: var(--mo-elevation-1); }
@@ -86,7 +86,7 @@
   color: var(--mo-text-primary);
   background: var(--mo-surface-base);
   border: 1px solid var(--mo-border);
-  border-radius: var(--mo-shape-large);
+  border-radius: var(--mo-shape-card);
   box-shadow: var(--mo-elevation-0);
   transition:
     box-shadow var(--mo-motion-small) var(--mo-ease-standard),
@@ -109,7 +109,7 @@
   gap: var(--mo-space-sm);
   padding-inline: var(--mo-space-md);
   border: 1px solid transparent;
-  border-radius: var(--mo-shape-medium);
+  border-radius: var(--mo-shape-control);
   font: inherit;
   font-weight: 650;
   line-height: 1;
@@ -172,7 +172,7 @@
 .mo-button[data-mo-icon-only="true"] {
   inline-size: var(--mo-control-height, var(--mo-target-comfortable));
   padding-inline: 0;
-  border-radius: var(--mo-shape-pill);
+  border-radius: var(--mo-shape-icon-button);
 }
 
 .mo-button[data-mo-loading="true"] {
@@ -217,7 +217,7 @@
   color: var(--mo-text-primary);
   background: var(--mo-surface-base);
   border: 1px solid var(--mo-border);
-  border-radius: var(--mo-shape-medium);
+  border-radius: var(--mo-shape-field);
   font: inherit;
   transition:
     border-color var(--mo-motion-small) var(--mo-ease-standard),
@@ -246,7 +246,7 @@
   color: var(--mo-text-primary);
   background: var(--mo-surface-container);
   border: 1px solid var(--mo-border);
-  border-radius: var(--mo-shape-large);
+  border-radius: var(--mo-shape-navigation);
 }
 
 .mo-nav[data-mo-presentation="rail"],
@@ -263,7 +263,7 @@
   color: var(--mo-text-muted);
   background: transparent;
   border: 0;
-  border-radius: var(--mo-shape-medium);
+  border-radius: var(--mo-shape-control);
   text-decoration: none;
 }
 

@@ -16,6 +16,12 @@ import {
   motionCssVariables,
   type MotionIntent
 } from "@material-one/motion";
+import {
+  resolveShapeToken,
+  shapeCssVariable,
+  type ShapeRole,
+  type ShapeToken
+} from "@material-one/shape";
 
 export type ComponentState = MaterialOneComponentState;
 export type ComponentEmphasis =
@@ -44,6 +50,8 @@ export interface AdaptiveComponentContract {
   semanticColorRole: SemanticColorRole;
   typographyRole: TypographyRole;
   motionIntent: MotionIntent;
+  shapeRole: ShapeRole;
+  shapeToken: ShapeToken;
 }
 
 export interface ComponentContractOptions {
@@ -51,6 +59,7 @@ export interface ComponentContractOptions {
   semanticColorRole?: SemanticColorRole;
   typographyRole?: TypographyRole;
   motionIntent?: MotionIntent;
+  shapeRole?: ShapeRole;
 }
 
 export interface ComponentPresentation {
@@ -91,11 +100,38 @@ export function createAdaptiveComponentContext(
   };
 }
 
+function defaultShapeRole(component: string): ShapeRole {
+  const normalized = component.trim().toLowerCase();
+
+  if (normalized.includes("card")) return "card";
+  if (
+    normalized.includes("field") ||
+    normalized.includes("input") ||
+    normalized.includes("select")
+  ) {
+    return "field";
+  }
+  if (normalized.includes("nav")) return "navigation";
+  if (normalized.includes("surface")) return "surface";
+  if (normalized.includes("chip")) return "chip";
+  if (
+    normalized.includes("icon") ||
+    normalized.includes("fab")
+  ) {
+    return "iconButton";
+  }
+
+  return "control";
+}
+
 export function createComponentContract(
   component: string,
   context: MaterialOneContext,
   options: ComponentContractOptions = {}
 ): AdaptiveComponentContract {
+  const shapeRole =
+    options.shapeRole ?? defaultShapeRole(component);
+
   return {
     component,
     state: options.state ?? "default",
@@ -103,7 +139,9 @@ export function createComponentContract(
     semanticColorRole:
       options.semanticColorRole ?? "surfaceContainer",
     typographyRole: options.typographyRole ?? "body",
-    motionIntent: options.motionIntent ?? "feedback"
+    motionIntent: options.motionIntent ?? "feedback",
+    shapeRole,
+    shapeToken: resolveShapeToken(shapeRole, context)
   };
 }
 
@@ -135,13 +173,17 @@ export function createComponentPresentation(
         : "standard",
       "data-mo-semantic-role": contract.semanticColorRole,
       "data-mo-typography-role": contract.typographyRole,
-      "data-mo-motion-intent": contract.motionIntent
+      "data-mo-motion-intent": contract.motionIntent,
+      "data-mo-shape-role": contract.shapeRole,
+      "data-mo-shape-token": contract.shapeToken
     },
     style: {
       "--mo-component-semantic-color":
         `var(${semanticCssVariable(contract.semanticColorRole)})`,
       "--mo-component-type-size":
         `var(${typographyCssVariable(contract.typographyRole)})`,
+      "--mo-component-radius":
+        `var(${shapeCssVariable(contract.shapeToken)})`,
       ...motionCssVariables(
         contract.motionIntent,
         contract.context.motion
@@ -154,12 +196,7 @@ export interface ComponentRecipe {
   state: ComponentState;
   emphasis: ComponentEmphasis;
   minTargetSize: number;
-  radius:
-    | "extra-small"
-    | "small"
-    | "medium"
-    | "large"
-    | "pill";
+  radius: ShapeToken;
   elevation: 0 | 1 | 2 | 3;
   motion: "none" | "instant" | "small" | "standard" | "large";
 }
@@ -206,8 +243,12 @@ export function createButtonRecipe(
     state: options.state ?? "default",
     emphasis: options.emphasis ?? "primary",
     minTargetSize: context.interactionTarget,
-    radius:
-      options.iconOnly || options.floating ? "pill" : "medium",
+    radius: resolveShapeToken(
+      options.iconOnly || options.floating
+        ? "iconButton"
+        : "control",
+      context
+    ),
     elevation: options.floating ? 2 : 0,
     motion: motionFor(context)
   };
@@ -221,7 +262,10 @@ export function createSurfaceRecipe(
     state: options.state ?? "default",
     emphasis: "neutral",
     minTargetSize: 0,
-    radius: options.floating ? "large" : "medium",
+    radius: resolveShapeToken(
+      options.floating ? "floating" : "surface",
+      context
+    ),
     elevation: options.floating ? 2 : options.focused ? 1 : 0,
     motion: motionFor(context)
   };
@@ -235,10 +279,7 @@ export function createCardRecipe(
     state: "default",
     emphasis: "neutral",
     minTargetSize: interactive ? context.interactionTarget : 0,
-    radius:
-      context.preferences.experienceMode === "minimal"
-        ? "small"
-        : "large",
+    radius: resolveShapeToken("card", context),
     elevation: interactive ? 1 : 0,
     motion: motionFor(context)
   };
@@ -252,7 +293,7 @@ export function createFieldRecipe(
     state: options.state ?? "default",
     emphasis: options.state === "error" ? "danger" : "neutral",
     minTargetSize: context.interactionTarget,
-    radius: "medium",
+    radius: resolveShapeToken("field", context),
     elevation: 0,
     motion: motionFor(context)
   };
@@ -274,7 +315,7 @@ export function createNavigationRecipe(
     state: "default",
     emphasis: "neutral",
     minTargetSize: context.interactionTarget,
-    radius: context.layout === "compact" ? "large" : "medium",
+    radius: resolveShapeToken("navigation", context),
     elevation: context.layout === "compact" ? 1 : 0,
     motion: motionFor(context),
     presentation

@@ -1,6 +1,6 @@
 {
   "name": "@material-one/components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Typed adaptive component contracts, presentation metadata, recipes, and CSS primitives for Material One.",
   "type": "module",
   "exports": {
@@ -11,7 +11,8 @@
     "@material-one/core": "^0.1.0",
     "@material-one/semantic-colors": "^0.1.0",
     "@material-one/typography": "^0.1.0",
-    "@material-one/motion": "^0.1.0"
+    "@material-one/motion": "^0.1.0",
+    "@material-one/shape": "^0.1.0"
   },
   "keywords": [
     "design-system",

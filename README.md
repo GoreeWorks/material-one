@@ -67,6 +67,7 @@ packages/
 ├── theme-intelligence/ Adaptive semantic theme generation and contrast validation
 ├── data-visualization/ Accessible chart encodings, patterns, legends, and data states
 ├── typography/         Adaptive semantic typography and readable scaling
+├── shape/              Semantic shape roles, adaptive geometry, and CSS aliases
 ├── motion/             Semantic motion intents and reduced-motion adaptation
 ├── loading/            Skeleton loading and progressive loading behavior
 ├── patterns/           Adaptive page and product patterns
@@ -119,6 +120,10 @@ Data visualization uses categorical Material One color coding for peer series an
 
 Typography uses semantic roles rather than arbitrary font sizes. Display, large title, section heading, title, body, label, and supporting text adapt to layout and user text scale while preserving body readability, line-height, and maximum readable line lengths.
 
+## Semantic Shape
+
+Shape is organized by interface purpose rather than component-specific radius constants. Stable raw tokens feed semantic roles for controls, fields, surfaces, cards, navigation, floating surfaces, icon buttons, and chips. Experience modes resolve to minimal, balanced, or expressive geometry, while compact layouts can strengthen navigation enclosure independently. Components consume typed shape roles and tokens, and framework adapters can apply portable semantic CSS aliases.
+
 ## Semantic Motion
 
 Motion is organized by intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Full, reduced, and no-motion preferences share the same state model. Reduced motion removes decorative spatial movement while retaining very short essential feedback when needed to communicate a direct action.
@@ -137,7 +142,7 @@ Device adaptation formalizes the physical and capability environment around the 
 
 ## Adaptive Components
 
-Material One uses one canonical component-state vocabulary across core runtime attributes and component recipes: default, hovered, focused, pressed, selected, disabled, loading, success, warning, and error. Adaptive component contracts inherit layout, density, input method, motion preference, contrast preference, text scale, and interaction-target sizing from the current Material One context. Component semantic color, typography, and motion fields are typed directly against their authoritative Material One subsystems, and `createComponentPresentation()` converts those contracts into portable data attributes and CSS variables for framework adapters. Legacy runtime inputs from the first prototype are normalized before `data-mo-state` is emitted so downstream products can migrate without maintaining a second interaction language.
+Material One uses one canonical component-state vocabulary across core runtime attributes and component recipes: default, hovered, focused, pressed, selected, disabled, loading, success, warning, and error. Adaptive component contracts inherit layout, density, input method, motion preference, contrast preference, text scale, and interaction-target sizing from the current Material One context. Component semantic color, typography, motion, and shape fields are typed directly against their authoritative Material One subsystems, and `createComponentPresentation()` converts those contracts into portable data attributes and CSS variables for framework adapters. Legacy runtime inputs from the first prototype are normalized before `data-mo-state` is emitted so downstream products can migrate without maintaining a second interaction language.
 
 ## Skeleton Loading
 
@@ -145,11 +150,11 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
 
 ## License
 

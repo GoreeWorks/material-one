@@ -74,6 +74,16 @@ Large hierarchy roles adapt to compact, expanded, and workspace layouts. Body an
 
 User text scaling is independent of layout adaptation, and readable line-length contracts constrain overly wide text.
 
+## Shape Framework
+
+Material One separates raw shape tokens from semantic shape roles.
+
+The token layer owns the stable geometry primitives: extra-small, small, medium, large, extra-large, and pill. The shape framework maps interface-purpose roles such as control, field, surface, card, navigation, floating surface, icon button, and chip onto those primitives.
+
+Experience modes resolve into minimal, balanced, or expressive shape styles. This lets geometry adapt coherently without allowing each component to invent its own corner language. Compact layout may strengthen navigation enclosure while leaving other role mappings unchanged.
+
+Components consume typed `ShapeRole` and `ShapeToken` contracts. Framework-portable presentation exposes `data-mo-shape-style` and semantic CSS aliases while raw token meaning remains stable.
+
 ## Semantic Motion
 
 Motion is organized by intent rather than by component-specific animation constants.

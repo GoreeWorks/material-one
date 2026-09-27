@@ -1,0 +1,43 @@
+@import "../../../tokens/css/material-one.css";
+
+:root {
+  --mo-shape-control: var(--mo-shape-medium);
+  --mo-shape-field: var(--mo-shape-medium);
+  --mo-shape-surface: var(--mo-shape-medium);
+  --mo-shape-card: var(--mo-shape-large);
+  --mo-shape-navigation: var(--mo-shape-medium);
+  --mo-shape-floating: var(--mo-shape-large);
+  --mo-shape-icon-button: var(--mo-shape-pill);
+  --mo-shape-chip: var(--mo-shape-pill);
+}
+
+[data-mo-shape-style="minimal"] {
+  --mo-shape-control: var(--mo-shape-small);
+  --mo-shape-field: var(--mo-shape-small);
+  --mo-shape-surface: var(--mo-shape-small);
+  --mo-shape-card: var(--mo-shape-small);
+  --mo-shape-navigation: var(--mo-shape-small);
+  --mo-shape-floating: var(--mo-shape-medium);
+}
+
+[data-mo-shape-style="expressive"] {
+  --mo-shape-control: var(--mo-shape-medium);
+  --mo-shape-field: var(--mo-shape-medium);
+  --mo-shape-surface: var(--mo-shape-large);
+  --mo-shape-card: var(--mo-shape-extra-large);
+  --mo-shape-navigation: var(--mo-shape-large);
+  --mo-shape-floating: var(--mo-shape-extra-large);
+}
+
+[data-mo-layout="compact"][data-mo-shape-style="minimal"] {
+  --mo-shape-navigation: var(--mo-shape-large);
+}
+
+[data-mo-layout="compact"]:not([data-mo-shape-style]),
+[data-mo-layout="compact"][data-mo-shape-style="balanced"] {
+  --mo-shape-navigation: var(--mo-shape-large);
+}
+
+[data-mo-layout="compact"][data-mo-shape-style="expressive"] {
+  --mo-shape-navigation: var(--mo-shape-extra-large);
+}

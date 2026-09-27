@@ -42,6 +42,7 @@ const manifest = {
     "theme-intelligence",
     "data-visualization",
     "adaptive-typography",
+    "shape-framework",
     "semantic-motion",
     "components",
     "application-shell",

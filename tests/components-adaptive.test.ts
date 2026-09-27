@@ -57,6 +57,8 @@ test("adaptive component contracts inherit live Material One context", () => {
   assert.equal(contract.semanticColorRole, "surfaceContainer");
   assert.equal(contract.typographyRole, "body");
   assert.equal(contract.motionIntent, "feedback");
+  assert.equal(contract.shapeRole, "control");
+  assert.equal(contract.shapeToken, "medium");
 });
 
 test("component contracts use typed semantic subsystem roles", () => {
@@ -71,6 +73,8 @@ test("component contracts use typed semantic subsystem roles", () => {
   assert.equal(contract.semanticColorRole, "errorContainer");
   assert.equal(contract.typographyRole, "label");
   assert.equal(contract.motionIntent, "instant");
+  assert.equal(contract.shapeRole, "field");
+  assert.equal(contract.shapeToken, "medium");
   assert.equal(contract.context.layout, "compact");
 });
 
@@ -125,6 +129,18 @@ test("component presentation emits portable attributes and CSS variables", () =>
   assert.equal(
     presentation.style["--mo-motion-translate"],
     "0px"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-shape-role"],
+    "field"
+  );
+  assert.equal(
+    presentation.attributes["data-mo-shape-token"],
+    "medium"
+  );
+  assert.equal(
+    presentation.style["--mo-component-radius"],
+    "var(--mo-shape-medium)"
   );
 });
 
