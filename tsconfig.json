@@ -47,6 +47,9 @@
       ],
       "@material-one/motion": [
         "packages/motion/src/index.ts"
+      ],
+      "@material-one/accessibility": [
+        "packages/accessibility/src/index.ts"
       ]
     }
   },
