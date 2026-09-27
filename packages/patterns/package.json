@@ -1,15 +1,24 @@
 {
   "name": "@material-one/patterns",
-  "version": "0.2.0",
-  "description": "Adaptive page and product experience styles for Material One.",
+  "version": "0.3.0",
+  "description": "Typed adaptive page and product experience pattern contracts and CSS for Material One.",
   "type": "module",
   "exports": {
-    ".": "./css/material-one-patterns.css",
+    ".": "./src/index.ts",
     "./styles": "./css/material-one-patterns.css"
   },
   "peerDependencies": {
-    "@material-one/layout": "^0.1.0"
+    "@material-one/core": "^0.1.0",
+    "@material-one/layout": "^0.1.0",
+    "@material-one/components": "^0.3.0"
   },
-  "keywords": ["design-system", "layouts", "dashboard", "workspace", "material-one"],
+  "keywords": [
+    "design-system",
+    "product-patterns",
+    "layouts",
+    "dashboard",
+    "workspace",
+    "material-one"
+  ],
   "license": "MIT"
 }

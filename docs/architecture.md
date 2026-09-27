@@ -108,6 +108,14 @@ The layout layer defines content padding and width, automatic grid columns, colu
 
 Application Shell and Product Patterns consume these contracts so responsive geometry remains centralized. Device Adaptation continues to describe physical viewport and capability facts independently from interface layout policy.
 
+## Product Patterns
+
+Product Patterns compose lower-level Material One contracts into reusable page-scale structures.
+
+The pattern layer owns page-width intent, page-header presentation, adaptive product-grid intent, master/detail sequencing, settings navigation structure, and catalog filter placement. Core remains authoritative for effective layout mode, while the Layout Engine remains authoritative for structural capacity and column limits.
+
+Typed pattern presentation metadata allows products to honor explicit Material One layout overrides even when raw viewport media queries would imply a different arrangement. Existing CSS media queries remain progressive fallbacks for hosts that do not apply runtime metadata.
+
 ## Semantic Motion
 
 Motion is organized by intent rather than by component-specific animation constants.

@@ -48,6 +48,7 @@ const manifest = {
     "layout-engine",
     "semantic-motion",
     "components",
+    "product-patterns",
     "application-shell",
     "themes",
     "icons",

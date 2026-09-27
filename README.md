@@ -73,7 +73,7 @@ packages/
 ├── layout/             Adaptive geometry, columns, pane strategy, and layout presentation
 ├── motion/             Semantic motion intents and reduced-motion adaptation
 ├── loading/            Skeleton loading and progressive loading behavior
-├── patterns/           Adaptive page and product patterns
+├── patterns/           Typed page, grid, master/detail, settings, and catalog patterns
 ├── shell/              Navigation, workspace shell, commands, and overlays
 ├── themes/             Semantic theme contracts and CSS-variable generation
 ├── icons/              Icon geometry and state contracts
@@ -139,6 +139,10 @@ Shape is organized by interface purpose rather than component-specific radius co
 
 Core selects the authoritative compact, expanded, or workspace layout mode. The Layout Engine turns that mode into shared structural geometry: content padding and width, adaptive grid columns and capacity, minimum useful column widths, pane strategy, and secondary/context-pane availability. Application shell and product patterns consume the same layout contracts so responsive structure does not drift into component-specific breakpoint logic.
 
+## Product Patterns
+
+Product Patterns compose Material One contracts at page scale. Typed recipes cover page width/header structure, adaptive grids, master/detail flows, settings navigation, and catalog filtering. Patterns derive structural decisions from the authoritative core layout mode and Layout Engine, then expose portable attributes and CSS variables so explicit layout overrides do not get lost behind viewport-only media queries.
+
 ## Semantic Motion
 
 Motion is organized by intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Full, reduced, and no-motion preferences share the same state model. Reduced motion removes decorative spatial movement while retaining very short essential feedback when needed to communicate a direct action.
@@ -165,11 +169,11 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Design tokens, core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
+Active foundational implementation. Design tokens, core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, typed product patterns, semantic motion, components, controls, skeleton loading, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
 
 ## License
 
