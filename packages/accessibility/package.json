@@ -1,10 +1,21 @@
 {
   "name": "@material-one/accessibility",
-  "version": "0.1.0",
-  "description": "Accessibility policies, interaction audits, and adaptive assistive behavior for Material One.",
+  "version": "0.2.0",
+  "description": "Adaptive accessibility policy, presentation metadata, interaction audits, and assistive behavior for Material One.",
   "type": "module",
-  "exports": { ".": "./src/index.ts" },
-  "peerDependencies": { "@material-one/core": "^0.1.0" },
-  "keywords": ["accessibility", "a11y", "design-system", "adaptive-ui", "material-one"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-accessibility.css"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "design-system",
+    "adaptive-ui",
+    "material-one"
+  ],
   "license": "MIT"
 }

@@ -1,0 +1,40 @@
+:where([data-mo-accessibility]) {
+  --mo-a11y-focus-ring-width: 2px;
+  --mo-a11y-focus-ring-offset: 2px;
+  --mo-a11y-min-target: 44px;
+  --mo-a11y-text-scale: 1;
+}
+
+:where([data-mo-accessibility]) :focus-visible {
+  outline: var(--mo-a11y-focus-ring-width) solid currentColor;
+  outline-offset: var(--mo-a11y-focus-ring-offset);
+}
+
+[data-mo-accessibility="enhanced"] {
+  --mo-a11y-focus-ring-width: 3px;
+  --mo-a11y-focus-ring-offset: 3px;
+}
+
+[data-mo-transparency="reduced"] {
+  --mo-surface-opacity: 1;
+  --mo-backdrop-blur: 0px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-mo-accessibility]) {
+    scroll-behavior: auto;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :where([data-mo-accessibility]) {
+    --mo-a11y-focus-ring-width: 3px;
+    --mo-a11y-focus-ring-offset: 3px;
+  }
+}
+
+@media (forced-colors: active) {
+  :where([data-mo-accessibility]) :focus-visible {
+    outline-color: Highlight;
+  }
+}
