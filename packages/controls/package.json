@@ -1,6 +1,6 @@
 {
   "name": "@material-one/controls",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Adaptive controls, selection, disclosure, data, and feedback primitives for Material One.",
   "type": "module",
   "exports": {
@@ -9,7 +9,7 @@
   },
   "peerDependencies": {
     "@material-one/core": "^0.1.0",
-    "@material-one/components": "^0.1.0"
+    "@material-one/components": "^0.3.0"
   },
   "keywords": [
     "design-system",
