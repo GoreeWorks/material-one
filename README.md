@@ -147,6 +147,10 @@ Controls specialize the canonical Material One component contract for selection,
 
 Product Patterns compose Material One contracts at page scale. Typed recipes cover page width/header structure, adaptive grids, master/detail flows, settings navigation, and catalog filtering. Patterns derive structural decisions from the authoritative core layout mode and Layout Engine, then expose portable attributes and CSS variables so explicit layout overrides do not get lost behind viewport-only media queries.
 
+## Iconography
+
+Material One iconography uses a canonical 24 × 24 soft-geometric grid with semantic compact, standard, large, and display sizes plus light, regular, and bold weight contracts. Icon definitions can expose named geometry states and opt into RTL mirroring. `createIconPresentation()` resolves purpose, size, weight, state, direction, accessibility metadata, and portable CSS variables; meaningful icons require an accessible label, while decorative icons are hidden from the accessibility tree. Registries reject duplicate icon names.
+
 ## Semantic Motion
 
 Motion is organized by intent: instant, feedback, enter, exit, navigation, transform, emphasis, and loading. Full, reduced, and no-motion preferences share the same state model. Reduced motion removes decorative spatial movement while retaining very short essential feedback when needed to communicate a direct action.
@@ -173,11 +177,11 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Design tokens, core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, typed product patterns, semantic motion, components, controls, skeleton loading, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
+Active foundational implementation. Design tokens, core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, typed product patterns, semantic motion, components, controls, skeleton loading, themes, the typed iconography system, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
 
 ## License
 
