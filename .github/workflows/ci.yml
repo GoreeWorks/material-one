@@ -33,7 +33,7 @@ jobs:
         run: npm run validate:theme-visualization
       - name: Validate typography and motion
         run: npm run validate:typography-motion
-      - name: Validate adaptive components, controls, iconography, application shell, loading, theme runtime, adaptive motion, adaptive typography, accessibility, personalization, device adaptation, shape, layout, color intelligence, design tokens, and product patterns
+      - name: Validate adaptive components, controls, iconography, application shell, loading, theme runtime, adaptive motion, adaptive typography, adaptive visualization, accessibility, personalization, device adaptation, shape, layout, color intelligence, design tokens, and product patterns
         run: |
           npm run validate:components
           npm run validate:controls
@@ -43,6 +43,7 @@ jobs:
           npm run validate:themes
           npm run validate:motion
           npm run validate:typography
+          npm run validate:visualization
           npm run validate:accessibility
           npm run validate:personalization
           npm run validate:device-adaptation
