@@ -60,7 +60,9 @@ const required = [
   "packages/accessibility/src/index.ts",
   "packages/accessibility/css/material-one-accessibility.css",
   "packages/personalization/src/index.ts",
-  "packages/device-adaptation/src/index.ts"
+  "packages/device-adaptation/src/index.ts",
+  "packages/shape/src/index.ts",
+  "packages/shape/css/material-one-shape.css"
 ];
 
 for (const item of required) await exists(item);
@@ -130,13 +132,18 @@ const accessibilityCss = await readFile(
   ),
   "utf8"
 );
+const shapeCss = await readFile(
+  path.join(root, "packages/shape/css/material-one-shape.css"),
+  "utf8"
+);
 
 for (const [name, css] of [
   ["tokens", tokenCss],
   ["components", componentsCss],
   ["controls", controlsCss],
   ["shell", shellCss],
-  ["accessibility", accessibilityCss]
+  ["accessibility", accessibilityCss],
+  ["shape", shapeCss]
 ]) {
   const opens = (css.match(/{/g) ?? []).length;
   const closes = (css.match(/}/g) ?? []).length;
@@ -155,6 +162,16 @@ for (const requiredPattern of [
 
 if (!componentsCss.includes('data-mo-state="focused"')) {
   fail("Component CSS must expose canonical data-mo-state behavior");
+}
+
+for (const requiredPattern of [
+  "--mo-shape-control",
+  "--mo-shape-card",
+  'data-mo-shape-style="expressive"'
+]) {
+  if (!shapeCss.includes(requiredPattern)) {
+    fail(`Shape CSS is missing semantic behavior: ${requiredPattern}`);
+  }
 }
 
 if (!controlsCss.includes("forced-colors: active")) {
