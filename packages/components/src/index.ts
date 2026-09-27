@@ -8,11 +8,16 @@ import {
   semanticCssVariable,
   type SemanticColorRole
 } from "@material-one/semantic-colors";
+import type {
+  MaterialOneAccessibilityPolicy
+} from "@material-one/accessibility";
 import {
+  createTypographyPresentation,
   typographyCssVariable,
   type TypographyRole
 } from "@material-one/typography";
 import {
+  createAdaptiveMotionPresentation,
   motionCssVariables,
   type MotionIntent
 } from "@material-one/motion";
@@ -37,10 +42,20 @@ export interface AdaptiveComponentContext {
   density: ComponentDensity;
   layout: MaterialOneContext["layout"];
   input: MaterialOneContext["device"]["input"];
+  requestedMotion: MaterialOneContext["preferences"]["motion"];
   motion: MaterialOneContext["preferences"]["motion"];
+  requestedContrast:
+    MaterialOneContext["preferences"]["accessibility"]["contrast"];
+  contrast:
+    MaterialOneContext["preferences"]["accessibility"]["contrast"];
   highContrast: boolean;
+  requestedTextScale: number;
   textScale: number;
+  requestedReducedTransparency: boolean;
+  reducedTransparency: boolean;
+  forcedColors: boolean;
   interactionTarget: number;
+  constrainedByAccessibility: boolean;
 }
 
 export interface AdaptiveComponentContract {
@@ -83,8 +98,39 @@ export function resolveComponentDensity(
 }
 
 export function createAdaptiveComponentContext(
-  context: MaterialOneContext
+  context: MaterialOneContext,
+  accessibility?: MaterialOneAccessibilityPolicy
 ): AdaptiveComponentContext {
+  const requestedMotion =
+    context.preferences.motion;
+  const requestedContrast =
+    context.preferences.accessibility.contrast;
+  const requestedTextScale =
+    context.preferences.accessibility.textScale;
+  const requestedReducedTransparency =
+    context.preferences.accessibility.reducedTransparency;
+
+  const motion =
+    accessibility?.motion ??
+    requestedMotion;
+  const contrast =
+    accessibility?.contrast ??
+    requestedContrast;
+  const textScale =
+    accessibility?.textScale ??
+    requestedTextScale;
+  const reducedTransparency =
+    accessibility?.reducedTransparency ??
+    requestedReducedTransparency;
+  const forcedColors =
+    accessibility?.forcedColors ??
+    false;
+  const interactionTarget =
+    Math.max(
+      context.interactionTarget,
+      accessibility?.minTargetSize ?? 0
+    );
+
   return {
     density: resolveComponentDensity(
       context.preferences.density,
@@ -92,11 +138,26 @@ export function createAdaptiveComponentContext(
     ),
     layout: context.layout,
     input: context.device.input,
-    motion: context.preferences.motion,
+    requestedMotion,
+    motion,
+    requestedContrast,
+    contrast,
     highContrast:
-      context.preferences.accessibility.contrast === "high",
-    textScale: context.preferences.accessibility.textScale,
-    interactionTarget: context.interactionTarget
+      contrast === "high",
+    requestedTextScale,
+    textScale,
+    requestedReducedTransparency,
+    reducedTransparency,
+    forcedColors,
+    interactionTarget,
+    constrainedByAccessibility:
+      motion !== requestedMotion ||
+      contrast !== requestedContrast ||
+      textScale !== requestedTextScale ||
+      reducedTransparency !==
+        requestedReducedTransparency ||
+      interactionTarget !==
+        context.interactionTarget
   };
 }
 
