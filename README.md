@@ -123,6 +123,10 @@ Color coding is a separate first-class Material One communication layer. Categor
 
 Theme Intelligence adapts Material One semantic schemes from product or user accent colors while preserving the meaning of success, warning, error, information, disabled, and other system roles. Generated themes validate required contrast and can strengthen muted content, outlines, and interaction overlays in high-contrast contexts.
 
+## Theme Runtime
+
+The Themes package is now a semantic-first runtime bridge rather than a second color model. Theme Intelligence generates validated semantic schemes, Semantic Colors owns the role vocabulary, and `@material-one/themes` resolves named themes into one authoritative scheme before emitting `--mo-sem-*` variables and legacy CSS aliases. Existing `colors` theme input remains supported only as a migration boundary; explicit semantic overrides win, adaptive themes can be generated directly from Theme Intelligence seeds, and runtime presentation includes validation, registry, and portable theme metadata.
+
 ## Data Visualization
 
 Data visualization uses categorical Material One color coding for peer series and semantic colors for meaningful states. Charts pair color with labels, values, patterns, focus treatment, and accessible summaries so information remains understandable when color perception, forced-colors mode, or display conditions change.
@@ -181,7 +185,7 @@ Loading is resolved from intent, latency, known geometry, stale-content availabi
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, semantic-first theme runtime behavior, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
