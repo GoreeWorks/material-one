@@ -1,6 +1,6 @@
 {
   "name": "@material-one/shell",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Adaptive application shell, navigation, command surfaces, and overlays for Material One.",
   "type": "module",
   "exports": {
@@ -9,7 +9,8 @@
   },
   "peerDependencies": {
     "@material-one/core": "^0.1.0",
-    "@material-one/components": "^0.1.0"
+    "@material-one/components": "^0.3.0",
+    "@material-one/layout": "^0.1.0"
   },
   "keywords": [
     "design-system",
