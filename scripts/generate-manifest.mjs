@@ -50,7 +50,9 @@ const manifest = {
     "controls",
     "color-coding",
     "skeleton-loading",
-    "accessibility"
+    "accessibility",
+    "personalization",
+    "device-adaptation"
   ]
 };
 
