@@ -47,7 +47,7 @@ if (!source.includes("export type ControlState = ComponentState;")) {
 for (const marker of [
   "[data-mo-control]",
   'data-mo-state="disabled"',
-  "data-mo-presentation="scrollable"",
+  'data-mo-presentation="scrollable"',
   "--mo-control-target-size",
   "--mo-control-row-height"
 ]) {
