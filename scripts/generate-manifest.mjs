@@ -43,6 +43,7 @@ const manifest = {
     "semantic-colors",
     "theme-intelligence",
     "data-visualization",
+    "adaptive-data-visualization",
     "adaptive-typography",
     "shape-framework",
     "layout-engine",
