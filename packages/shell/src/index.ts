@@ -1,4 +1,7 @@
 import type { MaterialOneContext } from "@material-one/core";
+import {
+  createLayoutProfile
+} from "@material-one/layout";
 
 export type ShellNavigation = "bottom" | "rail" | "sidebar";
 export type ShellContextPane = "none" | "contextual" | "persistent";
@@ -46,6 +49,9 @@ export function resolveApplicationShell(
   options: ApplicationShellOptions = {}
 ): ApplicationShellRecipe {
   const navigation = resolveShellNavigation(context);
+  const layout = createLayoutProfile(context, {
+    preferFluidContent: options.preferFluidContent
+  });
   const requestedCommand = options.commandSurface ?? "automatic";
 
   const commandSurface =
@@ -72,21 +78,11 @@ export function resolveApplicationShell(
           : 68,
     navigationSize:
       navigation === "bottom" ? 72 : navigation === "rail" ? 88 : 280,
-    contentMaxWidth:
-      options.preferFluidContent || context.layout === "workspace"
-        ? "fluid"
-        : context.layout === "compact"
-          ? 720
-          : 1120,
+    contentMaxWidth: layout.contentMaxWidth,
     contextPane,
     contextPaneWidth: contextPane === "none" ? 0 : 320,
     commandSurface,
-    contentPadding:
-      context.layout === "compact"
-        ? 16
-        : context.layout === "expanded"
-          ? 24
-          : 32
+    contentPadding: layout.contentPadding
   };
 }
 

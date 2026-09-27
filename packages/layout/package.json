@@ -1,0 +1,21 @@
+{
+  "name": "@material-one/layout",
+  "version": "0.1.0",
+  "description": "Typed adaptive layout geometry, column capacity, pane strategy, and presentation contracts for Material One.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/material-one-layout.css"
+  },
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0"
+  },
+  "keywords": [
+    "layout-engine",
+    "responsive",
+    "adaptive-ui",
+    "design-system",
+    "material-one"
+  ],
+  "license": "MIT"
+}

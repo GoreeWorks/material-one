@@ -43,6 +43,7 @@ const manifest = {
     "data-visualization",
     "adaptive-typography",
     "shape-framework",
+    "layout-engine",
     "semantic-motion",
     "components",
     "application-shell",

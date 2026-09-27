@@ -1,5 +1,6 @@
 .mo-page {
-  inline-size: min(100%, 1440px);
+  inline-size: 100%;
+  max-inline-size: var(--mo-layout-content-max, 1440px);
   margin-inline: auto;
 }
 

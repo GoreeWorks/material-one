@@ -59,6 +59,9 @@
       ],
       "@material-one/shape": [
         "packages/shape/src/index.ts"
+      ],
+      "@material-one/layout": [
+        "packages/layout/src/index.ts"
       ]
     }
   },

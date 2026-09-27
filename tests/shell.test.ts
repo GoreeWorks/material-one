@@ -43,12 +43,25 @@ test("workspace exposes contextual panes", () => {
   assert.equal(recipe.contextPane, "contextual");
   assert.equal(recipe.navigationSize, 280);
   assert.equal(recipe.contentMaxWidth, "fluid");
+  assert.equal(recipe.contentPadding, 32);
 });
 
 test("compact command surface becomes overlay", () => {
   const recipe = resolveApplicationShell(context("compact"));
   assert.equal(recipe.commandSurface, "overlay");
   assert.equal(recipe.contextPane, "none");
+  assert.equal(recipe.contentPadding, 16);
+  assert.equal(recipe.contentMaxWidth, 720);
+});
+
+test("shell can request fluid content without redefining layout geometry", () => {
+  const recipe = resolveApplicationShell(
+    context("expanded"),
+    { preferFluidContent: true }
+  );
+
+  assert.equal(recipe.contentMaxWidth, "fluid");
+  assert.equal(recipe.contentPadding, 24);
 });
 
 test("overlays adapt presentation", () => {
