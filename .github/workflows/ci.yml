@@ -33,6 +33,10 @@ jobs:
         run: npm run validate:theme-visualization
       - name: Validate typography and motion
         run: npm run validate:typography-motion
+      - name: Validate adaptive components and accessibility
+        run: |
+          npm run validate:components
+          npm run validate:accessibility
 
   cross-platform:
     name: ${{ matrix.os }} / Node ${{ matrix.node }}
