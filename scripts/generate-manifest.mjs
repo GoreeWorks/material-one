@@ -38,6 +38,7 @@ const manifest = {
   capabilities: [
     "adaptive-context",
     "semantic-tokens",
+    "color-intelligence",
     "semantic-colors",
     "theme-intelligence",
     "data-visualization",

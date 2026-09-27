@@ -33,7 +33,7 @@ jobs:
         run: npm run validate:theme-visualization
       - name: Validate typography and motion
         run: npm run validate:typography-motion
-      - name: Validate adaptive components, accessibility, personalization, device adaptation, shape, and layout
+      - name: Validate adaptive components, accessibility, personalization, device adaptation, shape, layout, and color intelligence
         run: |
           npm run validate:components
           npm run validate:accessibility
@@ -41,6 +41,7 @@ jobs:
           npm run validate:device-adaptation
           npm run validate:shape
           npm run validate:layout
+          npm run validate:color-intelligence
 
   cross-platform:
     name: ${{ matrix.os }} / Node ${{ matrix.node }}

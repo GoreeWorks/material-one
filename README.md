@@ -62,6 +62,7 @@ packages/
 ├── core/               Adaptive context and preference engine
 ├── components/         Component recipes and CSS primitives
 ├── controls/           Selection, form, data, disclosure, and feedback controls
+├── color-intelligence/ Color-purpose routing across semantic, status, categorical, and priority systems
 ├── semantic-colors/    Semantic roles, schemes, status pairs, and interaction colors
 ├── color-coding/       Categorical color coding and data color intelligence
 ├── theme-intelligence/ Adaptive semantic theme generation and contrast validation
@@ -100,6 +101,10 @@ Material One is intended to provide the shared interface foundation for GoreeWor
 - future device experiences
 
 Products may have their own identity while extending the same Material One behavioral and semantic foundation.
+
+## Color Intelligence
+
+Color Intelligence routes a color decision to the correct authoritative subsystem. Interface roles and status meanings remain semantic; peer identity, categories, workflows, and GoreeWorks priority remain categorical. The runtime emits typed source/intent metadata and shared presentation aliases while preserving required redundant cues whenever hue carries user-relevant meaning. GoreeWorks priority uses the authoritative Horizon, Current, Pulse, Beacon, Surge, and Apex vocabulary rather than generic low/medium/high labels.
 
 ## Semantic Colors
 
@@ -155,11 +160,11 @@ Skeleton loading is the preferred loading treatment for content whose final layo
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Core adaptation, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
+Active foundational implementation. Core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, semantic motion, components, controls, skeleton loading, patterns, themes, icon contracts, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
 
 ## License
 

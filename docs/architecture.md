@@ -26,6 +26,14 @@ Material One is built as a layered adaptive interface system.
 18. Personalization Engine
 19. Device Adaptation System
 
+## Color Intelligence System
+
+Color Intelligence routes each color decision to one authoritative subsystem based on meaning.
+
+Semantic interface roles and status meanings route to Semantic Colors. Peer identities, categories, workflows, and GoreeWorks priority levels route to Color Coding. Theme Intelligence may adapt the semantic scheme but does not redefine the meaning of a color request.
+
+This boundary prevents status colors from becoming arbitrary category colors and prevents categorical identity from consuming success, warning, error, or information semantics.
+
 ## Semantic Colors
 
 Semantic colors define meaning independently from literal hue. Material One components consume roles such as primary, surface, focus, selection, disabled, success, warning, error, and information. Each scheme supplies readable foreground/background pairs, layered surfaces, state colors, and interaction colors.
@@ -83,6 +91,14 @@ The token layer owns the stable geometry primitives: extra-small, small, medium,
 Experience modes resolve into minimal, balanced, or expressive shape styles. This lets geometry adapt coherently without allowing each component to invent its own corner language. Compact layout may strengthen navigation enclosure while leaving other role mappings unchanged.
 
 Components consume typed `ShapeRole` and `ShapeToken` contracts. Framework-portable presentation exposes `data-mo-shape-style` and semantic CSS aliases while raw token meaning remains stable.
+
+## Layout Engine
+
+Core owns effective layout-mode selection: compact, expanded, or workspace. The Layout Engine consumes that resolved mode and owns the shared geometry derived from it.
+
+The layout layer defines content padding and width, automatic grid columns, column capacity, minimum useful column width, pane strategy, and secondary/context-pane availability. It does not reclassify physical viewport width or create a second layout preference vocabulary.
+
+Application Shell and Product Patterns consume these contracts so responsive geometry remains centralized. Device Adaptation continues to describe physical viewport and capability facts independently from interface layout policy.
 
 ## Semantic Motion
 

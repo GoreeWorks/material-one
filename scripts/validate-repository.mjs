@@ -64,7 +64,8 @@ const required = [
   "packages/shape/src/index.ts",
   "packages/shape/css/material-one-shape.css",
   "packages/layout/src/index.ts",
-  "packages/layout/css/material-one-layout.css"
+  "packages/layout/css/material-one-layout.css",
+  "packages/color-intelligence/src/index.ts"
 ];
 
 for (const item of required) await exists(item);

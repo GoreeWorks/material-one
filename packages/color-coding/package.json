@@ -1,7 +1,7 @@
 {
   "name": "@material-one/color-coding",
-  "version": "0.1.0",
-  "description": "Semantic and categorical color-coding system for Material One.",
+  "version": "0.2.0",
+  "description": "Categorical, identity, workflow, and GoreeWorks priority color-coding system for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",

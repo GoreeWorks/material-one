@@ -35,11 +35,13 @@ test("color registry spreads the first palette-sized category set", () => {
   assert.ok(registry.every(({ requiresNonColorCue }) => requiresNonColorCue));
 });
 
-test("priority uses categorical color without consuming status semantics", () => {
-  assert.equal(priorityColorCode("low"), "teal");
-  assert.equal(priorityColorCode("normal"), "blue");
-  assert.equal(priorityColorCode("high"), "amber");
-  assert.equal(priorityColorCode("urgent"), "rose");
+test("GoreeWorks priority uses categorical color without consuming status semantics", () => {
+  assert.equal(priorityColorCode("horizon"), "teal");
+  assert.equal(priorityColorCode("current"), "blue");
+  assert.equal(priorityColorCode("pulse"), "cyan");
+  assert.equal(priorityColorCode("beacon"), "violet");
+  assert.equal(priorityColorCode("surge"), "amber");
+  assert.equal(priorityColorCode("apex"), "rose");
 });
 
 test("skeleton loading uses a flash-prevention delay", () => {

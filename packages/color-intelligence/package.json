@@ -1,0 +1,22 @@
+{
+  "name": "@material-one/color-intelligence",
+  "version": "0.1.0",
+  "description": "Typed color-purpose routing across Material One semantic, status, categorical, and priority color systems.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@material-one/semantic-colors": "^0.1.0",
+    "@material-one/color-coding": "^0.2.0"
+  },
+  "keywords": [
+    "color-intelligence",
+    "semantic-color",
+    "categorical-color",
+    "priority",
+    "design-system",
+    "material-one"
+  ],
+  "license": "MIT"
+}
