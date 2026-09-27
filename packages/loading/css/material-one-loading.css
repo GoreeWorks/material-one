@@ -4,6 +4,9 @@
   --mo-skeleton-base: #e8e8ee;
   --mo-skeleton-highlight: #f7f7fa;
   --mo-skeleton-duration: 1400ms;
+  --mo-loading-delay: var(--mo-skeleton-delay, 180ms);
+  --mo-loading-minimum-visible:
+    var(--mo-skeleton-minimum-visible, 300ms);
 }
 
 [data-mo-theme="dark"] {
@@ -115,6 +118,15 @@
   cursor: progress;
 }
 
+.mo-loading-region[aria-busy="false"] {
+  cursor: inherit;
+}
+
+.mo-loading-region[data-mo-loading-presentation="none"] .mo-skeleton,
+.mo-loading-region[data-mo-loading-presentation="progress"] .mo-skeleton {
+  display: none;
+}
+
 .mo-loading-region[data-mo-loading-presentation="stale"] {
   opacity: 0.78;
 }
@@ -177,7 +189,22 @@
 }
 
 .mo-content-reveal {
-  animation: mo-content-reveal var(--mo-motion-standard) var(--mo-ease-standard) both;
+  animation:
+    mo-content-reveal
+    var(--mo-motion-standard)
+    var(--mo-ease-standard)
+    both;
+}
+
+.mo-loading-region[data-mo-loading-motion="reduced"] .mo-content-reveal,
+.mo-loading-region[data-mo-loading-motion="none"] .mo-content-reveal {
+  animation: none;
+}
+
+.mo-loading-region[data-mo-loading-motion="reduced"] .mo-skeleton::after,
+.mo-loading-region[data-mo-loading-motion="none"] .mo-skeleton::after {
+  display: none;
+  animation: none;
 }
 
 @keyframes mo-content-reveal {
