@@ -152,13 +152,15 @@ Icon purpose controls accessibility behavior. Decorative icons are hidden from a
 
 Typed registries enforce unique names, and `createIconPresentation()` emits portable state, size, weight, purpose, direction, mirroring, accessibility, and CSS-variable metadata. Semantic color remains owned by the surrounding Material One component through `currentColor`.
 
-## Semantic Motion
+## Adaptive Motion Framework
 
 Motion is organized by intent rather than by component-specific animation constants.
 
-Material One defines instant, feedback, enter, exit, navigation, transform, emphasis, and loading motion intents. Each intent has a duration, easing, spatial distance, scale behavior, opacity behavior, and accessibility policy.
+Material One defines instant, feedback, enter, exit, navigation, transform, emphasis, and loading intents. Core owns the canonical requested motion preference vocabulary. Accessibility owns the effective preference after platform and user safeguards are combined. Motion owns the semantic recipes derived from that effective value.
 
-Reduced motion removes non-essential spatial movement and scaling while preserving short essential interaction feedback. No Motion disables animation and transition behavior entirely while preserving state through other cues.
+`createMotionPolicy()` exposes requested versus effective motion and whether Accessibility constrained the request. `createAdaptiveMotionPresentation()` emits the resolved recipe plus portable runtime attributes and CSS variables, preventing products from accidentally re-enabling decorative movement after an accessibility reduction.
+
+Reduced motion removes non-essential spatial movement and scaling while preserving short essential feedback. No Motion disables animation and transition behavior entirely while preserving state through other cues.
 
 ## Adaptive Loading Framework
 
