@@ -59,7 +59,8 @@ const required = [
   "packages/motion/css/material-one-motion.css",
   "packages/accessibility/src/index.ts",
   "packages/accessibility/css/material-one-accessibility.css",
-  "packages/personalization/src/index.ts"
+  "packages/personalization/src/index.ts",
+  "packages/device-adaptation/src/index.ts"
 ];
 
 for (const item of required) await exists(item);
