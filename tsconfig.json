@@ -50,6 +50,9 @@
       ],
       "@material-one/accessibility": [
         "packages/accessibility/src/index.ts"
+      ],
+      "@material-one/personalization": [
+        "packages/personalization/src/index.ts"
       ]
     }
   },
