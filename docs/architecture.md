@@ -26,6 +26,14 @@ Material One is built as a layered adaptive interface system.
 18. Personalization Engine
 19. Device Adaptation System
 
+## Color Intelligence System
+
+Color Intelligence routes each color decision to one authoritative subsystem based on meaning.
+
+Semantic interface roles and status meanings route to Semantic Colors. Peer identities, categories, workflows, and GoreeWorks priority levels route to Color Coding. Theme Intelligence may adapt the semantic scheme but does not redefine the meaning of a color request.
+
+This boundary prevents status colors from becoming arbitrary category colors and prevents categorical identity from consuming success, warning, error, or information semantics.
+
 ## Semantic Colors
 
 Semantic colors define meaning independently from literal hue. Material One components consume roles such as primary, surface, focus, selection, disabled, success, warning, error, and information. Each scheme supplies readable foreground/background pairs, layered surfaces, state colors, and interaction colors.
