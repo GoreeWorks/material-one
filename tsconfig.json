@@ -62,6 +62,9 @@
       ],
       "@material-one/layout": [
         "packages/layout/src/index.ts"
+      ],
+      "@material-one/color-intelligence": [
+        "packages/color-intelligence/src/index.ts"
       ]
     }
   },
