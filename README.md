@@ -72,7 +72,7 @@ packages/
 ├── shape/              Semantic shape roles, adaptive geometry, and CSS aliases
 ├── layout/             Adaptive geometry, columns, pane strategy, and layout presentation
 ├── motion/             Semantic motion intents and reduced-motion adaptation
-├── loading/            Skeleton loading and progressive loading behavior
+├── loading/            Accessibility-aware loading orchestration, skeletons, and progressive feedback
 ├── patterns/           Typed page, grid, master/detail, settings, and catalog patterns
 ├── shell/              Typed navigation, context, command, overlay, and shell presentation
 ├── themes/             Semantic theme contracts and CSS-variable generation
@@ -175,17 +175,17 @@ Device adaptation formalizes the physical and capability environment around the 
 
 Material One uses one canonical component-state vocabulary across core runtime attributes and component recipes: default, hovered, focused, pressed, selected, disabled, loading, success, warning, and error. Adaptive component contracts inherit layout, density, input method, motion preference, contrast preference, text scale, and interaction-target sizing from the current Material One context. Component semantic color, typography, motion, and shape fields are typed directly against their authoritative Material One subsystems, and `createComponentPresentation()` converts those contracts into portable data attributes and CSS variables for framework adapters. Legacy runtime inputs from the first prototype are normalized before `data-mo-state` is emitted so downstream products can migrate without maintaining a second interaction language.
 
-## Skeleton Loading
+## Adaptive Loading
 
-Skeleton loading is the preferred loading treatment for content whose final layout is predictable. Skeletons preserve layout to reduce visual shift, use a short delay to avoid flashing during fast loads, remain visible long enough to prevent flicker, and become static when reduced motion is requested. Material One loading orchestration chooses between no placeholder, skeletons, progress feedback, and stale-content refresh depending on latency, task type, and whether the final geometry is known.
+Loading is resolved from intent, latency, known geometry, stale-content availability, and the authoritative Material One context. `createLoadingProfile()` consumes the effective Accessibility motion policy so operating-system or user reduced-motion requirements cannot be bypassed by skeleton behavior, while blueprint density comes directly from Core. The runtime chooses between no placeholder, skeleton, progress, and stale-content presentation; skeleton geometry is hidden from the accessibility tree and the loading region carries busy/live semantics through portable metadata. Existing low-level skeleton helpers remain supported.
 
 ## Engineering Quality
 
-Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
+Material One is validated through GitHub Actions across supported Node versions and GitHub-hosted Linux, Windows, and macOS runners. CI checks repository structure, design-token source integrity and typed token contracts, semantic-token contrast, color intelligence routing, theme intelligence, visualization behavior, adaptive typography, semantic motion, adaptive accessibility policy and CSS behavior, personalization orchestration, device adaptation, semantic shape behavior, adaptive layout behavior, typed product patterns, canonical control presentation, iconography accessibility and RTL behavior, application-shell presentation and overlay behavior, adaptive loading orchestration and accessibility-aware motion, TypeScript contracts, runtime behavior, package integrity, and generated implementation manifests. CodeQL performs JavaScript and TypeScript security analysis.
 
 ## Status
 
-Active foundational implementation. Design tokens, core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, typed product patterns, semantic motion, components, controls, skeleton loading, themes, the typed iconography system, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
+Active foundational implementation. Design tokens, core adaptation, color intelligence, semantic colors, categorical color coding, theme intelligence, accessible data visualization, adaptive typography, semantic shape, adaptive layout, typed product patterns, semantic motion, components, controls, adaptive loading, themes, the typed iconography system, the adaptive accessibility runtime, personalization orchestration, device adaptation runtime, and the adaptive application shell are under development.
 
 ## License
 
