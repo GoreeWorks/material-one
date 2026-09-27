@@ -1,12 +1,24 @@
 {
   "name": "@material-one/loading",
-  "version": "0.1.0",
-  "description": "Skeleton loading and progressive loading behavior for Material One.",
+  "version": "0.2.0",
+  "description": "Adaptive loading orchestration, skeleton geometry, accessibility-aware motion, and portable loading presentation for Material One.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./styles": "./css/material-one-loading.css"
   },
-  "keywords": ["design-system", "loading", "skeleton", "progressive-rendering", "material-one"],
+  "peerDependencies": {
+    "@material-one/core": "^0.1.0",
+    "@material-one/accessibility": "^0.1.0"
+  },
+  "keywords": [
+    "design-system",
+    "loading",
+    "skeleton",
+    "progressive-rendering",
+    "accessibility",
+    "adaptive-ui",
+    "material-one"
+  ],
   "license": "MIT"
 }
