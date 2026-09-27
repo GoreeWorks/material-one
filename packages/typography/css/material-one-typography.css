@@ -161,3 +161,37 @@ html {
     color: var(--mo-sem-on-surface);
   }
 }
+
+
+/* Runtime adaptive typography presentation.
+   These selectors follow viewport fallbacks so explicit Material One
+   layout and accessibility policy can remain authoritative. */
+
+[data-mo-layout="compact"] {
+  --mo-type-display: 2.75rem;
+  --mo-type-large-title: 2.125rem;
+  --mo-type-title: 1.75rem;
+}
+
+[data-mo-layout="workspace"] {
+  --mo-type-display: 3.75rem;
+  --mo-type-large-title: 2.625rem;
+  --mo-type-title: 2.125rem;
+}
+
+[data-mo-contrast="high"] .mo-type-supporting {
+  color: var(--mo-sem-on-surface);
+}
+
+[data-mo-type-role] {
+  font-size:
+    var(--mo-type-effective-size);
+  line-height:
+    var(--mo-type-effective-line-height);
+  font-weight:
+    var(--mo-type-effective-weight);
+  letter-spacing:
+    var(--mo-type-effective-tracking);
+  max-inline-size:
+    var(--mo-type-effective-max-line);
+}
