@@ -92,6 +92,14 @@ Experience modes resolve into minimal, balanced, or expressive shape styles. Thi
 
 Components consume typed `ShapeRole` and `ShapeToken` contracts. Framework-portable presentation exposes `data-mo-shape-style` and semantic CSS aliases while raw token meaning remains stable.
 
+## Layout Engine
+
+Core owns effective layout-mode selection: compact, expanded, or workspace. The Layout Engine consumes that resolved mode and owns the shared geometry derived from it.
+
+The layout layer defines content padding and width, automatic grid columns, column capacity, minimum useful column width, pane strategy, and secondary/context-pane availability. It does not reclassify physical viewport width or create a second layout preference vocabulary.
+
+Application Shell and Product Patterns consume these contracts so responsive geometry remains centralized. Device Adaptation continues to describe physical viewport and capability facts independently from interface layout policy.
+
 ## Semantic Motion
 
 Motion is organized by intent rather than by component-specific animation constants.
